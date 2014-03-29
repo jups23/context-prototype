@@ -12,8 +12,12 @@
 @interface MGViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *sensorDisplay;
+
 @property (weak, nonatomic) IBOutlet UIPickerView *userContextPicker;
 @property (strong, nonatomic) NSArray *availableUserContexts;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *thenPicker;
+@property (strong, nonatomic) NSArray *availableThenActions;
 
 @property CMMotionManager *motionManager;
 @property NSOperationQueue *deviceQueue;
@@ -29,6 +33,7 @@
 	
 	self.sensorDisplay.text = @"Huhu";
 	self.availableUserContexts = @[@"moving", @"still", @"walking"];
+	self.availableThenActions = @[@"alert yay"];
 
 
 	self.deviceQueue = [[NSOperationQueue alloc] init];
@@ -69,14 +74,24 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView
 numberOfRowsInComponent:(NSInteger)component
 {
-	return self.availableUserContexts.count;
+	if (pickerView == self.userContextPicker) {
+		return self.availableUserContexts.count;
+	} else {
+		return self.availableThenActions.count;
+	}
 }
 
+
+#pragma mark - PickerView delegate
 - (NSString *)pickerView:(UIPickerView *)pickerView
 			 titleForRow:(NSInteger)row
 			forComponent:(NSInteger)component
 {
-    return self.availableUserContexts[row];
+	if (pickerView == self.userContextPicker) {
+		return self.availableUserContexts[row];
+	} else {
+		return self.availableThenActions[row];
+	}
 }
 
 
