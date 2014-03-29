@@ -10,10 +10,14 @@
 #import <CoreMotion/CoreMotion.h>
 
 @interface MGViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *sensorDisplay;
+@property (weak, nonatomic) IBOutlet UIPickerView *userContextPicker;
+@property (strong, nonatomic) NSArray *availableUserContexts;
 
 @property CMMotionManager *motionManager;
 @property NSOperationQueue *deviceQueue;
+@property (weak, nonatomic) IBOutlet UITextField *sensorValueInputLabel;
 
 @end
 
@@ -22,7 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
 	self.sensorDisplay.text = @"Huhu";
+	self.availableUserContexts = @[@"moving", @"still", @"walking"];
+
 
 	self.deviceQueue = [[NSOperationQueue alloc] init];
 	self.motionManager = [[CMMotionManager alloc] init];
@@ -42,6 +49,37 @@
 		}];
 	}];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+	self.sensorValueInputLabel.text = textField.text;
+    return YES;
+}
+
+
+#pragma mark - PickerView data source
+
+- (NSInteger)numberOfComponentsInPickerView:
+(UIPickerView *)pickerView
+{
+	return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component
+{
+	return self.availableUserContexts.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+			 titleForRow:(NSInteger)row
+			forComponent:(NSInteger)component
+{
+    return self.availableUserContexts[row];
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

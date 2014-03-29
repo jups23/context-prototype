@@ -457,6 +457,7 @@
 				3EA4E2A918E61A0C00B3754F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3EA4E2AA18E61A0C00B3754F /* Build configuration list for PBXNativeTarget "ParsnipTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +466,7 @@
 				3EA4E2AC18E61A0C00B3754F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
