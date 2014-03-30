@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EA2AE3118E894C900C4704D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3018E894C900C4704D /* CoreLocation.framework */; };
+		3EA2AE3318E894D600C4704D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3218E894D600C4704D /* CoreMotion.framework */; };
+		3EA2AE3518E894E300C4704D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3418E894E300C4704D /* AVFoundation.framework */; };
+		3EA2AE3718E894EE00C4704D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3618E894EE00C4704D /* AudioToolbox.framework */; };
+		3EA2AE3918E894F600C4704D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3818E894F600C4704D /* CoreTelephony.framework */; };
+		3EA2AE3B18E8950200C4704D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3A18E8950200C4704D /* SystemConfiguration.framework */; };
 		3EA4E27918E61A0C00B3754F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E27818E61A0C00B3754F /* Foundation.framework */; };
 		3EA4E27B18E61A0C00B3754F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E27A18E61A0C00B3754F /* CoreGraphics.framework */; };
 		3EA4E27D18E61A0C00B3754F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E27C18E61A0C00B3754F /* UIKit.framework */; };
@@ -24,6 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3EA2AE2D18E8948D00C4704D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EA4E40118E8938800B3754F /* SensePlatform.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E820D6915D40AB50001A3EC;
+			remoteInfo = SensePlatform;
+		};
 		3EA4E29B18E61A0C00B3754F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3EA4E26D18E61A0C00B3754F /* Project object */;
@@ -31,9 +44,50 @@
 			remoteGlobalIDString = 3EA4E27418E61A0C00B3754F;
 			remoteInfo = Parsnip;
 		};
+		3EA4E41218E8938800B3754F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EA4E36018E8938700B3754F /* CordovaLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 68A32D7114102E1C006B237C;
+			remoteInfo = CordovaLib;
+		};
+		3EA4E41518E8938800B3754F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EA4E36618E8938700B3754F /* sense-ios-phonegap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
+			remoteInfo = "sense-ios-phonegap";
+		};
+		3EA4E41B18E8938800B3754F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EA4E40118E8938800B3754F /* SensePlatform.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E820D6A15D40AB50001A3EC;
+			remoteInfo = SensePlatform;
+		};
+		3EA4E41D18E8938800B3754F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EA4E40118E8938800B3754F /* SensePlatform.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E148B91160A12000010A0D1;
+			remoteInfo = SensePlatformTestApp;
+		};
+		3EA4E41F18E8938800B3754F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EA4E40118E8938800B3754F /* SensePlatform.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3E148BA8160A12010010A0D1;
+			remoteInfo = SensePlatformTestAppTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3EA2AE3018E894C900C4704D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3EA2AE3218E894D600C4704D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		3EA2AE3418E894E300C4704D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3EA2AE3618E894EE00C4704D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		3EA2AE3818E894F600C4704D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		3EA2AE3A18E8950200C4704D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3EA4E27518E61A0C00B3754F /* Parsnip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parsnip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EA4E27818E61A0C00B3754F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3EA4E27A18E61A0C00B3754F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +107,243 @@
 		3EA4E29F18E61A0C00B3754F /* ParsnipTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParsnipTests-Info.plist"; sourceTree = "<group>"; };
 		3EA4E2A118E61A0C00B3754F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3EA4E2A318E61A0C00B3754F /* ParsnipTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParsnipTests.m; sourceTree = "<group>"; };
+		3EA4E2F818E8938600B3754F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		3EA4E2FC18E8938600B3754F /* build */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build; sourceTree = "<group>"; };
+		3EA4E2FD18E8938600B3754F /* emulate */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = emulate; sourceTree = "<group>"; };
+		3EA4E2FE18E8938600B3754F /* log */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = log; sourceTree = "<group>"; };
+		3EA4E2FF18E8938600B3754F /* release */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = release; sourceTree = "<group>"; };
+		3EA4E30018E8938600B3754F /* run */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = run; sourceTree = "<group>"; };
+		3EA4E30318E8938600B3754F /* CDV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDV.h; sourceTree = "<group>"; };
+		3EA4E30418E8938600B3754F /* CDVAccelerometer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVAccelerometer.h; sourceTree = "<group>"; };
+		3EA4E30518E8938600B3754F /* CDVAccelerometer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVAccelerometer.m; sourceTree = "<group>"; };
+		3EA4E30618E8938600B3754F /* CDVAvailability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVAvailability.h; sourceTree = "<group>"; };
+		3EA4E30718E8938600B3754F /* CDVBattery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVBattery.h; sourceTree = "<group>"; };
+		3EA4E30818E8938600B3754F /* CDVBattery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVBattery.m; sourceTree = "<group>"; };
+		3EA4E30918E8938600B3754F /* CDVCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVCamera.h; sourceTree = "<group>"; };
+		3EA4E30A18E8938600B3754F /* CDVCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVCamera.m; sourceTree = "<group>"; };
+		3EA4E30B18E8938600B3754F /* CDVCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVCapture.h; sourceTree = "<group>"; };
+		3EA4E30C18E8938600B3754F /* CDVCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVCapture.m; sourceTree = "<group>"; };
+		3EA4E30D18E8938600B3754F /* CDVCommandDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVCommandDelegate.h; sourceTree = "<group>"; };
+		3EA4E30E18E8938600B3754F /* CDVCommandDelegateImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVCommandDelegateImpl.h; sourceTree = "<group>"; };
+		3EA4E30F18E8938600B3754F /* CDVCommandDelegateImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVCommandDelegateImpl.m; sourceTree = "<group>"; };
+		3EA4E31018E8938600B3754F /* CDVCommandQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVCommandQueue.h; sourceTree = "<group>"; };
+		3EA4E31118E8938600B3754F /* CDVCommandQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVCommandQueue.m; sourceTree = "<group>"; };
+		3EA4E31218E8938600B3754F /* CDVConfigParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVConfigParser.h; sourceTree = "<group>"; };
+		3EA4E31318E8938600B3754F /* CDVConfigParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVConfigParser.m; sourceTree = "<group>"; };
+		3EA4E31418E8938600B3754F /* CDVConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVConnection.h; sourceTree = "<group>"; };
+		3EA4E31518E8938600B3754F /* CDVConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVConnection.m; sourceTree = "<group>"; };
+		3EA4E31618E8938600B3754F /* CDVContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVContact.h; sourceTree = "<group>"; };
+		3EA4E31718E8938600B3754F /* CDVContact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVContact.m; sourceTree = "<group>"; };
+		3EA4E31818E8938600B3754F /* CDVContacts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVContacts.h; sourceTree = "<group>"; };
+		3EA4E31918E8938600B3754F /* CDVContacts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVContacts.m; sourceTree = "<group>"; };
+		3EA4E31A18E8938600B3754F /* CDVDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVDebug.h; sourceTree = "<group>"; };
+		3EA4E31B18E8938600B3754F /* CDVDebugConsole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVDebugConsole.h; sourceTree = "<group>"; };
+		3EA4E31C18E8938600B3754F /* CDVDebugConsole.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVDebugConsole.m; sourceTree = "<group>"; };
+		3EA4E31D18E8938600B3754F /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVDevice.h; sourceTree = "<group>"; };
+		3EA4E31E18E8938600B3754F /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVDevice.m; sourceTree = "<group>"; };
+		3EA4E31F18E8938600B3754F /* CDVEcho.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVEcho.h; sourceTree = "<group>"; };
+		3EA4E32018E8938600B3754F /* CDVEcho.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVEcho.m; sourceTree = "<group>"; };
+		3EA4E32118E8938600B3754F /* CDVExif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVExif.h; sourceTree = "<group>"; };
+		3EA4E32218E8938600B3754F /* CDVFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVFile.h; sourceTree = "<group>"; };
+		3EA4E32318E8938600B3754F /* CDVFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVFile.m; sourceTree = "<group>"; };
+		3EA4E32418E8938600B3754F /* CDVFileTransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVFileTransfer.h; sourceTree = "<group>"; };
+		3EA4E32518E8938600B3754F /* CDVFileTransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVFileTransfer.m; sourceTree = "<group>"; };
+		3EA4E32618E8938600B3754F /* CDVGlobalization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVGlobalization.h; sourceTree = "<group>"; };
+		3EA4E32718E8938600B3754F /* CDVGlobalization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVGlobalization.m; sourceTree = "<group>"; };
+		3EA4E32818E8938600B3754F /* CDVInAppBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVInAppBrowser.h; sourceTree = "<group>"; };
+		3EA4E32918E8938600B3754F /* CDVInAppBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVInAppBrowser.m; sourceTree = "<group>"; };
+		3EA4E32A18E8938600B3754F /* CDVInvokedUrlCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVInvokedUrlCommand.h; sourceTree = "<group>"; };
+		3EA4E32B18E8938600B3754F /* CDVInvokedUrlCommand.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVInvokedUrlCommand.m; sourceTree = "<group>"; };
+		3EA4E32C18E8938600B3754F /* CDVJpegHeaderWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVJpegHeaderWriter.h; sourceTree = "<group>"; };
+		3EA4E32D18E8938600B3754F /* CDVJpegHeaderWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVJpegHeaderWriter.m; sourceTree = "<group>"; };
+		3EA4E32E18E8938600B3754F /* CDVJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVJSON.h; sourceTree = "<group>"; };
+		3EA4E32F18E8938600B3754F /* CDVJSON.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVJSON.m; sourceTree = "<group>"; };
+		3EA4E33018E8938600B3754F /* CDVLocalStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVLocalStorage.h; sourceTree = "<group>"; };
+		3EA4E33118E8938600B3754F /* CDVLocalStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVLocalStorage.m; sourceTree = "<group>"; };
+		3EA4E33218E8938600B3754F /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVLocation.h; sourceTree = "<group>"; };
+		3EA4E33318E8938600B3754F /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVLocation.m; sourceTree = "<group>"; };
+		3EA4E33418E8938700B3754F /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVLogger.h; sourceTree = "<group>"; };
+		3EA4E33518E8938700B3754F /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVLogger.m; sourceTree = "<group>"; };
+		3EA4E33618E8938700B3754F /* CDVNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVNotification.h; sourceTree = "<group>"; };
+		3EA4E33718E8938700B3754F /* CDVNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVNotification.m; sourceTree = "<group>"; };
+		3EA4E33818E8938700B3754F /* CDVPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVPlugin.h; sourceTree = "<group>"; };
+		3EA4E33918E8938700B3754F /* CDVPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVPlugin.m; sourceTree = "<group>"; };
+		3EA4E33A18E8938700B3754F /* CDVPluginResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVPluginResult.h; sourceTree = "<group>"; };
+		3EA4E33B18E8938700B3754F /* CDVPluginResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVPluginResult.m; sourceTree = "<group>"; };
+		3EA4E33C18E8938700B3754F /* CDVReachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVReachability.h; sourceTree = "<group>"; };
+		3EA4E33D18E8938700B3754F /* CDVReachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVReachability.m; sourceTree = "<group>"; };
+		3EA4E33E18E8938700B3754F /* CDVScreenOrientationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVScreenOrientationDelegate.h; sourceTree = "<group>"; };
+		3EA4E33F18E8938700B3754F /* CDVSound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVSound.h; sourceTree = "<group>"; };
+		3EA4E34018E8938700B3754F /* CDVSound.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVSound.m; sourceTree = "<group>"; };
+		3EA4E34118E8938700B3754F /* CDVSplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVSplashScreen.h; sourceTree = "<group>"; };
+		3EA4E34218E8938700B3754F /* CDVSplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVSplashScreen.m; sourceTree = "<group>"; };
+		3EA4E34318E8938700B3754F /* CDVURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVURLProtocol.h; sourceTree = "<group>"; };
+		3EA4E34418E8938700B3754F /* CDVURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVURLProtocol.m; sourceTree = "<group>"; };
+		3EA4E34518E8938700B3754F /* CDVUserAgentUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVUserAgentUtil.h; sourceTree = "<group>"; };
+		3EA4E34618E8938700B3754F /* CDVUserAgentUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVUserAgentUtil.m; sourceTree = "<group>"; };
+		3EA4E34718E8938700B3754F /* CDVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVViewController.h; sourceTree = "<group>"; };
+		3EA4E34818E8938700B3754F /* CDVViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVViewController.m; sourceTree = "<group>"; };
+		3EA4E34918E8938700B3754F /* CDVWebViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVWebViewDelegate.h; sourceTree = "<group>"; };
+		3EA4E34A18E8938700B3754F /* CDVWebViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVWebViewDelegate.m; sourceTree = "<group>"; };
+		3EA4E34B18E8938700B3754F /* CDVWhitelist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVWhitelist.h; sourceTree = "<group>"; };
+		3EA4E34C18E8938700B3754F /* CDVWhitelist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVWhitelist.m; sourceTree = "<group>"; };
+		3EA4E34F18E8938700B3754F /* CDV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDV.h; sourceTree = "<group>"; };
+		3EA4E35018E8938700B3754F /* CDVPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVPlugin.h; sourceTree = "<group>"; };
+		3EA4E35118E8938700B3754F /* CDVPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDVPlugin.m; sourceTree = "<group>"; };
+		3EA4E35318E8938700B3754F /* CDV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDV.h; sourceTree = "<group>"; };
+		3EA4E35418E8938700B3754F /* CDVPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDVPlugin.h; sourceTree = "<group>"; };
+		3EA4E35518E8938700B3754F /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		3EA4E35618E8938700B3754F /* NSArray+Comparisons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Comparisons.h"; sourceTree = "<group>"; };
+		3EA4E35718E8938700B3754F /* NSArray+Comparisons.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Comparisons.m"; sourceTree = "<group>"; };
+		3EA4E35818E8938700B3754F /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		3EA4E35918E8938700B3754F /* NSData+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		3EA4E35A18E8938700B3754F /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extensions.h"; sourceTree = "<group>"; };
+		3EA4E35B18E8938700B3754F /* NSDictionary+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extensions.m"; sourceTree = "<group>"; };
+		3EA4E35C18E8938700B3754F /* NSMutableArray+QueueAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+QueueAdditions.h"; sourceTree = "<group>"; };
+		3EA4E35D18E8938700B3754F /* NSMutableArray+QueueAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+QueueAdditions.m"; sourceTree = "<group>"; };
+		3EA4E35E18E8938700B3754F /* UIDevice+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Extensions.h"; sourceTree = "<group>"; };
+		3EA4E35F18E8938700B3754F /* UIDevice+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Extensions.m"; sourceTree = "<group>"; };
+		3EA4E36018E8938700B3754F /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CordovaLib.xcodeproj; sourceTree = "<group>"; };
+		3EA4E36318E8938700B3754F /* CordovaLib_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CordovaLib_Prefix.pch; sourceTree = "<group>"; };
+		3EA4E36418E8938700B3754F /* VERSION */ = {isa = PBXFileReference; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
+		3EA4E36518E8938700B3754F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		3EA4E36618E8938700B3754F /* sense-ios-phonegap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "sense-ios-phonegap.xcodeproj"; sourceTree = "<group>"; };
+		3EA4E36C18E8938700B3754F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		3EA4E36E18E8938700B3754F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3EA4E36F18E8938700B3754F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3EA4E37018E8938700B3754F /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		3EA4E37118E8938700B3754F /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		3EA4E37218E8938700B3754F /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		3EA4E37318E8938700B3754F /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		3EA4E37418E8938700B3754F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3EA4E37618E8938700B3754F /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		3EA4E37818E8938700B3754F /* Capture.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Capture.bundle; sourceTree = "<group>"; };
+		3EA4E37A18E8938700B3754F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3EA4E37B18E8938700B3754F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3EA4E37C18E8938700B3754F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3EA4E37E18E8938700B3754F /* icon-72.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png.png"; sourceTree = "<group>"; };
+		3EA4E37F18E8938700B3754F /* icon-72@2x.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png.png"; sourceTree = "<group>"; };
+		3EA4E38018E8938700B3754F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		3EA4E38118E8938700B3754F /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		3EA4E38218E8938700B3754F /* se */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = se; path = se.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3EA4E38418E8938700B3754F /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
+		3EA4E38518E8938700B3754F /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		3EA4E38618E8938700B3754F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		3EA4E38718E8938700B3754F /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		3EA4E38818E8938700B3754F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		3EA4E38918E8938700B3754F /* Default@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x~iphone.png"; sourceTree = "<group>"; };
+		3EA4E38A18E8938700B3754F /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
+		3EA4E38B18E8938700B3754F /* sense-ios-phonegap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sense-ios-phonegap-Info.plist"; sourceTree = "<group>"; };
+		3EA4E38C18E8938700B3754F /* sense-ios-phonegap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sense-ios-phonegap-Prefix.pch"; sourceTree = "<group>"; };
+		3EA4E38E18E8938700B3754F /* cordova-2.6.0.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "cordova-2.6.0.js"; sourceTree = "<group>"; };
+		3EA4E39018E8938700B3754F /* index.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = index.css; sourceTree = "<group>"; };
+		3EA4E39218E8938700B3754F /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		3EA4E39318E8938700B3754F /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		3EA4E39518E8938700B3754F /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		3EA4E39618E8938700B3754F /* md5.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = md5.js; sourceTree = "<group>"; };
+		3EA4E39718E8938700B3754F /* sense_example.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = sense_example.css; sourceTree = "<group>"; };
+		3EA4E39818E8938700B3754F /* sense_example.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = sense_example.html; sourceTree = "<group>"; };
+		3EA4E39918E8938700B3754F /* sense_example.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = sense_example.js; sourceTree = "<group>"; };
+		3EA4E39A18E8938700B3754F /* sense_platform.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = sense_platform.js; sourceTree = "<group>"; };
+		3EA4E39C18E8938700B3754F /* helper.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = helper.js; sourceTree = "<group>"; };
+		3EA4E39D18E8938700B3754F /* index.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		3EA4E3A018E8938700B3754F /* jasmine-html.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "jasmine-html.js"; sourceTree = "<group>"; };
+		3EA4E3A118E8938700B3754F /* jasmine.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = jasmine.css; sourceTree = "<group>"; };
+		3EA4E3A218E8938700B3754F /* jasmine.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = jasmine.js; sourceTree = "<group>"; };
+		3EA4E3A318E8938700B3754F /* MIT.LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = MIT.LICENSE; sourceTree = "<group>"; };
+		3EA4E3A418E8938700B3754F /* spec.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = spec.html; sourceTree = "<group>"; };
+		3EA4E3A518E8938700B3754F /* doxygen.config */ = {isa = PBXFileReference; lastKnownFileType = text; path = doxygen.config; sourceTree = "<group>"; };
+		3EA4E3A818E8938700B3754F /* CSApplicationStateChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSApplicationStateChange.h; sourceTree = "<group>"; };
+		3EA4E3A918E8938700B3754F /* CSSensePlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSensePlatform.h; sourceTree = "<group>"; };
+		3EA4E3AA18E8938700B3754F /* CSSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSensor.h; sourceTree = "<group>"; };
+		3EA4E3AB18E8938700B3754F /* CSSensorIds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSensorIds.h; sourceTree = "<group>"; };
+		3EA4E3AC18E8938700B3754F /* CSSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSettings.h; sourceTree = "<group>"; };
+		3EA4E3AD18E8938700B3754F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3EA4E3AE18E8938700B3754F /* makeDoc.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = makeDoc.sh; sourceTree = "<group>"; };
+		3EA4E3AF18E8938700B3754F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		3EA4E3B118E8938700B3754F /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		3EA4E3B418E8938700B3754F /* CSSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSender.h; sourceTree = "<group>"; };
+		3EA4E3B518E8938700B3754F /* CSSender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSSender.m; sourceTree = "<group>"; };
+		3EA4E3B618E8938700B3754F /* NSString+MD5Hash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Hash.h"; sourceTree = "<group>"; };
+		3EA4E3B718E8938700B3754F /* NSString+MD5Hash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Hash.m"; sourceTree = "<group>"; };
+		3EA4E3B818E8938700B3754F /* CSApplicationStateChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSApplicationStateChange.m; sourceTree = "<group>"; };
+		3EA4E3B918E8938700B3754F /* CSDataStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSDataStore.h; sourceTree = "<group>"; };
+		3EA4E3BA18E8938700B3754F /* CSSensePlatform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSSensePlatform.m; sourceTree = "<group>"; };
+		3EA4E3BB18E8938700B3754F /* CSSensorIds.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSSensorIds.m; sourceTree = "<group>"; };
+		3EA4E3BC18E8938700B3754F /* CSSensorRequirements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSensorRequirements.h; sourceTree = "<group>"; };
+		3EA4E3BD18E8938700B3754F /* CSSensorRequirements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSSensorRequirements.m; sourceTree = "<group>"; };
+		3EA4E3BE18E8938700B3754F /* CSSensorStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSensorStore.h; sourceTree = "<group>"; };
+		3EA4E3BF18E8938700B3754F /* CSSensorStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSSensorStore.m; sourceTree = "<group>"; };
+		3EA4E3C018E8938700B3754F /* CSSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSSettings.m; sourceTree = "<group>"; };
+		3EA4E3C218E8938700B3754F /* CSReachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSReachability.h; sourceTree = "<group>"; };
+		3EA4E3C318E8938700B3754F /* CSReachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSReachability.m; sourceTree = "<group>"; };
+		3EA4E3C418E8938700B3754F /* NSNotificationCenter+MainThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+MainThread.h"; sourceTree = "<group>"; };
+		3EA4E3C518E8938700B3754F /* NSNotificationCenter+MainThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+MainThread.m"; sourceTree = "<group>"; };
+		3EA4E3C718E8938700B3754F /* CSPGSensePlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSPGSensePlatform.h; sourceTree = "<group>"; };
+		3EA4E3C818E8938700B3754F /* CSPGSensePlatform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSPGSensePlatform.m; sourceTree = "<group>"; };
+		3EA4E3CB18E8938700B3754F /* BloodPressureSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BloodPressureSensor.h; sourceTree = "<group>"; };
+		3EA4E3CC18E8938700B3754F /* BloodPressureSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BloodPressureSensor.m; sourceTree = "<group>"; };
+		3EA4E3CD18E8938700B3754F /* CSAntPlusController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAntPlusController.h; sourceTree = "<group>"; };
+		3EA4E3CE18E8938700B3754F /* CSAntPlusController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSAntPlusController.m; sourceTree = "<group>"; };
+		3EA4E3CF18E8938800B3754F /* FootpodSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FootpodSensor.h; sourceTree = "<group>"; };
+		3EA4E3D018E8938800B3754F /* FootpodSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FootpodSensor.m; sourceTree = "<group>"; };
+		3EA4E3D118E8938800B3754F /* CSAccelerationSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAccelerationSensor.h; sourceTree = "<group>"; };
+		3EA4E3D218E8938800B3754F /* CSAccelerationSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSAccelerationSensor.m; sourceTree = "<group>"; };
+		3EA4E3D318E8938800B3754F /* CSAccelerometerSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAccelerometerSensor.h; sourceTree = "<group>"; };
+		3EA4E3D418E8938800B3754F /* CSAccelerometerSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSAccelerometerSensor.m; sourceTree = "<group>"; };
+		3EA4E3D518E8938800B3754F /* CSBatterySensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSBatterySensor.h; sourceTree = "<group>"; };
+		3EA4E3D618E8938800B3754F /* CSBatterySensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSBatterySensor.m; sourceTree = "<group>"; };
+		3EA4E3D718E8938800B3754F /* CSCallSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCallSensor.h; sourceTree = "<group>"; };
+		3EA4E3D818E8938800B3754F /* CSCallSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCallSensor.m; sourceTree = "<group>"; };
+		3EA4E3D918E8938800B3754F /* CSCompassSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCompassSensor.h; sourceTree = "<group>"; };
+		3EA4E3DA18E8938800B3754F /* CSCompassSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCompassSensor.m; sourceTree = "<group>"; };
+		3EA4E3DB18E8938800B3754F /* CSConnectionSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSConnectionSensor.h; sourceTree = "<group>"; };
+		3EA4E3DC18E8938800B3754F /* CSConnectionSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSConnectionSensor.m; sourceTree = "<group>"; };
+		3EA4E3DD18E8938800B3754F /* CSDynamicSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSDynamicSensor.h; sourceTree = "<group>"; };
+		3EA4E3DE18E8938800B3754F /* CSDynamicSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSDynamicSensor.m; sourceTree = "<group>"; };
+		3EA4E3DF18E8938800B3754F /* CSJumpSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSJumpSensor.h; sourceTree = "<group>"; };
+		3EA4E3E018E8938800B3754F /* CSJumpSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSJumpSensor.m; sourceTree = "<group>"; };
+		3EA4E3E118E8938800B3754F /* CSLocationSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLocationSensor.h; sourceTree = "<group>"; };
+		3EA4E3E218E8938800B3754F /* CSLocationSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLocationSensor.m; sourceTree = "<group>"; };
+		3EA4E3E318E8938800B3754F /* CSMotionEnergySensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSMotionEnergySensor.h; sourceTree = "<group>"; };
+		3EA4E3E418E8938800B3754F /* CSMotionEnergySensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSMotionEnergySensor.m; sourceTree = "<group>"; };
+		3EA4E3E518E8938800B3754F /* CSMotionFeaturesSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSMotionFeaturesSensor.h; sourceTree = "<group>"; };
+		3EA4E3E618E8938800B3754F /* CSMotionFeaturesSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSMotionFeaturesSensor.m; sourceTree = "<group>"; };
+		3EA4E3E718E8938800B3754F /* CSMovingSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSMovingSensor.h; sourceTree = "<group>"; };
+		3EA4E3E818E8938800B3754F /* CSMovingSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSMovingSensor.m; sourceTree = "<group>"; };
+		3EA4E3E918E8938800B3754F /* CSNoiseSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSNoiseSensor.h; sourceTree = "<group>"; };
+		3EA4E3EA18E8938800B3754F /* CSNoiseSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSNoiseSensor.m; sourceTree = "<group>"; };
+		3EA4E3EB18E8938800B3754F /* CSOrientationSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSOrientationSensor.h; sourceTree = "<group>"; };
+		3EA4E3EC18E8938800B3754F /* CSOrientationSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSOrientationSensor.m; sourceTree = "<group>"; };
+		3EA4E3ED18E8938800B3754F /* CSOrientationStateSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSOrientationStateSensor.h; sourceTree = "<group>"; };
+		3EA4E3EE18E8938800B3754F /* CSOrientationStateSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSOrientationStateSensor.m; sourceTree = "<group>"; };
+		3EA4E3EF18E8938800B3754F /* CSPreferencesSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSPreferencesSensor.h; sourceTree = "<group>"; };
+		3EA4E3F018E8938800B3754F /* CSPreferencesSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSPreferencesSensor.m; sourceTree = "<group>"; };
+		3EA4E3F118E8938800B3754F /* CSRotationSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSRotationSensor.h; sourceTree = "<group>"; };
+		3EA4E3F218E8938800B3754F /* CSRotationSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSRotationSensor.m; sourceTree = "<group>"; };
+		3EA4E3F318E8938800B3754F /* CSScreenSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSScreenSensor.h; sourceTree = "<group>"; };
+		3EA4E3F418E8938800B3754F /* CSScreenSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSScreenSensor.m; sourceTree = "<group>"; };
+		3EA4E3F518E8938800B3754F /* CSSensor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSSensor.m; sourceTree = "<group>"; };
+		3EA4E3F618E8938800B3754F /* CSSpatialProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSpatialProvider.h; sourceTree = "<group>"; };
+		3EA4E3F718E8938800B3754F /* CSSpatialProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSSpatialProvider.m; sourceTree = "<group>"; };
+		3EA4E3F818E8938800B3754F /* CSUserProximity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSUserProximity.h; sourceTree = "<group>"; };
+		3EA4E3F918E8938800B3754F /* CSUserProximity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSUserProximity.m; sourceTree = "<group>"; };
+		3EA4E3FC18E8938800B3754F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3EA4E3FD18E8938800B3754F /* sense_platformTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sense_platformTests.h; sourceTree = "<group>"; };
+		3EA4E3FE18E8938800B3754F /* sense_platformTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sense_platformTests.m; sourceTree = "<group>"; };
+		3EA4E3FF18E8938800B3754F /* SensePlatformTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SensePlatformTests-Info.plist"; sourceTree = "<group>"; };
+		3EA4E40018E8938800B3754F /* SensePlatform-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SensePlatform-Prefix.pch"; sourceTree = "<group>"; };
+		3EA4E40118E8938800B3754F /* SensePlatform.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SensePlatform.xcodeproj; sourceTree = "<group>"; };
+		3EA4E40618E8938800B3754F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3EA4E40718E8938800B3754F /* SensePlatformTestAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SensePlatformTestAppTests-Info.plist"; sourceTree = "<group>"; };
+		3EA4E40818E8938800B3754F /* SensePlatformTestAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SensePlatformTestAppTests.h; sourceTree = "<group>"; };
+		3EA4E40918E8938800B3754F /* SensePlatformTestAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SensePlatformTestAppTests.m; sourceTree = "<group>"; };
+		3EA4E40B18E8938800B3754F /* Formatting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Formatting.h; sourceTree = "<group>"; };
+		3EA4E40C18E8938800B3754F /* Formatting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Formatting.m; sourceTree = "<group>"; };
+		3EA4E40D18E8938800B3754F /* UIDevice+Hardware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
+		3EA4E40E18E8938800B3754F /* UIDevice+Hardware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
+		3EA4E40F18E8938800B3754F /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		3EA4E41018E8938800B3754F /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +351,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EA2AE3B18E8950200C4704D /* SystemConfiguration.framework in Frameworks */,
+				3EA2AE3918E894F600C4704D /* CoreTelephony.framework in Frameworks */,
+				3EA2AE3718E894EE00C4704D /* AudioToolbox.framework in Frameworks */,
+				3EA2AE3518E894E300C4704D /* AVFoundation.framework in Frameworks */,
+				3EA2AE3318E894D600C4704D /* CoreMotion.framework in Frameworks */,
+				3EA2AE3118E894C900C4704D /* CoreLocation.framework in Frameworks */,
 				3EA4E27B18E61A0C00B3754F /* CoreGraphics.framework in Frameworks */,
 				3EA4E27D18E61A0C00B3754F /* UIKit.framework in Frameworks */,
 				3EA4E27918E61A0C00B3754F /* Foundation.framework in Frameworks */,
@@ -101,6 +398,13 @@
 		3EA4E27718E61A0C00B3754F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3EA2AE3A18E8950200C4704D /* SystemConfiguration.framework */,
+				3EA2AE3818E894F600C4704D /* CoreTelephony.framework */,
+				3EA2AE3618E894EE00C4704D /* AudioToolbox.framework */,
+				3EA2AE3418E894E300C4704D /* AVFoundation.framework */,
+				3EA2AE3218E894D600C4704D /* CoreMotion.framework */,
+				3EA2AE3018E894C900C4704D /* CoreLocation.framework */,
+				3EA4E2F718E8938600B3754F /* sense-ios-library */,
 				3EA4E27818E61A0C00B3754F /* Foundation.framework */,
 				3EA4E27A18E61A0C00B3754F /* CoreGraphics.framework */,
 				3EA4E27C18E61A0C00B3754F /* UIKit.framework */,
@@ -152,6 +456,537 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		3EA4E2F718E8938600B3754F /* sense-ios-library */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E2F818E8938600B3754F /* .gitignore */,
+				3EA4E2F918E8938600B3754F /* demo */,
+				3EA4E3A518E8938700B3754F /* doxygen.config */,
+				3EA4E3A618E8938700B3754F /* include */,
+				3EA4E3AD18E8938700B3754F /* LICENSE */,
+				3EA4E3AE18E8938700B3754F /* makeDoc.sh */,
+				3EA4E3AF18E8938700B3754F /* README.md */,
+				3EA4E3B018E8938700B3754F /* resources */,
+				3EA4E3B218E8938700B3754F /* sense platform */,
+				3EA4E3FA18E8938800B3754F /* sense platformTests */,
+				3EA4E40018E8938800B3754F /* SensePlatform-Prefix.pch */,
+				3EA4E40118E8938800B3754F /* SensePlatform.xcodeproj */,
+				3EA4E40418E8938800B3754F /* SensePlatformTestAppTests */,
+				3EA4E40A18E8938800B3754F /* utils */,
+			);
+			path = "sense-ios-library";
+			sourceTree = "<group>";
+		};
+		3EA4E2F918E8938600B3754F /* demo */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E2FA18E8938600B3754F /* sense-ios-phonegap */,
+			);
+			path = demo;
+			sourceTree = "<group>";
+		};
+		3EA4E2FA18E8938600B3754F /* sense-ios-phonegap */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E2FB18E8938600B3754F /* cordova */,
+				3EA4E30118E8938600B3754F /* CordovaLib */,
+				3EA4E36518E8938700B3754F /* README.md */,
+				3EA4E36618E8938700B3754F /* sense-ios-phonegap.xcodeproj */,
+				3EA4E36B18E8938700B3754F /* SenseCordovaDemo */,
+				3EA4E38D18E8938700B3754F /* www */,
+			);
+			path = "sense-ios-phonegap";
+			sourceTree = "<group>";
+		};
+		3EA4E2FB18E8938600B3754F /* cordova */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E2FC18E8938600B3754F /* build */,
+				3EA4E2FD18E8938600B3754F /* emulate */,
+				3EA4E2FE18E8938600B3754F /* log */,
+				3EA4E2FF18E8938600B3754F /* release */,
+				3EA4E30018E8938600B3754F /* run */,
+			);
+			path = cordova;
+			sourceTree = "<group>";
+		};
+		3EA4E30118E8938600B3754F /* CordovaLib */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E30218E8938600B3754F /* Classes */,
+				3EA4E36018E8938700B3754F /* CordovaLib.xcodeproj */,
+				3EA4E36318E8938700B3754F /* CordovaLib_Prefix.pch */,
+				3EA4E36418E8938700B3754F /* VERSION */,
+			);
+			path = CordovaLib;
+			sourceTree = "<group>";
+		};
+		3EA4E30218E8938600B3754F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E30318E8938600B3754F /* CDV.h */,
+				3EA4E30418E8938600B3754F /* CDVAccelerometer.h */,
+				3EA4E30518E8938600B3754F /* CDVAccelerometer.m */,
+				3EA4E30618E8938600B3754F /* CDVAvailability.h */,
+				3EA4E30718E8938600B3754F /* CDVBattery.h */,
+				3EA4E30818E8938600B3754F /* CDVBattery.m */,
+				3EA4E30918E8938600B3754F /* CDVCamera.h */,
+				3EA4E30A18E8938600B3754F /* CDVCamera.m */,
+				3EA4E30B18E8938600B3754F /* CDVCapture.h */,
+				3EA4E30C18E8938600B3754F /* CDVCapture.m */,
+				3EA4E30D18E8938600B3754F /* CDVCommandDelegate.h */,
+				3EA4E30E18E8938600B3754F /* CDVCommandDelegateImpl.h */,
+				3EA4E30F18E8938600B3754F /* CDVCommandDelegateImpl.m */,
+				3EA4E31018E8938600B3754F /* CDVCommandQueue.h */,
+				3EA4E31118E8938600B3754F /* CDVCommandQueue.m */,
+				3EA4E31218E8938600B3754F /* CDVConfigParser.h */,
+				3EA4E31318E8938600B3754F /* CDVConfigParser.m */,
+				3EA4E31418E8938600B3754F /* CDVConnection.h */,
+				3EA4E31518E8938600B3754F /* CDVConnection.m */,
+				3EA4E31618E8938600B3754F /* CDVContact.h */,
+				3EA4E31718E8938600B3754F /* CDVContact.m */,
+				3EA4E31818E8938600B3754F /* CDVContacts.h */,
+				3EA4E31918E8938600B3754F /* CDVContacts.m */,
+				3EA4E31A18E8938600B3754F /* CDVDebug.h */,
+				3EA4E31B18E8938600B3754F /* CDVDebugConsole.h */,
+				3EA4E31C18E8938600B3754F /* CDVDebugConsole.m */,
+				3EA4E31D18E8938600B3754F /* CDVDevice.h */,
+				3EA4E31E18E8938600B3754F /* CDVDevice.m */,
+				3EA4E31F18E8938600B3754F /* CDVEcho.h */,
+				3EA4E32018E8938600B3754F /* CDVEcho.m */,
+				3EA4E32118E8938600B3754F /* CDVExif.h */,
+				3EA4E32218E8938600B3754F /* CDVFile.h */,
+				3EA4E32318E8938600B3754F /* CDVFile.m */,
+				3EA4E32418E8938600B3754F /* CDVFileTransfer.h */,
+				3EA4E32518E8938600B3754F /* CDVFileTransfer.m */,
+				3EA4E32618E8938600B3754F /* CDVGlobalization.h */,
+				3EA4E32718E8938600B3754F /* CDVGlobalization.m */,
+				3EA4E32818E8938600B3754F /* CDVInAppBrowser.h */,
+				3EA4E32918E8938600B3754F /* CDVInAppBrowser.m */,
+				3EA4E32A18E8938600B3754F /* CDVInvokedUrlCommand.h */,
+				3EA4E32B18E8938600B3754F /* CDVInvokedUrlCommand.m */,
+				3EA4E32C18E8938600B3754F /* CDVJpegHeaderWriter.h */,
+				3EA4E32D18E8938600B3754F /* CDVJpegHeaderWriter.m */,
+				3EA4E32E18E8938600B3754F /* CDVJSON.h */,
+				3EA4E32F18E8938600B3754F /* CDVJSON.m */,
+				3EA4E33018E8938600B3754F /* CDVLocalStorage.h */,
+				3EA4E33118E8938600B3754F /* CDVLocalStorage.m */,
+				3EA4E33218E8938600B3754F /* CDVLocation.h */,
+				3EA4E33318E8938600B3754F /* CDVLocation.m */,
+				3EA4E33418E8938700B3754F /* CDVLogger.h */,
+				3EA4E33518E8938700B3754F /* CDVLogger.m */,
+				3EA4E33618E8938700B3754F /* CDVNotification.h */,
+				3EA4E33718E8938700B3754F /* CDVNotification.m */,
+				3EA4E33818E8938700B3754F /* CDVPlugin.h */,
+				3EA4E33918E8938700B3754F /* CDVPlugin.m */,
+				3EA4E33A18E8938700B3754F /* CDVPluginResult.h */,
+				3EA4E33B18E8938700B3754F /* CDVPluginResult.m */,
+				3EA4E33C18E8938700B3754F /* CDVReachability.h */,
+				3EA4E33D18E8938700B3754F /* CDVReachability.m */,
+				3EA4E33E18E8938700B3754F /* CDVScreenOrientationDelegate.h */,
+				3EA4E33F18E8938700B3754F /* CDVSound.h */,
+				3EA4E34018E8938700B3754F /* CDVSound.m */,
+				3EA4E34118E8938700B3754F /* CDVSplashScreen.h */,
+				3EA4E34218E8938700B3754F /* CDVSplashScreen.m */,
+				3EA4E34318E8938700B3754F /* CDVURLProtocol.h */,
+				3EA4E34418E8938700B3754F /* CDVURLProtocol.m */,
+				3EA4E34518E8938700B3754F /* CDVUserAgentUtil.h */,
+				3EA4E34618E8938700B3754F /* CDVUserAgentUtil.m */,
+				3EA4E34718E8938700B3754F /* CDVViewController.h */,
+				3EA4E34818E8938700B3754F /* CDVViewController.m */,
+				3EA4E34918E8938700B3754F /* CDVWebViewDelegate.h */,
+				3EA4E34A18E8938700B3754F /* CDVWebViewDelegate.m */,
+				3EA4E34B18E8938700B3754F /* CDVWhitelist.h */,
+				3EA4E34C18E8938700B3754F /* CDVWhitelist.m */,
+				3EA4E34D18E8938700B3754F /* compatibility */,
+				3EA4E35618E8938700B3754F /* NSArray+Comparisons.h */,
+				3EA4E35718E8938700B3754F /* NSArray+Comparisons.m */,
+				3EA4E35818E8938700B3754F /* NSData+Base64.h */,
+				3EA4E35918E8938700B3754F /* NSData+Base64.m */,
+				3EA4E35A18E8938700B3754F /* NSDictionary+Extensions.h */,
+				3EA4E35B18E8938700B3754F /* NSDictionary+Extensions.m */,
+				3EA4E35C18E8938700B3754F /* NSMutableArray+QueueAdditions.h */,
+				3EA4E35D18E8938700B3754F /* NSMutableArray+QueueAdditions.m */,
+				3EA4E35E18E8938700B3754F /* UIDevice+Extensions.h */,
+				3EA4E35F18E8938700B3754F /* UIDevice+Extensions.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3EA4E34D18E8938700B3754F /* compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E34E18E8938700B3754F /* 0.9.6 */,
+				3EA4E35218E8938700B3754F /* 1.5.0 */,
+				3EA4E35518E8938700B3754F /* README.txt */,
+			);
+			path = compatibility;
+			sourceTree = "<group>";
+		};
+		3EA4E34E18E8938700B3754F /* 0.9.6 */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E34F18E8938700B3754F /* CDV.h */,
+				3EA4E35018E8938700B3754F /* CDVPlugin.h */,
+				3EA4E35118E8938700B3754F /* CDVPlugin.m */,
+			);
+			path = 0.9.6;
+			sourceTree = "<group>";
+		};
+		3EA4E35218E8938700B3754F /* 1.5.0 */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E35318E8938700B3754F /* CDV.h */,
+				3EA4E35418E8938700B3754F /* CDVPlugin.h */,
+			);
+			path = 1.5.0;
+			sourceTree = "<group>";
+		};
+		3EA4E36118E8938700B3754F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E41318E8938800B3754F /* libCordova.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3EA4E36718E8938700B3754F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E41618E8938800B3754F /* sense-ios-phonegap.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3EA4E36B18E8938700B3754F /* SenseCordovaDemo */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E36C18E8938700B3754F /* .gitignore */,
+				3EA4E36D18E8938700B3754F /* Classes */,
+				3EA4E37318E8938700B3754F /* config.xml */,
+				3EA4E37418E8938700B3754F /* main.m */,
+				3EA4E37518E8938700B3754F /* Plugins */,
+				3EA4E37718E8938700B3754F /* Resources */,
+				3EA4E38B18E8938700B3754F /* sense-ios-phonegap-Info.plist */,
+				3EA4E38C18E8938700B3754F /* sense-ios-phonegap-Prefix.pch */,
+			);
+			path = SenseCordovaDemo;
+			sourceTree = "<group>";
+		};
+		3EA4E36D18E8938700B3754F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E36E18E8938700B3754F /* AppDelegate.h */,
+				3EA4E36F18E8938700B3754F /* AppDelegate.m */,
+				3EA4E37018E8938700B3754F /* MainViewController.h */,
+				3EA4E37118E8938700B3754F /* MainViewController.m */,
+				3EA4E37218E8938700B3754F /* MainViewController.xib */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3EA4E37518E8938700B3754F /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E37618E8938700B3754F /* README */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		3EA4E37718E8938700B3754F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E37818E8938700B3754F /* Capture.bundle */,
+				3EA4E37918E8938700B3754F /* Localizable.strings */,
+				3EA4E37D18E8938700B3754F /* icons */,
+				3EA4E38318E8938700B3754F /* splash */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3EA4E37D18E8938700B3754F /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E37E18E8938700B3754F /* icon-72.png.png */,
+				3EA4E37F18E8938700B3754F /* icon-72@2x.png.png */,
+				3EA4E38018E8938700B3754F /* icon.png */,
+				3EA4E38118E8938700B3754F /* icon@2x.png */,
+			);
+			path = icons;
+			sourceTree = "<group>";
+		};
+		3EA4E38318E8938700B3754F /* splash */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E38418E8938700B3754F /* Default-568h@2x~iphone.png */,
+				3EA4E38518E8938700B3754F /* Default-Landscape@2x~ipad.png */,
+				3EA4E38618E8938700B3754F /* Default-Landscape~ipad.png */,
+				3EA4E38718E8938700B3754F /* Default-Portrait@2x~ipad.png */,
+				3EA4E38818E8938700B3754F /* Default-Portrait~ipad.png */,
+				3EA4E38918E8938700B3754F /* Default@2x~iphone.png */,
+				3EA4E38A18E8938700B3754F /* Default~iphone.png */,
+			);
+			path = splash;
+			sourceTree = "<group>";
+		};
+		3EA4E38D18E8938700B3754F /* www */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E38E18E8938700B3754F /* cordova-2.6.0.js */,
+				3EA4E38F18E8938700B3754F /* css */,
+				3EA4E39118E8938700B3754F /* img */,
+				3EA4E39318E8938700B3754F /* index.html */,
+				3EA4E39418E8938700B3754F /* js */,
+				3EA4E39618E8938700B3754F /* md5.js */,
+				3EA4E39718E8938700B3754F /* sense_example.css */,
+				3EA4E39818E8938700B3754F /* sense_example.html */,
+				3EA4E39918E8938700B3754F /* sense_example.js */,
+				3EA4E39A18E8938700B3754F /* sense_platform.js */,
+				3EA4E39B18E8938700B3754F /* spec */,
+				3EA4E3A418E8938700B3754F /* spec.html */,
+			);
+			path = www;
+			sourceTree = "<group>";
+		};
+		3EA4E38F18E8938700B3754F /* css */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E39018E8938700B3754F /* index.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		3EA4E39118E8938700B3754F /* img */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E39218E8938700B3754F /* logo.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
+		3EA4E39418E8938700B3754F /* js */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E39518E8938700B3754F /* index.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		3EA4E39B18E8938700B3754F /* spec */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E39C18E8938700B3754F /* helper.js */,
+				3EA4E39D18E8938700B3754F /* index.js */,
+				3EA4E39E18E8938700B3754F /* lib */,
+			);
+			path = spec;
+			sourceTree = "<group>";
+		};
+		3EA4E39E18E8938700B3754F /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E39F18E8938700B3754F /* jasmine-1.2.0 */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		3EA4E39F18E8938700B3754F /* jasmine-1.2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3A018E8938700B3754F /* jasmine-html.js */,
+				3EA4E3A118E8938700B3754F /* jasmine.css */,
+				3EA4E3A218E8938700B3754F /* jasmine.js */,
+				3EA4E3A318E8938700B3754F /* MIT.LICENSE */,
+			);
+			path = "jasmine-1.2.0";
+			sourceTree = "<group>";
+		};
+		3EA4E3A618E8938700B3754F /* include */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3A718E8938700B3754F /* SensePlatform */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		3EA4E3A718E8938700B3754F /* SensePlatform */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3A818E8938700B3754F /* CSApplicationStateChange.h */,
+				3EA4E3A918E8938700B3754F /* CSSensePlatform.h */,
+				3EA4E3AA18E8938700B3754F /* CSSensor.h */,
+				3EA4E3AB18E8938700B3754F /* CSSensorIds.h */,
+				3EA4E3AC18E8938700B3754F /* CSSettings.h */,
+			);
+			path = SensePlatform;
+			sourceTree = "<group>";
+		};
+		3EA4E3B018E8938700B3754F /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3B118E8938700B3754F /* Settings.plist */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		3EA4E3B218E8938700B3754F /* sense platform */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3B318E8938700B3754F /* communication */,
+				3EA4E3B818E8938700B3754F /* CSApplicationStateChange.m */,
+				3EA4E3B918E8938700B3754F /* CSDataStore.h */,
+				3EA4E3BA18E8938700B3754F /* CSSensePlatform.m */,
+				3EA4E3BB18E8938700B3754F /* CSSensorIds.m */,
+				3EA4E3BC18E8938700B3754F /* CSSensorRequirements.h */,
+				3EA4E3BD18E8938700B3754F /* CSSensorRequirements.m */,
+				3EA4E3BE18E8938700B3754F /* CSSensorStore.h */,
+				3EA4E3BF18E8938700B3754F /* CSSensorStore.m */,
+				3EA4E3C018E8938700B3754F /* CSSettings.m */,
+				3EA4E3C118E8938700B3754F /* misc */,
+				3EA4E3C618E8938700B3754F /* plugins */,
+				3EA4E3C918E8938700B3754F /* sensors */,
+			);
+			path = "sense platform";
+			sourceTree = "<group>";
+		};
+		3EA4E3B318E8938700B3754F /* communication */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3B418E8938700B3754F /* CSSender.h */,
+				3EA4E3B518E8938700B3754F /* CSSender.m */,
+				3EA4E3B618E8938700B3754F /* NSString+MD5Hash.h */,
+				3EA4E3B718E8938700B3754F /* NSString+MD5Hash.m */,
+			);
+			path = communication;
+			sourceTree = "<group>";
+		};
+		3EA4E3C118E8938700B3754F /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3C218E8938700B3754F /* CSReachability.h */,
+				3EA4E3C318E8938700B3754F /* CSReachability.m */,
+				3EA4E3C418E8938700B3754F /* NSNotificationCenter+MainThread.h */,
+				3EA4E3C518E8938700B3754F /* NSNotificationCenter+MainThread.m */,
+			);
+			path = misc;
+			sourceTree = "<group>";
+		};
+		3EA4E3C618E8938700B3754F /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3C718E8938700B3754F /* CSPGSensePlatform.h */,
+				3EA4E3C818E8938700B3754F /* CSPGSensePlatform.m */,
+			);
+			path = plugins;
+			sourceTree = "<group>";
+		};
+		3EA4E3C918E8938700B3754F /* sensors */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3CA18E8938700B3754F /* ant+ */,
+				3EA4E3D118E8938800B3754F /* CSAccelerationSensor.h */,
+				3EA4E3D218E8938800B3754F /* CSAccelerationSensor.m */,
+				3EA4E3D318E8938800B3754F /* CSAccelerometerSensor.h */,
+				3EA4E3D418E8938800B3754F /* CSAccelerometerSensor.m */,
+				3EA4E3D518E8938800B3754F /* CSBatterySensor.h */,
+				3EA4E3D618E8938800B3754F /* CSBatterySensor.m */,
+				3EA4E3D718E8938800B3754F /* CSCallSensor.h */,
+				3EA4E3D818E8938800B3754F /* CSCallSensor.m */,
+				3EA4E3D918E8938800B3754F /* CSCompassSensor.h */,
+				3EA4E3DA18E8938800B3754F /* CSCompassSensor.m */,
+				3EA4E3DB18E8938800B3754F /* CSConnectionSensor.h */,
+				3EA4E3DC18E8938800B3754F /* CSConnectionSensor.m */,
+				3EA4E3DD18E8938800B3754F /* CSDynamicSensor.h */,
+				3EA4E3DE18E8938800B3754F /* CSDynamicSensor.m */,
+				3EA4E3DF18E8938800B3754F /* CSJumpSensor.h */,
+				3EA4E3E018E8938800B3754F /* CSJumpSensor.m */,
+				3EA4E3E118E8938800B3754F /* CSLocationSensor.h */,
+				3EA4E3E218E8938800B3754F /* CSLocationSensor.m */,
+				3EA4E3E318E8938800B3754F /* CSMotionEnergySensor.h */,
+				3EA4E3E418E8938800B3754F /* CSMotionEnergySensor.m */,
+				3EA4E3E518E8938800B3754F /* CSMotionFeaturesSensor.h */,
+				3EA4E3E618E8938800B3754F /* CSMotionFeaturesSensor.m */,
+				3EA4E3E718E8938800B3754F /* CSMovingSensor.h */,
+				3EA4E3E818E8938800B3754F /* CSMovingSensor.m */,
+				3EA4E3E918E8938800B3754F /* CSNoiseSensor.h */,
+				3EA4E3EA18E8938800B3754F /* CSNoiseSensor.m */,
+				3EA4E3EB18E8938800B3754F /* CSOrientationSensor.h */,
+				3EA4E3EC18E8938800B3754F /* CSOrientationSensor.m */,
+				3EA4E3ED18E8938800B3754F /* CSOrientationStateSensor.h */,
+				3EA4E3EE18E8938800B3754F /* CSOrientationStateSensor.m */,
+				3EA4E3EF18E8938800B3754F /* CSPreferencesSensor.h */,
+				3EA4E3F018E8938800B3754F /* CSPreferencesSensor.m */,
+				3EA4E3F118E8938800B3754F /* CSRotationSensor.h */,
+				3EA4E3F218E8938800B3754F /* CSRotationSensor.m */,
+				3EA4E3F318E8938800B3754F /* CSScreenSensor.h */,
+				3EA4E3F418E8938800B3754F /* CSScreenSensor.m */,
+				3EA4E3F518E8938800B3754F /* CSSensor.m */,
+				3EA4E3F618E8938800B3754F /* CSSpatialProvider.h */,
+				3EA4E3F718E8938800B3754F /* CSSpatialProvider.m */,
+				3EA4E3F818E8938800B3754F /* CSUserProximity.h */,
+				3EA4E3F918E8938800B3754F /* CSUserProximity.m */,
+			);
+			path = sensors;
+			sourceTree = "<group>";
+		};
+		3EA4E3CA18E8938700B3754F /* ant+ */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3CB18E8938700B3754F /* BloodPressureSensor.h */,
+				3EA4E3CC18E8938700B3754F /* BloodPressureSensor.m */,
+				3EA4E3CD18E8938700B3754F /* CSAntPlusController.h */,
+				3EA4E3CE18E8938700B3754F /* CSAntPlusController.m */,
+				3EA4E3CF18E8938800B3754F /* FootpodSensor.h */,
+				3EA4E3D018E8938800B3754F /* FootpodSensor.m */,
+			);
+			path = "ant+";
+			sourceTree = "<group>";
+		};
+		3EA4E3FA18E8938800B3754F /* sense platformTests */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E3FB18E8938800B3754F /* InfoPlist.strings */,
+				3EA4E3FD18E8938800B3754F /* sense_platformTests.h */,
+				3EA4E3FE18E8938800B3754F /* sense_platformTests.m */,
+				3EA4E3FF18E8938800B3754F /* SensePlatformTests-Info.plist */,
+			);
+			path = "sense platformTests";
+			sourceTree = "<group>";
+		};
+		3EA4E40218E8938800B3754F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E41C18E8938800B3754F /* libSensePlatform.a */,
+				3EA4E41E18E8938800B3754F /* SensePlatformTestApp.app */,
+				3EA4E42018E8938800B3754F /* .octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3EA4E40418E8938800B3754F /* SensePlatformTestAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E40518E8938800B3754F /* InfoPlist.strings */,
+				3EA4E40718E8938800B3754F /* SensePlatformTestAppTests-Info.plist */,
+				3EA4E40818E8938800B3754F /* SensePlatformTestAppTests.h */,
+				3EA4E40918E8938800B3754F /* SensePlatformTestAppTests.m */,
+			);
+			path = SensePlatformTestAppTests;
+			sourceTree = "<group>";
+		};
+		3EA4E40A18E8938800B3754F /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				3EA4E40B18E8938800B3754F /* Formatting.h */,
+				3EA4E40C18E8938800B3754F /* Formatting.m */,
+				3EA4E40D18E8938800B3754F /* UIDevice+Hardware.h */,
+				3EA4E40E18E8938800B3754F /* UIDevice+Hardware.m */,
+				3EA4E40F18E8938800B3754F /* UIDevice+IdentifierAddition.h */,
+				3EA4E41018E8938800B3754F /* UIDevice+IdentifierAddition.m */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,6 +1001,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3EA2AE2E18E8948D00C4704D /* PBXTargetDependency */,
 			);
 			name = Parsnip;
 			productName = Parsnip;
@@ -212,10 +1048,27 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				es,
+				se,
 			);
 			mainGroup = 3EA4E26C18E61A0C00B3754F;
 			productRefGroup = 3EA4E27618E61A0C00B3754F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3EA4E36118E8938700B3754F /* Products */;
+					ProjectRef = 3EA4E36018E8938700B3754F /* CordovaLib.xcodeproj */;
+				},
+				{
+					ProductGroup = 3EA4E36718E8938700B3754F /* Products */;
+					ProjectRef = 3EA4E36618E8938700B3754F /* sense-ios-phonegap.xcodeproj */;
+				},
+				{
+					ProductGroup = 3EA4E40218E8938800B3754F /* Products */;
+					ProjectRef = 3EA4E40118E8938800B3754F /* SensePlatform.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3EA4E27418E61A0C00B3754F /* Parsnip */,
@@ -223,6 +1076,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3EA4E41318E8938800B3754F /* libCordova.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCordova.a;
+			remoteRef = 3EA4E41218E8938800B3754F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3EA4E41618E8938800B3754F /* sense-ios-phonegap.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "sense-ios-phonegap.app";
+			remoteRef = 3EA4E41518E8938800B3754F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3EA4E41C18E8938800B3754F /* libSensePlatform.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSensePlatform.a;
+			remoteRef = 3EA4E41B18E8938800B3754F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3EA4E41E18E8938800B3754F /* SensePlatformTestApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SensePlatformTestApp.app;
+			remoteRef = 3EA4E41D18E8938800B3754F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3EA4E42018E8938800B3754F /* .octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = .octest;
+			remoteRef = 3EA4E41F18E8938800B3754F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3EA4E27318E61A0C00B3754F /* Resources */ = {
@@ -267,6 +1158,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3EA2AE2E18E8948D00C4704D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SensePlatform;
+			targetProxy = 3EA2AE2D18E8948D00C4704D /* PBXContainerItemProxy */;
+		};
 		3EA4E29C18E61A0C00B3754F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3EA4E27418E61A0C00B3754F /* Parsnip */;
@@ -295,6 +1191,33 @@
 			isa = PBXVariantGroup;
 			children = (
 				3EA4E2A118E61A0C00B3754F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3EA4E37918E8938700B3754F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EA4E37A18E8938700B3754F /* de */,
+				3EA4E37B18E8938700B3754F /* en */,
+				3EA4E37C18E8938700B3754F /* es */,
+				3EA4E38218E8938700B3754F /* se */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3EA4E3FB18E8938800B3754F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EA4E3FC18E8938800B3754F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3EA4E40518E8938800B3754F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EA4E40618E8938800B3754F /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -380,6 +1303,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parsnip/Parsnip-Prefix.pch";
 				INFOPLIST_FILE = "Parsnip/Parsnip-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -393,6 +1320,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parsnip/Parsnip-Prefix.pch";
 				INFOPLIST_FILE = "Parsnip/Parsnip-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
