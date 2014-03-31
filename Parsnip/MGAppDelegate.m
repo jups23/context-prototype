@@ -7,6 +7,8 @@
 //
 
 #import <SensePlatform/CSSensePlatform.h>
+#import <SensePlatform/CSSettings.h>
+
 
 #import "MGAppDelegate.h"
 
@@ -16,6 +18,17 @@
 {
     // Override point for customization after application launch.
 	[CSSensePlatform initialize];
+	NSArray *sensors = [CSSensePlatform availableSensors];
+	
+	//Modules expect 50Hz sample rate, 3 a duration of three seconds works quite well for activity detection and step counting
+    [[CSSettings sharedSettings] setSettingType:kCSSettingTypeSpatial setting:kCSSpatialSettingFrequency value:@"50"];
+    [[CSSettings sharedSettings] setSettingType:kCSSettingTypeSpatial setting:kCSSpatialSettingNrSamples value:@"150"];
+    [[CSSettings sharedSettings] setSensor:kCSSENSOR_ACCELEROMETER enabled:YES];
+    
+    //acceleration is used by the Activity and stepcounter module
+    [[CSSettings sharedSettings] setSensor:kCSSENSOR_ACCELERATION enabled:YES];
+    [[CSSettings sharedSettings] setSensor:kCSSENSOR_ACCELERATION_BURST enabled:YES];
+	
 	return YES;
 }
 							

@@ -12,6 +12,7 @@
 @interface MGViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *sensorDisplay;
+@property (weak, nonatomic) IBOutlet UILabel *userShakingDisplay;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *userContextPicker;
 @property (strong, nonatomic) NSArray *availableUserContexts;
@@ -33,7 +34,7 @@
 	
 	self.sensorDisplay.text = @"Huhu";
 	self.availableUserContexts = @[@"moving", @"still", @"walking"];
-	self.availableThenActions = @[@"alert yay"];
+	self.availableThenActions = @[@"alert yay", @"alert yo"];
 
 
 	self.deviceQueue = [[NSOperationQueue alloc] init];
@@ -47,10 +48,7 @@
 														withHandler:^(CMDeviceMotion *motion, NSError *error)
 	{
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-			CGFloat x = motion.gravity.x;
-			CGFloat y = motion.gravity.y;
-			CGFloat z = motion.gravity.z;
-			self.sensorDisplay.text = [NSString stringWithFormat:@"x: %.2f, y: %.2f, z: %.2f", x, y, z];
+			[self handleMotionChangeOf: motion.gravity.x ofY: motion.gravity.y ofZ: motion.gravity.z];
 		}];
 	}];
 }
@@ -62,6 +60,43 @@
     return YES;
 }
 
+#pragma mark - Handle device motion
+
+- (BOOL)canBecomeFirstResponder
+{
+	return YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self becomeFirstResponder];
+}
+
+- (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+	if(motion == UIEventSubtypeMotionShake) {
+		self.userShakingDisplay.text = @"User is shaking";
+		self.userShakingDisplay.textColor = [UIColor magentaColor];
+	}
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+	if (motion == UIEventSubtypeMotionShake)
+    {
+		self.userShakingDisplay.text = @"User is still";
+		self.userShakingDisplay.textColor = [UIColor blackColor];
+	}
+}
+
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+	[self motionEnded:motion withEvent:event];
+}
+
+- (void) handleMotionChangeOf: (CGFloat) x ofY: (CGFloat) y ofZ: (CGFloat) z
+{
+	self.sensorDisplay.text = [NSString stringWithFormat:@"x: %.2f, y: %.2f, z: %.2f", x, y, z];
+}
 
 #pragma mark - PickerView data source
 
