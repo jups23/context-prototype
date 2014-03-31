@@ -12,13 +12,17 @@
 @interface MGViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *sensorDisplay;
+
 @property (weak, nonatomic) IBOutlet UILabel *userShakingDisplay;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *userContextPicker;
 @property (strong, nonatomic) NSArray *availableUserContexts;
+@property (strong, nonatomic) NSString *watchForUserContext;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *thenPicker;
 @property (strong, nonatomic) NSArray *availableThenActions;
+@property (strong, nonatomic) NSString *performThenAction;
+
 
 @property CMMotionManager *motionManager;
 @property NSOperationQueue *deviceQueue;
@@ -34,9 +38,13 @@
 	
 	self.sensorDisplay.text = @"Huhu";
 	self.availableUserContexts = @[@"moving", @"still", @"walking"];
-	self.availableThenActions = @[@"alert yay", @"alert yo"];
-
-
+	self.availableThenActions = @[@"magenta", @"blue"];
+	int defaultPickerRow = 0;
+	[self.userContextPicker selectRow:defaultPickerRow inComponent:0 animated:NO];
+	[self.thenPicker selectRow:defaultPickerRow inComponent:0 animated:NO];
+	self.watchForUserContext = self.availableUserContexts[defaultPickerRow];
+	self.performThenAction = self.availableThenActions[defaultPickerRow];
+	
 	self.deviceQueue = [[NSOperationQueue alloc] init];
 	self.motionManager = [[CMMotionManager alloc] init];
 	self.motionManager.deviceMotionUpdateInterval = 5.0 / 60.0;
@@ -73,15 +81,18 @@
 
 - (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-	if(motion == UIEventSubtypeMotionShake) {
+	if([self.watchForUserContext isEqualToString:@"moving"] && motion == UIEventSubtypeMotionShake) {
 		self.userShakingDisplay.text = @"User is shaking";
-		self.userShakingDisplay.textColor = [UIColor magentaColor];
+		if ([self.performThenAction isEqualToString: @"magenta"])
+			self.userShakingDisplay.textColor = [UIColor magentaColor];
+		else
+			self.userShakingDisplay.textColor = [UIColor blueColor];
 	}
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-	if (motion == UIEventSubtypeMotionShake)
+	if ([self.watchForUserContext isEqualToString:@"moving"] && motion == UIEventSubtypeMotionShake)
     {
 		self.userShakingDisplay.text = @"User is still";
 		self.userShakingDisplay.textColor = [UIColor blackColor];
@@ -129,7 +140,16 @@ numberOfRowsInComponent:(NSInteger)component
 	}
 }
 
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+	if (pickerView == self.userContextPicker) {
+		self.watchForUserContext = self.availableUserContexts[row];
+	} else {
+		self.performThenAction = self.availableThenActions[row];
+	}
+}
 
+#pragma mark - Memory
 
 - (void)didReceiveMemoryWarning
 {
