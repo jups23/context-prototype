@@ -8,6 +8,7 @@
 
 #import <SensePlatform/CSSensePlatform.h>
 #import <SensePlatform/CSSettings.h>
+#import "Factory.h"
 
 
 #import "MGAppDelegate.h"
@@ -29,6 +30,7 @@
     [[CSSettings sharedSettings] setSensor:kCSSENSOR_ACCELERATION enabled:YES];
     [[CSSettings sharedSettings] setSensor:kCSSENSOR_ACCELERATION_BURST enabled:YES];
 	
+	[Factory sharedFactory];
 	return YES;
 }
 							

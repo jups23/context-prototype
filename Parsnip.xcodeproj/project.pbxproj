@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E2B2FB818F2EFA9009785C3 /* Cortex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2FB718F2EFA8009785C3 /* Cortex.framework */; };
+		3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B2FC018F2F0D2009785C3 /* Factory.m */; };
 		3EA2AE3118E894C900C4704D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3018E894C900C4704D /* CoreLocation.framework */; };
 		3EA2AE3318E894D600C4704D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3218E894D600C4704D /* CoreMotion.framework */; };
 		3EA2AE3518E894E300C4704D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3418E894E300C4704D /* AVFoundation.framework */; };
@@ -27,7 +29,6 @@
 		3EA4E29A18E61A0C00B3754F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E27C18E61A0C00B3754F /* UIKit.framework */; };
 		3EA4E2A218E61A0C00B3754F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4E2A018E61A0C00B3754F /* InfoPlist.strings */; };
 		3EA4E2A418E61A0C00B3754F /* ParsnipTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4E2A318E61A0C00B3754F /* ParsnipTests.m */; };
-		3EEA211318E8ABA8007FA6CF /* libSensePlatform.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E41C18E8938800B3754F /* libSensePlatform.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E2B2FB718F2EFA8009785C3 /* Cortex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cortex.framework; path = ../../../../Library/Frameworks/Cortex.framework; sourceTree = "<group>"; };
+		3E2B2FBA18F2EFED009785C3 /* CSApplicationStateChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSApplicationStateChange.h; sourceTree = "<group>"; };
+		3E2B2FBB18F2EFED009785C3 /* CSSensePlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSensePlatform.h; sourceTree = "<group>"; };
+		3E2B2FBC18F2EFED009785C3 /* CSSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSensor.h; sourceTree = "<group>"; };
+		3E2B2FBD18F2EFED009785C3 /* CSSensorIds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSensorIds.h; sourceTree = "<group>"; };
+		3E2B2FBE18F2EFED009785C3 /* CSSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSettings.h; sourceTree = "<group>"; };
+		3E2B2FBF18F2F0D2009785C3 /* Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Factory.h; sourceTree = "<group>"; };
+		3E2B2FC018F2F0D2009785C3 /* Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Factory.m; sourceTree = "<group>"; };
 		3EA2AE3018E894C900C4704D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EA2AE3218E894D600C4704D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3EA2AE3418E894E300C4704D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -353,7 +362,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EEA211318E8ABA8007FA6CF /* libSensePlatform.a in Frameworks */,
+				3E2B2FB818F2EFA9009785C3 /* Cortex.framework in Frameworks */,
 				3EA2AE3B18E8950200C4704D /* SystemConfiguration.framework in Frameworks */,
 				3EA2AE3918E894F600C4704D /* CoreTelephony.framework in Frameworks */,
 				3EA2AE3718E894EE00C4704D /* AudioToolbox.framework in Frameworks */,
@@ -379,6 +388,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E2B2FB918F2EFED009785C3 /* SensePlatform */ = {
+			isa = PBXGroup;
+			children = (
+				3E2B2FBA18F2EFED009785C3 /* CSApplicationStateChange.h */,
+				3E2B2FBB18F2EFED009785C3 /* CSSensePlatform.h */,
+				3E2B2FBC18F2EFED009785C3 /* CSSensor.h */,
+				3E2B2FBD18F2EFED009785C3 /* CSSensorIds.h */,
+				3E2B2FBE18F2EFED009785C3 /* CSSettings.h */,
+			);
+			name = SensePlatform;
+			path = "../../../../sense-ios-library/include/SensePlatform";
+			sourceTree = "<group>";
+		};
 		3EA4E26C18E61A0C00B3754F = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +423,8 @@
 		3EA4E27718E61A0C00B3754F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E2B2FB918F2EFED009785C3 /* SensePlatform */,
+				3E2B2FB718F2EFA8009785C3 /* Cortex.framework */,
 				3EEA210A18E8A971007FA6CF /* Parsnip.xcodeproj */,
 				3EA2AE3A18E8950200C4704D /* SystemConfiguration.framework */,
 				3EA2AE3818E894F600C4704D /* CoreTelephony.framework */,
@@ -420,6 +444,8 @@
 		3EA4E27E18E61A0C00B3754F /* Parsnip */ = {
 			isa = PBXGroup;
 			children = (
+				3E2B2FBF18F2F0D2009785C3 /* Factory.h */,
+				3E2B2FC018F2F0D2009785C3 /* Factory.m */,
 				3EA4E28718E61A0C00B3754F /* MGAppDelegate.h */,
 				3EA4E28818E61A0C00B3754F /* MGAppDelegate.m */,
 				3EA4E28A18E61A0C00B3754F /* Main.storyboard */,
@@ -1154,6 +1180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */,
 				3EA4E28918E61A0C00B3754F /* MGAppDelegate.m in Sources */,
 				3EA4E28F18E61A0C00B3754F /* MGViewController.m in Sources */,
 				3EA4E28518E61A0C00B3754F /* main.m in Sources */,
@@ -1313,11 +1340,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				EXCLUDED_SOURCE_FILE_NAMES = "\"Factory.*\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parsnip/Parsnip-Prefix.pch";
 				INFOPLIST_FILE = "Parsnip/Parsnip-Info.plist";
-				"OTHER_LDFLAGS[arch=*]" = (
+				OTHER_LDFLAGS = (
+					"-lstdc++",
 					"-ObjC",
 					"-all_load",
 				);
@@ -1331,11 +1362,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				EXCLUDED_SOURCE_FILE_NAMES = "\"Factory.*\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parsnip/Parsnip-Prefix.pch";
 				INFOPLIST_FILE = "Parsnip/Parsnip-Info.plist";
-				"OTHER_LDFLAGS[arch=*]" = (
+				OTHER_LDFLAGS = (
+					"-lstdc++",
 					"-ObjC",
 					"-all_load",
 				);

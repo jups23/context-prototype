@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 //#import <Cortex/FallDetectorModule.h>
-//#import <Cortex/StepCounterModule.h>
+#import <Cortex/StepCounterModule.h>
 //#import <Cortex/TimeActiveModule.h>
 //#import <Cortex/CarryDeviceModule.h>
 //#import <Cortex/ActivityModule.h>
