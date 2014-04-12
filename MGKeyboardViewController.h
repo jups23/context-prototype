@@ -1,5 +1,5 @@
 //
-//  MGViewController.h
+//  MGKeyboardViewController.h
 //  Parsnip
 //
 //  Created by Willi Müller on 11.04.14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MGViewController : UIViewController
+@interface MGKeyboardViewController : UICollectionViewController
 
 @end

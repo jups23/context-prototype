@@ -1,21 +1,18 @@
 //
-//  MGViewController.m
+//  MGKeyboardViewController.m
 //  Parsnip
 //
 //  Created by Willi Müller on 11.04.14.
 //  Copyright (c) 2014 UFMG. All rights reserved.
 //
 
-#import "MGViewController.h"
+#import "MGKeyboardViewController.h"
 
-@interface MGViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *inputView;
-
-@property (weak, nonatomic) IBOutlet UICollectionView *keyboardCollectionView;
+@interface MGKeyboardViewController ()
 
 @end
 
-@implementation MGViewController
+@implementation MGKeyboardViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,6 +34,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+	return 16;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *identifier = @"Cell";
+	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath: indexPath];
+	UIImageView *view = (UIImageView *) [cell viewWithTag:100];
+	view.image = [UIImage imageNamed:@"IMG_0269.JPG"];
+	return cell;
+}
+
+
+
 
 /*
 #pragma mark - Navigation

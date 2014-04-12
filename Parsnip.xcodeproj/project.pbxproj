@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E0746E418F8BAB000DB7227 /* MGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0746E318F8BAB000DB7227 /* MGViewController.m */; };
+		3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */; };
+		3E0746E918F8C43300DB7227 /* IMG_0269.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3E0746E818F8C43300DB7227 /* IMG_0269.JPG */; };
 		3E2B2FB818F2EFA9009785C3 /* Cortex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2FB718F2EFA8009785C3 /* Cortex.framework */; };
 		3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B2FC018F2F0D2009785C3 /* Factory.m */; };
+		3E6B9AA718F8763D007B1CCE /* MGInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B9AA618F8763D007B1CCE /* MGInputView.m */; };
 		3EA2AE3118E894C900C4704D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3018E894C900C4704D /* CoreLocation.framework */; };
 		3EA2AE3318E894D600C4704D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3218E894D600C4704D /* CoreMotion.framework */; };
 		3EA2AE3518E894E300C4704D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3418E894E300C4704D /* AVFoundation.framework */; };
@@ -22,7 +26,6 @@
 		3EA4E28518E61A0C00B3754F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4E28418E61A0C00B3754F /* main.m */; };
 		3EA4E28918E61A0C00B3754F /* MGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4E28818E61A0C00B3754F /* MGAppDelegate.m */; };
 		3EA4E28C18E61A0C00B3754F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4E28A18E61A0C00B3754F /* Main.storyboard */; };
-		3EA4E28F18E61A0C00B3754F /* MGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4E28E18E61A0C00B3754F /* MGViewController.m */; };
 		3EA4E29118E61A0C00B3754F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4E29018E61A0C00B3754F /* Images.xcassets */; };
 		3EA4E29818E61A0C00B3754F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E29718E61A0C00B3754F /* XCTest.framework */; };
 		3EA4E29918E61A0C00B3754F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E27818E61A0C00B3754F /* Foundation.framework */; };
@@ -84,6 +87,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E0746E218F8BAB000DB7227 /* MGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGViewController.h; sourceTree = "<group>"; };
+		3E0746E318F8BAB000DB7227 /* MGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGViewController.m; sourceTree = "<group>"; };
+		3E0746E518F8BC3C00DB7227 /* MGKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGKeyboardViewController.h; path = ../MGKeyboardViewController.h; sourceTree = "<group>"; };
+		3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGKeyboardViewController.m; path = ../MGKeyboardViewController.m; sourceTree = "<group>"; };
+		3E0746E818F8C43300DB7227 /* IMG_0269.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = IMG_0269.JPG; path = ../../../../../Pictures/IMG_0269.JPG; sourceTree = "<group>"; };
 		3E2B2FB718F2EFA8009785C3 /* Cortex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cortex.framework; path = ../../../../Library/Frameworks/Cortex.framework; sourceTree = "<group>"; };
 		3E2B2FBA18F2EFED009785C3 /* CSApplicationStateChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSApplicationStateChange.h; sourceTree = "<group>"; };
 		3E2B2FBB18F2EFED009785C3 /* CSSensePlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSensePlatform.h; sourceTree = "<group>"; };
@@ -92,6 +100,8 @@
 		3E2B2FBE18F2EFED009785C3 /* CSSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSettings.h; sourceTree = "<group>"; };
 		3E2B2FBF18F2F0D2009785C3 /* Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Factory.h; sourceTree = "<group>"; };
 		3E2B2FC018F2F0D2009785C3 /* Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Factory.m; sourceTree = "<group>"; };
+		3E6B9AA518F8763D007B1CCE /* MGInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGInputView.h; sourceTree = "<group>"; };
+		3E6B9AA618F8763D007B1CCE /* MGInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGInputView.m; sourceTree = "<group>"; };
 		3EA2AE3018E894C900C4704D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EA2AE3218E894D600C4704D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3EA2AE3418E894E300C4704D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -109,8 +119,6 @@
 		3EA4E28718E61A0C00B3754F /* MGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGAppDelegate.h; sourceTree = "<group>"; };
 		3EA4E28818E61A0C00B3754F /* MGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGAppDelegate.m; sourceTree = "<group>"; };
 		3EA4E28B18E61A0C00B3754F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3EA4E28D18E61A0C00B3754F /* MGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGViewController.h; sourceTree = "<group>"; };
-		3EA4E28E18E61A0C00B3754F /* MGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGViewController.m; sourceTree = "<group>"; };
 		3EA4E29018E61A0C00B3754F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3EA4E29618E61A0C00B3754F /* ParsnipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParsnipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EA4E29718E61A0C00B3754F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -448,9 +456,14 @@
 				3E2B2FC018F2F0D2009785C3 /* Factory.m */,
 				3EA4E28718E61A0C00B3754F /* MGAppDelegate.h */,
 				3EA4E28818E61A0C00B3754F /* MGAppDelegate.m */,
+				3E6B9AA518F8763D007B1CCE /* MGInputView.h */,
+				3E6B9AA618F8763D007B1CCE /* MGInputView.m */,
+				3E0746E518F8BC3C00DB7227 /* MGKeyboardViewController.h */,
+				3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */,
+				3E0746E818F8C43300DB7227 /* IMG_0269.JPG */,
 				3EA4E28A18E61A0C00B3754F /* Main.storyboard */,
-				3EA4E28D18E61A0C00B3754F /* MGViewController.h */,
-				3EA4E28E18E61A0C00B3754F /* MGViewController.m */,
+				3E0746E218F8BAB000DB7227 /* MGViewController.h */,
+				3E0746E318F8BAB000DB7227 /* MGViewController.m */,
 				3EA4E29018E61A0C00B3754F /* Images.xcassets */,
 				3EA4E27F18E61A0C00B3754F /* Supporting Files */,
 			);
@@ -1159,6 +1172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E0746E918F8C43300DB7227 /* IMG_0269.JPG in Resources */,
 				3EA4E29118E61A0C00B3754F /* Images.xcassets in Resources */,
 				3EA4E28318E61A0C00B3754F /* InfoPlist.strings in Resources */,
 				3EA4E28C18E61A0C00B3754F /* Main.storyboard in Resources */,
@@ -1182,7 +1196,9 @@
 			files = (
 				3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */,
 				3EA4E28918E61A0C00B3754F /* MGAppDelegate.m in Sources */,
-				3EA4E28F18E61A0C00B3754F /* MGViewController.m in Sources */,
+				3E6B9AA718F8763D007B1CCE /* MGInputView.m in Sources */,
+				3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */,
+				3E0746E418F8BAB000DB7227 /* MGViewController.m in Sources */,
 				3EA4E28518E61A0C00B3754F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
