@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MGViewController : UIViewController
+@interface MGMainViewController : UIViewController
 
 @end

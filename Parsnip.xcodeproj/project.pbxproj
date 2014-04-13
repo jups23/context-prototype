@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E0746E418F8BAB000DB7227 /* MGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0746E318F8BAB000DB7227 /* MGViewController.m */; };
+		3E0746E418F8BAB000DB7227 /* MGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0746E318F8BAB000DB7227 /* MGMainViewController.m */; };
 		3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */; };
 		3E0746E918F8C43300DB7227 /* IMG_0269.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3E0746E818F8C43300DB7227 /* IMG_0269.JPG */; };
 		3E2B2FB818F2EFA9009785C3 /* Cortex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2FB718F2EFA8009785C3 /* Cortex.framework */; };
@@ -87,8 +87,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3E0746E218F8BAB000DB7227 /* MGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGViewController.h; sourceTree = "<group>"; };
-		3E0746E318F8BAB000DB7227 /* MGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGViewController.m; sourceTree = "<group>"; };
+		3E0746E218F8BAB000DB7227 /* MGMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGMainViewController.h; sourceTree = "<group>"; };
+		3E0746E318F8BAB000DB7227 /* MGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGMainViewController.m; sourceTree = "<group>"; };
 		3E0746E518F8BC3C00DB7227 /* MGKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGKeyboardViewController.h; path = ../MGKeyboardViewController.h; sourceTree = "<group>"; };
 		3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGKeyboardViewController.m; path = ../MGKeyboardViewController.m; sourceTree = "<group>"; };
 		3E0746E818F8C43300DB7227 /* IMG_0269.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = IMG_0269.JPG; path = ../../../../../Pictures/IMG_0269.JPG; sourceTree = "<group>"; };
@@ -462,8 +462,8 @@
 				3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */,
 				3E0746E818F8C43300DB7227 /* IMG_0269.JPG */,
 				3EA4E28A18E61A0C00B3754F /* Main.storyboard */,
-				3E0746E218F8BAB000DB7227 /* MGViewController.h */,
-				3E0746E318F8BAB000DB7227 /* MGViewController.m */,
+				3E0746E218F8BAB000DB7227 /* MGMainViewController.h */,
+				3E0746E318F8BAB000DB7227 /* MGMainViewController.m */,
 				3EA4E29018E61A0C00B3754F /* Images.xcassets */,
 				3EA4E27F18E61A0C00B3754F /* Supporting Files */,
 			);
@@ -1198,7 +1198,7 @@
 				3EA4E28918E61A0C00B3754F /* MGAppDelegate.m in Sources */,
 				3E6B9AA718F8763D007B1CCE /* MGInputView.m in Sources */,
 				3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */,
-				3E0746E418F8BAB000DB7227 /* MGViewController.m in Sources */,
+				3E0746E418F8BAB000DB7227 /* MGMainViewController.m in Sources */,
 				3EA4E28518E61A0C00B3754F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

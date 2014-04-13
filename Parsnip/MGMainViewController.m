@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 UFMG. All rights reserved.
 //
 
-#import "MGViewController.h"
+#import "MGMainViewController.h"
 
-@interface MGViewController ()
+@interface MGMainViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *inputView;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *keyboardCollectionView;
 
 @end
 
-@implementation MGViewController
+@implementation MGMainViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
