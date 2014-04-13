@@ -36,21 +36,21 @@
 }
 
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 	return 16;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+	// set in Storyboard
 	static NSString *identifier = @"Cell";
-	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath: indexPath];
-	UIImageView *view = (UIImageView *) [cell viewWithTag:100];
-	view.image = [UIImage imageNamed:@"IMG_0269.JPG"];
+	static NSInteger imageViewTag = 100;
+	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+	UIImageView *imageView = (UIImageView *) [cell viewWithTag:imageViewTag];
+	imageView.image = [UIImage imageNamed:@"IMG_0269.JPG"];
 	return cell;
 }
-
-
 
 
 /*
