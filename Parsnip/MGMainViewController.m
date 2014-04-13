@@ -9,9 +9,6 @@
 #import "MGMainViewController.h"
 
 @interface MGMainViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *inputView;
-
-@property (weak, nonatomic) IBOutlet UICollectionView *keyboardCollectionView;
 
 @end
 
