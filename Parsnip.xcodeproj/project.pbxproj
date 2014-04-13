@@ -12,7 +12,6 @@
 		3E0746E918F8C43300DB7227 /* IMG_0269.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3E0746E818F8C43300DB7227 /* IMG_0269.JPG */; };
 		3E2B2FB818F2EFA9009785C3 /* Cortex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2FB718F2EFA8009785C3 /* Cortex.framework */; };
 		3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B2FC018F2F0D2009785C3 /* Factory.m */; };
-		3E6B9AA718F8763D007B1CCE /* MGInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B9AA618F8763D007B1CCE /* MGInputView.m */; };
 		3EA2AE3118E894C900C4704D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3018E894C900C4704D /* CoreLocation.framework */; };
 		3EA2AE3318E894D600C4704D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3218E894D600C4704D /* CoreMotion.framework */; };
 		3EA2AE3518E894E300C4704D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3418E894E300C4704D /* AVFoundation.framework */; };
@@ -100,8 +99,6 @@
 		3E2B2FBE18F2EFED009785C3 /* CSSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSettings.h; sourceTree = "<group>"; };
 		3E2B2FBF18F2F0D2009785C3 /* Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Factory.h; sourceTree = "<group>"; };
 		3E2B2FC018F2F0D2009785C3 /* Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Factory.m; sourceTree = "<group>"; };
-		3E6B9AA518F8763D007B1CCE /* MGInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGInputView.h; sourceTree = "<group>"; };
-		3E6B9AA618F8763D007B1CCE /* MGInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGInputView.m; sourceTree = "<group>"; };
 		3EA2AE3018E894C900C4704D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EA2AE3218E894D600C4704D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3EA2AE3418E894E300C4704D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -456,14 +453,12 @@
 				3E2B2FC018F2F0D2009785C3 /* Factory.m */,
 				3EA4E28718E61A0C00B3754F /* MGAppDelegate.h */,
 				3EA4E28818E61A0C00B3754F /* MGAppDelegate.m */,
-				3E6B9AA518F8763D007B1CCE /* MGInputView.h */,
-				3E6B9AA618F8763D007B1CCE /* MGInputView.m */,
-				3E0746E518F8BC3C00DB7227 /* MGKeyboardViewController.h */,
-				3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */,
-				3E0746E818F8C43300DB7227 /* IMG_0269.JPG */,
 				3EA4E28A18E61A0C00B3754F /* Main.storyboard */,
 				3E0746E218F8BAB000DB7227 /* MGMainViewController.h */,
 				3E0746E318F8BAB000DB7227 /* MGMainViewController.m */,
+				3E0746E518F8BC3C00DB7227 /* MGKeyboardViewController.h */,
+				3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */,
+				3E0746E818F8C43300DB7227 /* IMG_0269.JPG */,
 				3EA4E29018E61A0C00B3754F /* Images.xcassets */,
 				3EA4E27F18E61A0C00B3754F /* Supporting Files */,
 			);
@@ -1196,7 +1191,6 @@
 			files = (
 				3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */,
 				3EA4E28918E61A0C00B3754F /* MGAppDelegate.m in Sources */,
-				3E6B9AA718F8763D007B1CCE /* MGInputView.m in Sources */,
 				3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */,
 				3E0746E418F8BAB000DB7227 /* MGMainViewController.m in Sources */,
 				3EA4E28518E61A0C00B3754F /* main.m in Sources */,
