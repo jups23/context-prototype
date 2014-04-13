@@ -10,6 +10,8 @@
 
 @interface MGKeyboardViewController ()
 
+@property NSArray* keyTexts;
+
 @end
 
 @implementation MGKeyboardViewController
@@ -26,7 +28,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+	//TODO move to model
+	self.keyTexts = @[
+		@"walking",     @"falling",     @"placeholder", @"delete",
+		@"placeholder", @"placeholder", @"placeholder", @"undo",
+		@"placeholder", @"placeholder", @"placeholder", @"redo",
+		@"placeholder", @"placeholder", @"backwards",   @"forwards",
+	];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,8 +55,8 @@
 	static NSString *identifier = @"Cell";
 	static NSInteger imageViewTag = 100;
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-	UIImageView *imageView = (UIImageView *) [cell viewWithTag:imageViewTag];
-	imageView.image = [UIImage imageNamed:@"IMG_0269.JPG"];
+	UIButton *button = (UIButton *) [cell viewWithTag:imageViewTag];
+	[button setTitle: [self.keyTexts objectAtIndex:indexPath.row] forState:UIControlStateNormal];
 	return cell;
 }
 
