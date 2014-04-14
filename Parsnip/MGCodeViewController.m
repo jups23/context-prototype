@@ -41,8 +41,35 @@
 -(void)insertCode:(NSString *)token
 {
 	[self.tokens insertObject:token atIndex:self.cursorPosition];
+	[self reloadCodeWithoutAnimation];
 	self.cursorPosition++;
-	[self.collectionView reloadData]; // optimization: for cell only
+}
+
+-(void)reloadCodeWithoutAnimation
+{
+	BOOL animationsEnabled = [UIView areAnimationsEnabled];
+	[UIView setAnimationsEnabled:NO];
+	[self.collectionView reloadData]; // TODO optimization: for cell only
+	[UIView setAnimationsEnabled:animationsEnabled];
+}
+
+-(void)moveCursorLeft
+{
+	if (self.cursorPosition > 0) {
+		self.cursorPosition--;
+	}
+}
+
+-(void)moveCursorRight
+{
+	
+	if(self.cursorPosition < self.tokens.count) {
+		self.cursorPosition++;
+	}
+	// TODO: empty insert placeholder when at end
+	if (self.cursorPosition > self.tokens.count) {
+		[self.tokens insertObject:@"" atIndex:self.cursorPosition];
+	}
 }
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

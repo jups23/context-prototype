@@ -11,7 +11,7 @@
 
 @interface MGKeyboardViewController ()
 
-@property NSArray* keyTexts;
+@property NSArray* keyConfig;
 @property MGCodeViewController* codeVC;
 
 @end
@@ -31,12 +31,17 @@
 {
     [super viewDidLoad];
 	//TODO move to model
-	self.keyTexts = @[
-		@"walking",     @"falling",     @"placeholder", @"delete",
-		@"placeholder", @"placeholder", @"placeholder", @"undo",
-		@"placeholder", @"placeholder", @"placeholder", @"redo",
-		@"placeholder", @"placeholder", @"backwards",   @"forwards",
-	];
+	self.keyConfig = @[
+		@{@"text": @"walking", @"isToken": @YES},    @{@"text": @"in hand", @"isToken": @YES}, @{@"text": @"enter", @"isToken": @YES},    @{@"text": @"delete", @"isToken": @NO},
+		@{@"text": @"cycling", @"isToken": @YES},    @{@"text": @"on body", @"isToken": @YES}, @{@"text": @"leave", @"isToken": @YES},    @{@"text": @"undo", @"isToken": @NO},
+		@{@"text": @"running", @"isToken": @YES},    @{@"text": @"falling", @"isToken": @YES}, @{@"text": @"top", @"isToken": @YES},      @{@"text": @"redo", @"isToken": @NO},
+		@{@"text": @"sleep time", @"isToken": @YES}, @{@"text": @"--", @"isToken": @NO},       @{@"text": @"backwards", @"isToken": @NO}, @{@"text": @"forwards", @"isToken": @NO}
+		];
+					   
+//		@"walking",     @"in hand", @"enter",    @"delete",
+//		@"cycling",     @"on body", @"leave",    @"undo",
+//		@"running",     @"falling", @"top",      @"redo",
+//		@"sleep time",  @"--",      @"backwards",@"forwards",
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,7 +53,7 @@
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return self.keyTexts.count;
+	return self.keyConfig.count;
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -58,7 +63,7 @@
 	static NSInteger imageViewTag = 100;
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 	UIButton *button = (UIButton *) [cell viewWithTag:imageViewTag];
-	[button setTitle: [self.keyTexts objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+	[button setTitle: [[self.keyConfig objectAtIndex:indexPath.row] objectForKey:@"text"] forState:UIControlStateNormal];
 	return cell;
 }
 
@@ -69,7 +74,19 @@
 
 - (IBAction)keyUp:(UIButton *)sender
 {
-	[self.codeVC insertCode:[sender currentTitle]];
+	NSString *buttonText = sender.currentTitle;
+	if ([buttonText isEqualToString:@"forwards"]) {
+		[self.codeVC moveCursorRight];
+	}
+	if ([buttonText isEqualToString:@"backwards"]) {
+		[self.codeVC moveCursorLeft];
+	}
+	for (NSDictionary *conf in self.keyConfig) {
+		if([[conf objectForKey:@"text"] isEqualToString:buttonText] && ([[conf objectForKey:@"isToken"] isEqual:@YES])) {
+			[self.codeVC insertCode:[sender currentTitle]];
+			break;
+		}
+	}
 }
 
 /*
