@@ -7,10 +7,12 @@
 //
 
 #import "MGKeyboardViewController.h"
+#import "MGCodeViewController.h"
 
 @interface MGKeyboardViewController ()
 
 @property NSArray* keyTexts;
+@property MGCodeViewController* codeVC;
 
 @end
 
@@ -46,7 +48,7 @@
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return 16;
+	return self.keyTexts.count;
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -60,6 +62,15 @@
 	return cell;
 }
 
+- (void)registerCodeViewController:(MGCodeViewController *)codeVC
+{
+	self.codeVC = codeVC;
+}
+
+- (IBAction)keyUp:(UIButton *)sender
+{
+	[self.codeVC insertCode:[sender currentTitle]];
+}
 
 /*
 #pragma mark - Navigation

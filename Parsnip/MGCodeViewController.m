@@ -10,7 +10,8 @@
 
 @interface MGCodeViewController ()
 
-@property NSArray* keyTexts;
+@property NSMutableArray* tokens;
+@property NSInteger cursorPosition;
 
 @end
 
@@ -28,13 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.keyTexts = @[
-					  @"walking",     @"falling",     @"placeholder", @"delete",
-					  @"placeholder", @"placeholder", @"placeholder", @"undo",
-					  @"placeholder", @"placeholder", @"placeholder", @"redo",
-					  @"placeholder", @"placeholder", @"backwards",   @"forwards",
-					  ];
-	
+	self.tokens = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,9 +38,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)insertCode:(NSString *)token
+{
+	[self.tokens insertObject:token atIndex:self.cursorPosition];
+	[self.collectionView reloadData]; // optimization: for cell only
+}
+
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return 16;
+	return [self.tokens count];
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -55,7 +56,7 @@
 	static NSInteger imageViewTag = 100;
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 	UIButton *button = (UIButton *) [cell viewWithTag:imageViewTag];
-	[button setTitle: [self.keyTexts objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+	[button setTitle: [self.tokens objectAtIndex:indexPath.row] forState:UIControlStateNormal];
 	return cell;
 }
 

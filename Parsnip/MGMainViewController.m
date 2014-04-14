@@ -7,8 +7,15 @@
 //
 
 #import "MGMainViewController.h"
+#import "MGCodeViewController.h"
+#import "MGKeyboardViewController.h"
 
 @interface MGMainViewController ()
+
+@property (weak, nonatomic) IBOutlet UIView *codeView;
+@property (weak, nonatomic) IBOutlet UIView *keyboardView;
+@property MGCodeViewController *codeVC;
+@property MGKeyboardViewController *keyboardVC;
 
 @end
 
@@ -26,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	[self.keyboardVC registerCodeViewController: self.codeVC];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,6 +42,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if([segue.identifier isEqualToString:@"codeViewController"]) {
+		self.codeVC = [segue destinationViewController];
+	}
+	if ([segue.identifier isEqualToString:@"keyboardViewController"]) {
+		self.keyboardVC = [segue destinationViewController];
+	}
+}
 /*
 #pragma mark - Navigation
 

@@ -10,4 +10,8 @@
 
 @interface MGCodeViewController : UICollectionViewController
 
+-(void)insertCode:(NSString *) token;
+-(void)moveCursorLeft;
+-(void)moveCursorRight;
+
 @end
