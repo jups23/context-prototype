@@ -41,6 +41,7 @@
 -(void)insertCode:(NSString *)token
 {
 	[self.tokens insertObject:token atIndex:self.cursorPosition];
+	self.cursorPosition++;
 	[self.collectionView reloadData]; // optimization: for cell only
 }
 
@@ -53,10 +54,10 @@
 {
 	// set in Storyboard
 	static NSString *identifier = @"Cell";
-	static NSInteger imageViewTag = 100;
+	static NSInteger buttonViewTag = 100;
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-	UIButton *button = (UIButton *) [cell viewWithTag:imageViewTag];
-	[button setTitle: [self.tokens objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+	UIButton *button = (UIButton *) [cell viewWithTag:buttonViewTag];
+	[button setTitle: [self.tokens objectAtIndex:indexPath.item] forState:UIControlStateNormal];
 	return cell;
 }
 
