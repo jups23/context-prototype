@@ -34,6 +34,7 @@
 					  @"placeholder", @"placeholder", @"placeholder", @"redo",
 					  @"placeholder", @"placeholder", @"backwards",   @"forwards",
 					  ];
+	
 }
 
 - (void)didReceiveMemoryWarning
