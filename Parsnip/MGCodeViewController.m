@@ -46,18 +46,23 @@
 
 -(void)moveCursorLeft
 {
-	if (self.cursorPosition > 0) {
+	if((self.cursorPosition == self.tokens.count) && [self.tokens.lastObject isEqualToString:@""])
+		// make shure there only exist placeholders tokens and between cursor and last token position
+		// prevents memory leaking when placeholders are piling up at the end of self.tokens
+		[self.tokens removeLastObject];
+	if (self.cursorPosition > 0)
 		self.cursorPosition--;
-	}
 }
 
 -(void)moveCursorRight
 {
 	if(self.cursorPosition < self.tokens.count) {
 		self.cursorPosition++;
-	}
-	if (self.cursorPosition >= self.tokens.count) {
-		[self.tokens addObject:@""];
+	} else {
+		if (self.cursorPosition == self.tokens.count) {
+			[self.tokens addObject:@""];
+			self.cursorPosition++;
+		}
 	}
 }
 
