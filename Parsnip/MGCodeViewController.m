@@ -62,13 +62,11 @@
 
 -(void)moveCursorRight
 {
-	
 	if(self.cursorPosition < self.tokens.count) {
 		self.cursorPosition++;
 	}
-	// TODO: empty insert placeholder when at end
-	if (self.cursorPosition > self.tokens.count) {
-		[self.tokens insertObject:@"" atIndex:self.cursorPosition];
+	if (self.cursorPosition >= self.tokens.count) {
+		[self.tokens addObject:@""];
 	}
 }
 
