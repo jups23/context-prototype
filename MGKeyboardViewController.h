@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MGCodeViewController.h"
 
 @interface MGKeyboardViewController : UICollectionViewController
+
+-(void)registerCodeViewController:(MGCodeViewController *) codeVC;
 
 @end
