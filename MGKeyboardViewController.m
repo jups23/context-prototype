@@ -18,15 +18,6 @@
 
 @implementation MGKeyboardViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,11 +28,6 @@
 		@{@"text": @"running", @"isToken": @YES},    @{@"text": @"falling", @"isToken": @YES}, @{@"text": @"top", @"isToken": @YES},      @{@"text": @"redo", @"isToken": @NO},
 		@{@"text": @"sleep time", @"isToken": @YES}, @{@"text": @"--", @"isToken": @NO},       @{@"text": @"backwards", @"isToken": @NO}, @{@"text": @"forwards", @"isToken": @NO}
 		];
-					   
-//		@"walking",     @"in hand", @"enter",    @"delete",
-//		@"cycling",     @"on body", @"leave",    @"undo",
-//		@"running",     @"falling", @"top",      @"redo",
-//		@"sleep time",  @"--",      @"backwards",@"forwards",
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +36,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - DataSource
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -58,14 +45,17 @@
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	// set in Storyboard
+	// identifier and tag set in Storyboard
 	static NSString *identifier = @"Cell";
 	static NSInteger imageViewTag = 100;
+	
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 	UIButton *button = (UIButton *) [cell viewWithTag:imageViewTag];
 	[button setTitle: [[self.keyConfig objectAtIndex:indexPath.row] objectForKey:@"text"] forState:UIControlStateNormal];
 	return cell;
 }
+
+#pragma mark - Communication with CodeViewController
 
 - (void)registerCodeViewController:(MGCodeViewController *)codeVC
 {
@@ -75,18 +65,23 @@
 - (IBAction)keyUp:(UIButton *)sender
 {
 	NSString *buttonText = sender.currentTitle;
-	if ([buttonText isEqualToString:@"forwards"]) {
-		[self.codeVC moveCursorRight];
-	}
-	if ([buttonText isEqualToString:@"backwards"]) {
-		[self.codeVC moveCursorLeft];
-	}
+	[self notifyCodeViewIfCursorMovement:buttonText];
+	
 	for (NSDictionary *conf in self.keyConfig) {
 		if([[conf objectForKey:@"text"] isEqualToString:buttonText] && ([[conf objectForKey:@"isToken"] isEqual:@YES])) {
 			[self.codeVC insertCode:[sender currentTitle]];
 			break;
 		}
 	}
+}
+
+-(void)notifyCodeViewIfCursorMovement:(NSString *)buttonText
+{
+	if ([buttonText isEqualToString:@"forwards"])
+		[self.codeVC moveCursorRight];
+	else
+		if ([buttonText isEqualToString:@"backwards"])
+			[self.codeVC moveCursorLeft];
 }
 
 /*

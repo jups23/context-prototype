@@ -17,15 +17,6 @@
 
 @implementation MGCodeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -70,6 +61,9 @@
 	}
 }
 
+
+#pragma mark - DataSource
+
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 	return [self.tokens count];
@@ -80,6 +74,7 @@
 	// set in Storyboard
 	static NSString *identifier = @"Cell";
 	static NSInteger buttonViewTag = 100;
+	
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 	UIButton *button = (UIButton *) [cell viewWithTag:buttonViewTag];
 	[button setTitle: [self.tokens objectAtIndex:indexPath.item] forState:UIControlStateNormal];
