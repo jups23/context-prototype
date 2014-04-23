@@ -66,6 +66,22 @@
 	}
 }
 
+-(void)deleteToken
+{
+	if ([self hasTokenAtCursorPosition]) {
+		if (self.cursorPosition > 0) {
+			self.cursorPosition--;
+		}
+			[self.tokens removeObjectAtIndex:(self.cursorPosition)];
+			[self reloadCodeWithoutAnimation];
+	}
+}
+
+
+-(BOOL)hasTokenAtCursorPosition
+{
+	return [self.tokens count] > 0 && self.cursorPosition > 0;
+}
 
 #pragma mark - DataSource
 

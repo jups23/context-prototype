@@ -66,7 +66,9 @@
 {
 	NSString *buttonText = sender.currentTitle;
 	[self notifyCodeViewIfCursorMovement:buttonText];
+	[self notifyCodeViewIfDeleteKey:buttonText];
 	
+	// TODO make button text the lookup key, this is stupid!
 	for (NSDictionary *conf in self.keyConfig) {
 		if([[conf objectForKey:@"text"] isEqualToString:buttonText] && ([[conf objectForKey:@"isToken"] isEqual:@YES])) {
 			[self.codeVC insertCode:[sender currentTitle]];
@@ -83,6 +85,13 @@
 		if ([buttonText isEqualToString:@"backwards"])
 			[self.codeVC moveCursorLeft];
 }
+
+-(void)notifyCodeViewIfDeleteKey:(NSString *)buttonText
+{
+	if([buttonText isEqualToString:@"delete"])
+		[self.codeVC deleteToken];
+}
+
 
 /*
 #pragma mark - Navigation
