@@ -13,5 +13,6 @@
 -(void)insertCode:(NSString *) token;
 -(void)moveCursorLeft;
 -(void)moveCursorRight;
+-(void)deleteToken;
 
 @end

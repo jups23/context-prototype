@@ -17,15 +17,6 @@
 
 @implementation MGCodeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -55,20 +46,44 @@
 
 -(void)moveCursorLeft
 {
-	if (self.cursorPosition > 0) {
+	if((self.cursorPosition == self.tokens.count) && [self.tokens.lastObject isEqualToString:@""])
+		// make shure there only exist placeholders tokens and between cursor and last token position
+		// prevents memory leaking when placeholders are piling up at the end of self.tokens
+		[self.tokens removeLastObject];
+	if (self.cursorPosition > 0)
 		self.cursorPosition--;
-	}
 }
 
 -(void)moveCursorRight
 {
 	if(self.cursorPosition < self.tokens.count) {
 		self.cursorPosition++;
-	}
-	if (self.cursorPosition >= self.tokens.count) {
-		[self.tokens addObject:@""];
+	} else {
+		if (self.cursorPosition == self.tokens.count) {
+			[self.tokens addObject:@""];
+			self.cursorPosition++;
+		}
 	}
 }
+
+-(void)deleteToken
+{
+	if ([self hasTokenAtCursorPosition]) {
+		if (self.cursorPosition > 0) {
+			self.cursorPosition--;
+		}
+			[self.tokens removeObjectAtIndex:(self.cursorPosition)];
+			[self reloadCodeWithoutAnimation];
+	}
+}
+
+
+-(BOOL)hasTokenAtCursorPosition
+{
+	return [self.tokens count] > 0 && self.cursorPosition > 0;
+}
+
+#pragma mark - DataSource
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -80,6 +95,7 @@
 	// set in Storyboard
 	static NSString *identifier = @"Cell";
 	static NSInteger buttonViewTag = 100;
+	
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 	UIButton *button = (UIButton *) [cell viewWithTag:buttonViewTag];
 	[button setTitle: [self.tokens objectAtIndex:indexPath.item] forState:UIControlStateNormal];
