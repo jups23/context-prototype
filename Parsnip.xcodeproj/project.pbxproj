@@ -14,6 +14,7 @@
 		3E2B2FB818F2EFA9009785C3 /* Cortex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2FB718F2EFA8009785C3 /* Cortex.framework */; };
 		3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B2FC018F2F0D2009785C3 /* Factory.m */; };
 		3E575D6719083694003C23C4 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3E575D6619083694003C23C4 /* Podfile */; };
+		3E575D7719084379003C23C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E575D7619084378003C23C4 /* QuartzCore.framework */; };
 		3EA2AE3118E894C900C4704D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3018E894C900C4704D /* CoreLocation.framework */; };
 		3EA2AE3318E894D600C4704D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3218E894D600C4704D /* CoreMotion.framework */; };
 		3EA2AE3518E894E300C4704D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3418E894E300C4704D /* AVFoundation.framework */; };
@@ -105,6 +106,7 @@
 		3E2B2FBF18F2F0D2009785C3 /* Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Factory.h; sourceTree = "<group>"; };
 		3E2B2FC018F2F0D2009785C3 /* Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Factory.m; sourceTree = "<group>"; };
 		3E575D6619083694003C23C4 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3E575D7619084378003C23C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3EA2AE3018E894C900C4704D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EA2AE3218E894D600C4704D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3EA2AE3418E894E300C4704D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -375,6 +377,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E575D7719084379003C23C4 /* QuartzCore.framework in Frameworks */,
 				3E2B2FB818F2EFA9009785C3 /* Cortex.framework in Frameworks */,
 				3EA2AE3B18E8950200C4704D /* SystemConfiguration.framework in Frameworks */,
 				3EA2AE3918E894F600C4704D /* CoreTelephony.framework in Frameworks */,
@@ -439,6 +442,7 @@
 		3EA4E27718E61A0C00B3754F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E575D7619084378003C23C4 /* QuartzCore.framework */,
 				3E2B2FB918F2EFED009785C3 /* SensePlatform */,
 				3E2B2FB718F2EFA8009785C3 /* Cortex.framework */,
 				3EEA210A18E8A971007FA6CF /* Parsnip.xcodeproj */,
