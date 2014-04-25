@@ -32,12 +32,24 @@
 -(void)insertToken:(NSString *) token
 {
 	[self.tokens insertObject:token atIndex:self.cursorPosition];
-	self.cursorPosition++;
+	[self moveCursorRight];
 }
 
 -(NSString *)getTokenText
 {
 	return [self.tokens componentsJoinedByString:@";"];
+}
+
+-(void)moveCursorRight
+{
+	if(self.cursorPosition < [self.tokens count])
+		self.cursorPosition++;
+}
+
+-(void)moveCursorLeft
+{
+	if(self.cursorPosition>0)
+		self.cursorPosition--;
 }
 
 @end

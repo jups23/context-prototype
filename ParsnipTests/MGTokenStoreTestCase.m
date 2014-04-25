@@ -44,4 +44,21 @@
 	XCTAssertTrue([@"token1;token2" isEqualToString:[self.store getTokenText]]);
 }
 
+-(void)testInsertTokenBeforeOtherToken
+{
+	[self.store insertToken:@"token1"];
+	[self.store moveCursorLeft];
+	[self.store insertToken:@"token2"];
+	XCTAssertTrue([@"token2;token1" isEqualToString:[self.store getTokenText]]);
+}
+
+-(void)testCannotInsertCodeWithSpaceAfterLastToken
+{
+	[self.store insertToken:@"test1"];
+	[self.store moveCursorRight];
+	[self.store moveCursorRight];
+	[self.store insertToken:@"test2"];
+	XCTAssertTrue([@"test1;test2" isEqualToString:[self.store getTokenText]]);
+}
+
 @end
