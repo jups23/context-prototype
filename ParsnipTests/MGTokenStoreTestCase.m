@@ -22,7 +22,6 @@
 {
     [super setUp];
 	self.store = [[MGTokenStore alloc] init];
-	self.code = @"Test";
 }
 
 - (void)tearDown
@@ -33,8 +32,8 @@
 
 - (void)testInsertCodeInEmptyProgram
 {
-	[self.store insertToken:self.code];
-	XCTAssertTrue([self.code isEqualToString:[self.store getTokenText]]);
+	[self.store insertToken:@"token1"];
+	XCTAssertTrue([@"token1" isEqualToString:[self.store getTokenText]]);
 }
 
 -(void)testInsertCodeInNonEmptyProgram
@@ -59,6 +58,15 @@
 	[self.store moveCursorRight];
 	[self.store insertToken:@"test2"];
 	XCTAssertTrue([@"test1;test2" isEqualToString:[self.store getTokenText]]);
+}
+
+-(void)testCannotInsertCodeAtNegativeCursorPosition
+{
+	[self.store insertToken:@"test1"];
+	[self.store moveCursorLeft];
+	[self.store moveCursorLeft];
+	[self.store insertToken:@"test2"];
+	XCTAssertTrue([@"test2;test1" isEqualToString:[self.store getTokenText]]);
 }
 
 @end
