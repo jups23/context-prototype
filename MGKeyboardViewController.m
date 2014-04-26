@@ -71,7 +71,7 @@
 	// TODO make button text the lookup key, this is stupid!
 	for (NSDictionary *conf in self.keyConfig) {
 		if([[conf objectForKey:@"text"] isEqualToString:buttonText] && ([[conf objectForKey:@"isToken"] isEqual:@YES])) {
-			[self.codeVC insertCode:[sender currentTitle]];
+			[self.codeVC insertToken:[sender currentTitle]];
 			break;
 		}
 	}
