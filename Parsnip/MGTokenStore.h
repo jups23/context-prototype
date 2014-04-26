@@ -11,9 +11,11 @@
 @interface MGTokenStore : NSObject
 
 -(void)insertToken:(NSString*) token;
--(NSString *)getTokenText;
-
 -(void)moveCursorRight;
 -(void)moveCursorLeft;
+
+-(NSString *)tokenText;
+-(NSInteger)tokenCount;
+-(NSString *)tokenAtIndex:(NSInteger) index;
 
 @end

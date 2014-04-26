@@ -29,17 +29,6 @@
 	return self;
 }
 
--(void)insertToken:(NSString *) token
-{
-	[self.tokens insertObject:token atIndex:self.cursorPosition];
-	[self moveCursorRight];
-}
-
--(NSString *)getTokenText
-{
-	return [self.tokens componentsJoinedByString:@";"];
-}
-
 -(void)moveCursorRight
 {
 	if(self.cursorPosition < [self.tokens count])
@@ -50,6 +39,27 @@
 {
 	if(self.cursorPosition>0)
 		self.cursorPosition--;
+}
+
+-(void)insertToken:(NSString *) token
+{
+	[self.tokens insertObject:token atIndex:self.cursorPosition];
+	[self moveCursorRight];
+}
+
+-(NSString *)tokenText
+{
+	return [self.tokens componentsJoinedByString:@";"];
+}
+
+-(NSInteger)tokenCount
+{
+	return [self.tokens count];
+}
+
+-(NSString*)tokenAtIndex:(NSInteger)index
+{
+	return [self.tokens objectAtIndex:index];
 }
 
 @end
