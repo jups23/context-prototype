@@ -7,6 +7,9 @@
 //
 
 #import "MGTokenStore.h"
+#import "Underscore.h"
+
+#define _ Underscore
 
 @interface MGTokenStore ()
 
@@ -25,26 +28,35 @@
 		self.cursorPosition = 0;
 		self.cursorString = @"◄";
 		self.tokens = [[NSMutableArray alloc] init];
+		[self.tokens insertObject:self.cursorString atIndex:0];
 	}
 	return self;
 }
 
 -(void)moveCursorRight
 {
-	if(self.cursorPosition < [self.tokens count])
+	if(self.cursorPosition < [self.tokens count] && ![self cursorAtEnd]) {
+		[self.tokens removeObjectAtIndex:self.cursorPosition];
 		self.cursorPosition++;
+		[self.tokens insertObject:self.cursorString atIndex:self.cursorPosition];
+	}
 }
 
 -(void)moveCursorLeft
 {
-	if(self.cursorPosition>0)
+	if(self.cursorPosition>0 && ![self cursorAtFront]) {
+		[self.tokens removeObjectAtIndex:self.cursorPosition];
 		self.cursorPosition--;
+		[self.tokens insertObject:self.cursorString atIndex:self.cursorPosition];
+	}
 }
 
 -(void)insertToken:(NSString *) token
 {
+	[self.tokens removeObjectAtIndex:self.cursorPosition];
 	[self.tokens insertObject:token atIndex:self.cursorPosition];
-	[self moveCursorRight];
+	self.cursorPosition++;
+	[self.tokens insertObject:self.cursorString atIndex:self.cursorPosition];
 }
 
 -(NSString *)tokenText
@@ -60,6 +72,15 @@
 -(NSString*)tokenAtIndex:(NSInteger)index
 {
 	return [self.tokens objectAtIndex:index];
+}
+
+-(BOOL)cursorAtFront
+{
+	return [_.first(self.tokens) isEqualToString:self.cursorString];
+}
+
+-(BOOL)cursorAtEnd{
+	return [_.last(self.tokens) isEqualToString: self.cursorString];
 }
 
 @end

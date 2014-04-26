@@ -12,7 +12,7 @@
 @interface MGTokenStoreTestCase : XCTestCase
 
 @property MGTokenStore *store;
-@property NSString *code;
+@property NSString *cursorSymbol;
 
 @end
 
@@ -33,14 +33,14 @@
 - (void)testInsertCodeInEmptyProgram
 {
 	[self.store insertToken:@"token1"];
-	XCTAssertTrue([@"token1" isEqualToString:[self.store tokenText]]);
+	XCTAssertTrue([@"token1;◄" isEqualToString:[self.store tokenText]]);
 }
 
 -(void)testInsertCodeInNonEmptyProgram
 {
 	[self.store insertToken:@"token1"];
 	[self.store insertToken:@"token2"];
-	XCTAssertTrue([@"token1;token2" isEqualToString:[self.store tokenText]]);
+	XCTAssertTrue([@"token1;token2;◄" isEqualToString:[self.store tokenText]]);
 }
 
 -(void)testInsertTokenBeforeOtherToken
@@ -48,7 +48,7 @@
 	[self.store insertToken:@"token1"];
 	[self.store moveCursorLeft];
 	[self.store insertToken:@"token2"];
-	XCTAssertTrue([@"token2;token1" isEqualToString:[self.store tokenText]]);
+	XCTAssertTrue([@"token2;◄;token1" isEqualToString:[self.store tokenText]]);
 }
 
 -(void)testCannotInsertCodeWithSpaceAfterLastToken
@@ -57,7 +57,8 @@
 	[self.store moveCursorRight];
 	[self.store moveCursorRight];
 	[self.store insertToken:@"test2"];
-	XCTAssertTrue([@"test1;test2" isEqualToString:[self.store tokenText]]);
+	NSLog(@"%@", [self.store tokenText]);
+	XCTAssertTrue([[self.store tokenText] isEqualToString:@"test1;test2;◄"]);
 }
 
 -(void)testCannotInsertCodeAtNegativeCursorPosition
@@ -66,18 +67,18 @@
 	[self.store moveCursorLeft];
 	[self.store moveCursorLeft];
 	[self.store insertToken:@"test2"];
-	XCTAssertTrue([@"test2;test1" isEqualToString:[self.store tokenText]]);
+	XCTAssertTrue([@"test2;◄;test1" isEqualToString:[self.store tokenText]]);
 }
 
--(void)testtokenCountOfEmptyTokenStore
+-(void)testTokenCountOfEmptyTokenStoreCountsOnlyCursor
 {
-	XCTAssertEqual(0, [self.store tokenCount]);
+	XCTAssertEqual(1, [self.store tokenCount]);
 }
 
--(void)testtokenCountOfNonEmptyTokenStore
+-(void)testTokenCountOfNonEmptyTokenStore
 {
 	[self.store insertToken:@"test1"];
-	XCTAssertEqual(1, [self.store tokenCount]);
+	XCTAssertEqual(2, [self.store tokenCount]);
 }
 
 @end
