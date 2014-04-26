@@ -7,11 +7,12 @@
 //
 
 #import "MGCodeViewController.h"
+#import "MGTokenStore.h"
+
 
 @interface MGCodeViewController ()
 
-@property NSMutableArray* tokens;
-@property NSInteger cursorPosition;
+@property MGTokenStore* tokenStore;
 
 @end
 
@@ -20,7 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.tokens = [[NSMutableArray alloc] init];
+	self.tokenStore = [[MGTokenStore alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -29,11 +30,10 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)insertCode:(NSString *)token
+-(void)insertToken:(NSString *)token
 {
-	[self.tokens insertObject:token atIndex:self.cursorPosition];
+	[self.tokenStore insertToken:token];
 	[self reloadCodeWithoutAnimation];
-	self.cursorPosition++;
 }
 
 -(void)reloadCodeWithoutAnimation
@@ -46,48 +46,27 @@
 
 -(void)moveCursorLeft
 {
-	if((self.cursorPosition == self.tokens.count) && [self.tokens.lastObject isEqualToString:@""])
-		// make shure there only exist placeholders tokens and between cursor and last token position
-		// prevents memory leaking when placeholders are piling up at the end of self.tokens
-		[self.tokens removeLastObject];
-	if (self.cursorPosition > 0)
-		self.cursorPosition--;
+	[self.tokenStore moveCursorLeft];
+	[self  reloadCodeWithoutAnimation];
 }
 
 -(void)moveCursorRight
 {
-	if(self.cursorPosition < self.tokens.count) {
-		self.cursorPosition++;
-	} else {
-		if (self.cursorPosition == self.tokens.count) {
-			[self.tokens addObject:@""];
-			self.cursorPosition++;
-		}
-	}
+	[self.tokenStore moveCursorRight];
+	[self reloadCodeWithoutAnimation];
 }
 
 -(void)deleteToken
 {
-	if ([self hasTokenAtCursorPosition]) {
-		if (self.cursorPosition > 0) {
-			self.cursorPosition--;
-		}
-			[self.tokens removeObjectAtIndex:(self.cursorPosition)];
-			[self reloadCodeWithoutAnimation];
-	}
+
 }
 
-
--(BOOL)hasTokenAtCursorPosition
-{
-	return [self.tokens count] > 0 && self.cursorPosition > 0;
-}
 
 #pragma mark - DataSource
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return [self.tokens count];
+	return [self.tokenStore tokenCount];
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -98,7 +77,7 @@
 	
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 	UIButton *button = (UIButton *) [cell viewWithTag:buttonViewTag];
-	[button setTitle: [self.tokens objectAtIndex:indexPath.item] forState:UIControlStateNormal];
+	[button setTitle: [self.tokenStore tokenAtIndex:indexPath.item] forState:UIControlStateNormal];
 	return cell;
 }
 

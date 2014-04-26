@@ -15,6 +15,8 @@
 		3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B2FC018F2F0D2009785C3 /* Factory.m */; };
 		3E575D6719083694003C23C4 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3E575D6619083694003C23C4 /* Podfile */; };
 		3E575D7719084379003C23C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E575D7619084378003C23C4 /* QuartzCore.framework */; };
+		3E575DCC190B1C2C003C23C4 /* MGTokenStoreTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E575DCB190B1C2C003C23C4 /* MGTokenStoreTestCase.m */; };
+		3E575DD0190B204A003C23C4 /* MGTokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E575DCF190B204A003C23C4 /* MGTokenStore.m */; };
 		3EA2AE3118E894C900C4704D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3018E894C900C4704D /* CoreLocation.framework */; };
 		3EA2AE3318E894D600C4704D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3218E894D600C4704D /* CoreMotion.framework */; };
 		3EA2AE3518E894E300C4704D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3418E894E300C4704D /* AVFoundation.framework */; };
@@ -33,7 +35,6 @@
 		3EA4E29918E61A0C00B3754F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E27818E61A0C00B3754F /* Foundation.framework */; };
 		3EA4E29A18E61A0C00B3754F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E27C18E61A0C00B3754F /* UIKit.framework */; };
 		3EA4E2A218E61A0C00B3754F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4E2A018E61A0C00B3754F /* InfoPlist.strings */; };
-		3EA4E2A418E61A0C00B3754F /* ParsnipTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4E2A318E61A0C00B3754F /* ParsnipTests.m */; };
 		FC483595D58B4A65B2144B58 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB69EAA89564B20B39727B2 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,9 @@
 		3E2B2FC018F2F0D2009785C3 /* Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Factory.m; sourceTree = "<group>"; };
 		3E575D6619083694003C23C4 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3E575D7619084378003C23C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3E575DCB190B1C2C003C23C4 /* MGTokenStoreTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTokenStoreTestCase.m; sourceTree = "<group>"; };
+		3E575DCE190B204A003C23C4 /* MGTokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTokenStore.h; sourceTree = "<group>"; };
+		3E575DCF190B204A003C23C4 /* MGTokenStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTokenStore.m; sourceTree = "<group>"; };
 		3EA2AE3018E894C900C4704D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EA2AE3218E894D600C4704D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3EA2AE3418E894E300C4704D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -129,7 +133,6 @@
 		3EA4E29718E61A0C00B3754F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3EA4E29F18E61A0C00B3754F /* ParsnipTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ParsnipTests-Info.plist"; sourceTree = "<group>"; };
 		3EA4E2A118E61A0C00B3754F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3EA4E2A318E61A0C00B3754F /* ParsnipTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParsnipTests.m; sourceTree = "<group>"; };
 		3EA4E2F818E8938600B3754F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		3EA4E2FC18E8938600B3754F /* build */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build; sourceTree = "<group>"; };
 		3EA4E2FD18E8938600B3754F /* emulate */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = emulate; sourceTree = "<group>"; };
@@ -418,6 +421,15 @@
 			path = "../../../../sense-ios-library/include/SensePlatform";
 			sourceTree = "<group>";
 		};
+		3E575DCD190B2024003C23C4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E575DCE190B204A003C23C4 /* MGTokenStore.h */,
+				3E575DCF190B204A003C23C4 /* MGTokenStore.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		3EA4E26C18E61A0C00B3754F = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +477,7 @@
 		3EA4E27E18E61A0C00B3754F /* Parsnip */ = {
 			isa = PBXGroup;
 			children = (
+				3E575DCD190B2024003C23C4 /* Models */,
 				3E2B2FBF18F2F0D2009785C3 /* Factory.h */,
 				3E2B2FC018F2F0D2009785C3 /* Factory.m */,
 				3EA4E28718E61A0C00B3754F /* MGAppDelegate.h */,
@@ -497,7 +510,7 @@
 		3EA4E29D18E61A0C00B3754F /* ParsnipTests */ = {
 			isa = PBXGroup;
 			children = (
-				3EA4E2A318E61A0C00B3754F /* ParsnipTests.m */,
+				3E575DCB190B1C2C003C23C4 /* MGTokenStoreTestCase.m */,
 				3EA4E29E18E61A0C00B3754F /* Supporting Files */,
 			);
 			path = ParsnipTests;
@@ -1245,6 +1258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E575DD0190B204A003C23C4 /* MGTokenStore.m in Sources */,
 				3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */,
 				3EA4E28918E61A0C00B3754F /* MGAppDelegate.m in Sources */,
 				3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */,
@@ -1258,7 +1272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EA4E2A418E61A0C00B3754F /* ParsnipTests.m in Sources */,
+				3E575DCC190B1C2C003C23C4 /* MGTokenStoreTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
