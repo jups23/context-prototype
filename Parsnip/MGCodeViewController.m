@@ -47,11 +47,13 @@
 -(void)moveCursorLeft
 {
 	[self.tokenStore moveCursorLeft];
+	[self  reloadCodeWithoutAnimation];
 }
 
 -(void)moveCursorRight
 {
 	[self.tokenStore moveCursorRight];
+	[self reloadCodeWithoutAnimation];
 }
 
 -(void)deleteToken
