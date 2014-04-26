@@ -11,6 +11,7 @@
 @interface MGTokenStore : NSObject
 
 -(void)insertToken:(NSString*) token;
+-(void)deleteToken;
 -(void)moveCursorRight;
 -(void)moveCursorLeft;
 

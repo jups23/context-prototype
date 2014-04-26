@@ -58,7 +58,8 @@
 
 -(void)deleteToken
 {
-
+	[self.tokenStore deleteToken];
+	[self reloadCodeWithoutAnimation];
 }
 
 

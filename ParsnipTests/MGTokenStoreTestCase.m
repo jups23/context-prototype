@@ -81,4 +81,21 @@
 	XCTAssertEqual(2, [self.store tokenCount]);
 }
 
+-(void)testDoesNotDeleteWhenNoTokenLeftToCursor
+{
+	int count = [self.store tokenCount];
+	[self.store deleteToken];
+	XCTAssertEqual(count, [self.store tokenCount]);
+	XCTAssertTrue([@"◄" isEqualToString: [self.store tokenText]]);
+}
+
+-(void)testDeletesTokenLeftToCursor
+{
+	[self.store insertToken:@"token1"];
+	int count = [self.store tokenCount];
+	[self.store deleteToken];
+	XCTAssertEqual(count-1, [self.store tokenCount]);
+	XCTAssertTrue([@"◄" isEqualToString: [self.store tokenText]]);
+}
+
 @end

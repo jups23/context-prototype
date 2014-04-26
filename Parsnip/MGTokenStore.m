@@ -59,6 +59,19 @@
 	[self.tokens insertObject:self.cursorString atIndex:self.cursorPosition];
 }
 
+-(void)deleteToken
+{
+	if (![self cursorAtFront]) {
+		// remove cursor
+		[self.tokens removeObjectAtIndex:self.cursorPosition];
+		self.cursorPosition--;
+		//remove item before cursor
+		[self.tokens removeObjectAtIndex:self.cursorPosition];
+		//insert cursor
+		[self.tokens insertObject:self.cursorString atIndex:self.cursorPosition];
+	}
+}
+
 -(NSString *)tokenText
 {
 	return [self.tokens componentsJoinedByString:@";"];
@@ -79,7 +92,8 @@
 	return [_.first(self.tokens) isEqualToString:self.cursorString];
 }
 
--(BOOL)cursorAtEnd{
+-(BOOL)cursorAtEnd
+{
 	return [_.last(self.tokens) isEqualToString: self.cursorString];
 }
 
