@@ -17,21 +17,55 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-//	[CSSensePlatform initialize];
-//	NSArray *sensors = [CSSensePlatform availableSensors];
-//	
-//	//Modules expect 50Hz sample rate, 3 a duration of three seconds works quite well for activity detection and step counting
-//    [[CSSettings sharedSettings] setSettingType:kCSSettingTypeSpatial setting:kCSSpatialSettingFrequency value:@"50"];
-//    [[CSSettings sharedSettings] setSettingType:kCSSettingTypeSpatial setting:kCSSpatialSettingNrSamples value:@"150"];
-//    [[CSSettings sharedSettings] setSensor:kCSSENSOR_ACCELEROMETER enabled:YES];
-//    
-//    //acceleration is used by the Activity and stepcounter module
-//    [[CSSettings sharedSettings] setSensor:kCSSENSOR_ACCELERATION enabled:YES];
-//    [[CSSettings sharedSettings] setSensor:kCSSENSOR_ACCELERATION_BURST enabled:YES];
-//	
-//	[Factory sharedFactory];
+	CSSettings* settings = [CSSettings sharedSettings];
+	//Setup sense platform
+    [CSSensePlatform initialize];
+	
+    //upload data to Common Sense every 15 minutes
+    [settings setSettingType:kCSSettingTypeGeneral setting:kCSGeneralSettingUploadToCommonSense value:kCSSettingYES];
+    [settings setSettingType:kCSSettingTypeGeneral setting:kCSGeneralSettingUploadInterval value:@"900"];
+	
+    //enable location sensor so we keep running in the background
+    [settings setSettingType:kCSSettingTypeLocation setting:kCSLocationSettingAccuracy value:@"10000"];
+    [settings setSensor:kCSSENSOR_LOCATION enabled:YES];
+    
+    [settings setSettingType:kCSSettingTypeGeneral setting:kCSGeneralSettingSenseEnabled value:kCSSettingYES];
+    
+    //continuous motion sensor sampling this is needed to do continuous fall detection, but this drains battery. Other modules work well with lower sample interval.
+    [settings setSettingType:kCSSettingTypeSpatial setting:kCSSpatialSettingInterval value:@"0"];
+	
+    //Modules expect 50Hz sample rate, 3 a duration of three seconds works quite well for activity detection and step counting
+    [settings setSettingType:kCSSettingTypeSpatial setting:kCSSpatialSettingFrequency value:@"50"];
+    [settings setSettingType:kCSSettingTypeSpatial setting:kCSSpatialSettingNrSamples value:@"150"];
+    [settings setSensor:kCSSENSOR_ACCELEROMETER enabled:YES];
+    
+    //acceleration is used by the Activity and stepcounter module
+    [settings setSensor:kCSSENSOR_ACCELERATION enabled:YES];
+    [settings setSensor:kCSSENSOR_ACCELERATION_BURST enabled:YES];
+    
+    //noise sensor is used to detect sleep
+    [settings setSettingType:kCSSettingTypeAmbience setting:kCSAmbienceSettingInterval value:@"60"];
+    [settings setSensor:kCSSENSOR_NOISE enabled:YES];
+    
+    //Let the factory instantiate all modules
+    [Factory sharedFactory];	//Use this to enable/disable the whole sense platform
+	
+	//subscribe to sensor data
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newData:) name:kCSNewSensorDataNotification object:nil];
+    
+
 	return YES;
+}
+
+-(void)newData:(NSNotification*)notification
+{
+	if([notification.object isEqualToString:[[Factory sharedFactory].stepCounterModule name]]){
+		NSDictionary *json = [notification.userInfo valueForKey:@"value"];
+		double stepsPerMinute = [[json valueForKey:@"steps per minute"] doubleValue];
+		if(stepsPerMinute > 40){
+			NSLog(@"Walking with: %f steps per minute", stepsPerMinute);
+		}
+	}
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
