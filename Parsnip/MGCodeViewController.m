@@ -102,8 +102,8 @@
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	// set in Storyboard
-	static NSString *identifier = @"Cell";
-	static NSInteger buttonViewTag = 100;
+	NSString *identifier = @"Cell";
+	NSInteger buttonViewTag = 100;
 	NSString *title = [self.tokenStore tokenAtIndex:indexPath.item];
 	
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
