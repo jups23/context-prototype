@@ -87,13 +87,6 @@
 	return [self.tokens objectAtIndex:index];
 }
 
--(NSIndexSet*)indexesOfToken:(NSString *)token
-{
-	return [self.tokens indexesOfObjectsPassingTest:^BOOL(id object, NSUInteger index, BOOL *stop) {
-		return [[self.tokens objectAtIndex:index] isEqualToString:token];
-	}];
-}
-
 -(BOOL)cursorAtFront
 {
 	return [_.first(self.tokens) isEqualToString:self.cursorString];

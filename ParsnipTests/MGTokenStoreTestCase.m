@@ -98,30 +98,4 @@
 	XCTAssertTrue([@"◄" isEqualToString: [self.store tokenText]]);
 }
 
--(void)testReturnsEmptyIndexSetIfTokenNotInStore
-{
-	NSIndexSet *emptySet = [NSIndexSet indexSet];
-	XCTAssertTrue([[self.store indexesOfToken:@"not there"] isEqual:emptySet]);
-}
-
--(void)testReturnsIndexSetWithIndexOfTokenInStore
-{
-	NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex: (NSUInteger) 0];
-	[self.store insertToken:@"present"];
-	XCTAssertTrue([[self.store indexesOfToken:@"present"] isEqual:indexSet]);
-}
-
-
--(void)testReturnsArrayWithIndexesOfTokensInStore
-{
-	NSMutableIndexSet *auxSet = [[NSMutableIndexSet alloc] init];
-	[auxSet addIndex:1];
-	[auxSet addIndex:2];
-	NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndexSet:auxSet];
-	[self.store insertToken:@"token1"];
-	[self.store insertToken:@"token2"];
-	[self.store insertToken:@"token2"];
-	XCTAssertTrue([[self.store indexesOfToken:@"token2"] isEqualToIndexSet:indexSet]);
-}
-
 @end
