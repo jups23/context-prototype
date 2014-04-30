@@ -70,20 +70,27 @@
 	[self reloadCodeWithoutAnimation];
 }
 
-
 #pragma mark context notification
 -(void)contextBecameActive:(NSString *)context
 {
-	if(![self.activeContexts containsObject:context]) {
+	if([self hasNotBeenActive:context]) {
 		[self.activeContexts addObject:context];
 	}
-	[self reloadCodeWithoutAnimation];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		// does not work when called synchronously!!!
+		[self.collectionView reloadData];
+	});
 }
 
 -(void)contextBecameInActive:(NSString *)context
 {
 	[self.activeContexts removeObject:context];
 	[self reloadCodeWithoutAnimation];
+}
+
+- (BOOL)hasNotBeenActive:(NSString *)context
+{
+	return ![self.activeContexts containsObject:context];
 }
 
 #pragma mark - DataSource
