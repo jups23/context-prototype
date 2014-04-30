@@ -98,10 +98,10 @@
 	XCTAssertTrue([@"◄" isEqualToString: [self.store tokenText]]);
 }
 
--(void)testReturnsIndexSetWithNSNotFoundIfTokenNotInStore
+-(void)testReturnsEmptyIndexSetIfTokenNotInStore
 {
-	NSIndexSet *setWithNSNotFound = [NSIndexSet indexSet];
-	XCTAssertTrue([[self.store indexesOfToken:@"not there"] isEqual:setWithNSNotFound]);
+	NSIndexSet *emptySet = [NSIndexSet indexSet];
+	XCTAssertTrue([[self.store indexesOfToken:@"not there"] isEqual:emptySet]);
 }
 
 -(void)testReturnsIndexSetWithIndexOfTokenInStore
