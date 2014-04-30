@@ -46,26 +46,11 @@
     //noise sensor is used to detect sleep
     [settings setSettingType:kCSSettingTypeAmbience setting:kCSAmbienceSettingInterval value:@"60"];
     [settings setSensor:kCSSENSOR_NOISE enabled:YES];
-    
+
     //Let the factory instantiate all modules
     [Factory sharedFactory];	//Use this to enable/disable the whole sense platform
-	
-	//subscribe to sensor data
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newData:) name:kCSNewSensorDataNotification object:nil];
-    
 
 	return YES;
-}
-
--(void)newData:(NSNotification*)notification
-{
-	if([notification.object isEqualToString:[[Factory sharedFactory].stepCounterModule name]]){
-		NSDictionary *json = [notification.userInfo valueForKey:@"value"];
-		double stepsPerMinute = [[json valueForKey:@"steps per minute"] doubleValue];
-		if(stepsPerMinute > 40){
-			NSLog(@"Walking with: %f steps per minute", stepsPerMinute);
-		}
-	}
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

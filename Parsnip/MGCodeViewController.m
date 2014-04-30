@@ -8,11 +8,14 @@
 
 #import "MGCodeViewController.h"
 #import "MGTokenStore.h"
+#import "MGInterpreter.h"
 
 
 @interface MGCodeViewController ()
 
 @property MGTokenStore* tokenStore;
+@property MGInterpreter* interpreter;
+@property NSMutableArray* activeContexts;
 
 @end
 
@@ -22,6 +25,9 @@
 {
     [super viewDidLoad];
 	self.tokenStore = [[MGTokenStore alloc] init];
+	self.interpreter = [[MGInterpreter alloc] init];
+	self.activeContexts = [[NSMutableArray alloc] init];
+	[self.interpreter registerCodeViewController:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -30,9 +36,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark keyboard
 -(void)insertToken:(NSString *)token
 {
 	[self.tokenStore insertToken:token];
+	[self.interpreter observeContext:token];
 	[self reloadCodeWithoutAnimation];
 }
 
@@ -47,7 +55,7 @@
 -(void)moveCursorLeft
 {
 	[self.tokenStore moveCursorLeft];
-	[self  reloadCodeWithoutAnimation];
+	[self reloadCodeWithoutAnimation];
 }
 
 -(void)moveCursorRight
@@ -62,9 +70,30 @@
 	[self reloadCodeWithoutAnimation];
 }
 
+#pragma mark context notification
+-(void)contextBecameActive:(NSString *)context
+{
+	if([self hasNotBeenActive:context]) {
+		[self.activeContexts addObject:context];
+	}
+	dispatch_async(dispatch_get_main_queue(), ^{
+		// does not work when called synchronously!!!
+		[self.collectionView reloadData];
+	});
+}
+
+-(void)contextBecameInActive:(NSString *)context
+{
+	[self.activeContexts removeObject:context];
+	[self reloadCodeWithoutAnimation];
+}
+
+- (BOOL)hasNotBeenActive:(NSString *)context
+{
+	return ![self.activeContexts containsObject:context];
+}
 
 #pragma mark - DataSource
-
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 	return [self.tokenStore tokenCount];
@@ -73,12 +102,18 @@
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	// set in Storyboard
-	static NSString *identifier = @"Cell";
-	static NSInteger buttonViewTag = 100;
+	NSString *identifier = @"Cell";
+	NSInteger buttonViewTag = 100;
+	NSString *title = [self.tokenStore tokenAtIndex:indexPath.item];
 	
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 	UIButton *button = (UIButton *) [cell viewWithTag:buttonViewTag];
-	[button setTitle: [self.tokenStore tokenAtIndex:indexPath.item] forState:UIControlStateNormal];
+	[button setTitle: title forState:UIControlStateNormal];
+	[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	
+	if([self.activeContexts containsObject:title]) {
+		[button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+	}
 	return cell;
 }
 

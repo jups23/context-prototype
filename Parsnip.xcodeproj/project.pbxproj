@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		3E0746E418F8BAB000DB7227 /* MGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0746E318F8BAB000DB7227 /* MGMainViewController.m */; };
 		3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */; };
-		3E0746E918F8C43300DB7227 /* IMG_0269.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 3E0746E818F8C43300DB7227 /* IMG_0269.JPG */; };
 		3E187F8018FA45C3007D778F /* MGCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E187F7F18FA45C3007D778F /* MGCodeViewController.m */; };
 		3E2B2FB818F2EFA9009785C3 /* Cortex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2FB718F2EFA8009785C3 /* Cortex.framework */; };
 		3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B2FC018F2F0D2009785C3 /* Factory.m */; };
+		3E3E04B8190C4B1000995BBF /* MGInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E04B7190C4B1000995BBF /* MGInterpreter.m */; };
 		3E575D6719083694003C23C4 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3E575D6619083694003C23C4 /* Podfile */; };
 		3E575D7719084379003C23C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E575D7619084378003C23C4 /* QuartzCore.framework */; };
 		3E575DCC190B1C2C003C23C4 /* MGTokenStoreTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E575DCB190B1C2C003C23C4 /* MGTokenStoreTestCase.m */; };
@@ -95,7 +95,6 @@
 		3E0746E318F8BAB000DB7227 /* MGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGMainViewController.m; sourceTree = "<group>"; };
 		3E0746E518F8BC3C00DB7227 /* MGKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGKeyboardViewController.h; path = ../MGKeyboardViewController.h; sourceTree = "<group>"; };
 		3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGKeyboardViewController.m; path = ../MGKeyboardViewController.m; sourceTree = "<group>"; };
-		3E0746E818F8C43300DB7227 /* IMG_0269.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = IMG_0269.JPG; path = ../../../../../Pictures/IMG_0269.JPG; sourceTree = "<group>"; };
 		3E187F7E18FA45C3007D778F /* MGCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCodeViewController.h; sourceTree = "<group>"; };
 		3E187F7F18FA45C3007D778F /* MGCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCodeViewController.m; sourceTree = "<group>"; };
 		3E2B2FB718F2EFA8009785C3 /* Cortex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cortex.framework; path = ../../../../Library/Frameworks/Cortex.framework; sourceTree = "<group>"; };
@@ -106,6 +105,8 @@
 		3E2B2FBE18F2EFED009785C3 /* CSSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSSettings.h; sourceTree = "<group>"; };
 		3E2B2FBF18F2F0D2009785C3 /* Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Factory.h; sourceTree = "<group>"; };
 		3E2B2FC018F2F0D2009785C3 /* Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Factory.m; sourceTree = "<group>"; };
+		3E3E04B6190C4B1000995BBF /* MGInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGInterpreter.h; sourceTree = "<group>"; };
+		3E3E04B7190C4B1000995BBF /* MGInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGInterpreter.m; sourceTree = "<group>"; };
 		3E575D6619083694003C23C4 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3E575D7619084378003C23C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3E575DCB190B1C2C003C23C4 /* MGTokenStoreTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTokenStoreTestCase.m; sourceTree = "<group>"; };
@@ -426,6 +427,8 @@
 			children = (
 				3E575DCE190B204A003C23C4 /* MGTokenStore.h */,
 				3E575DCF190B204A003C23C4 /* MGTokenStore.m */,
+				3E3E04B6190C4B1000995BBF /* MGInterpreter.h */,
+				3E3E04B7190C4B1000995BBF /* MGInterpreter.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -489,7 +492,6 @@
 				3E187F7F18FA45C3007D778F /* MGCodeViewController.m */,
 				3E0746E518F8BC3C00DB7227 /* MGKeyboardViewController.h */,
 				3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */,
-				3E0746E818F8C43300DB7227 /* IMG_0269.JPG */,
 				3EA4E29018E61A0C00B3754F /* Images.xcassets */,
 				3EA4E27F18E61A0C00B3754F /* Supporting Files */,
 			);
@@ -1203,7 +1205,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E575D6719083694003C23C4 /* Podfile in Resources */,
-				3E0746E918F8C43300DB7227 /* IMG_0269.JPG in Resources */,
 				3EA4E29118E61A0C00B3754F /* Images.xcassets in Resources */,
 				3EA4E28318E61A0C00B3754F /* InfoPlist.strings in Resources */,
 				3EA4E28C18E61A0C00B3754F /* Main.storyboard in Resources */,
@@ -1260,6 +1261,7 @@
 			files = (
 				3E575DD0190B204A003C23C4 /* MGTokenStore.m in Sources */,
 				3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */,
+				3E3E04B8190C4B1000995BBF /* MGInterpreter.m in Sources */,
 				3EA4E28918E61A0C00B3754F /* MGAppDelegate.m in Sources */,
 				3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */,
 				3E187F8018FA45C3007D778F /* MGCodeViewController.m in Sources */,

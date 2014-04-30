@@ -14,4 +14,8 @@
 -(void)moveCursorLeft;
 -(void)moveCursorRight;
 -(void)deleteToken;
+
+-(void)contextBecameActive:(NSString *)context;
+-(void)contextBecameInActive:(NSString *)context;
+
 @end
