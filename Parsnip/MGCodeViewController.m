@@ -84,8 +84,13 @@
 
 -(void)contextBecameInActive:(NSString *)context
 {
-	[self.activeContexts removeObject:context];
-	[self reloadCodeWithoutAnimation];
+	if ([self.activeContexts containsObject:context]) {
+		[self.activeContexts removeObject:context];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			// does not work when called synchronously!!!
+			[self.collectionView reloadData];
+		});
+	}
 }
 
 - (BOOL)hasNotBeenActive:(NSString *)context
