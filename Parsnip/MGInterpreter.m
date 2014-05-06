@@ -19,7 +19,6 @@
 @property NSDictionary* contextTimeStamps;
 
 @property MGCodeViewController* codeViewController;
-@property NSTimer* timer;
 
 @end
 
@@ -36,24 +35,23 @@
 												 selector:@selector(onNewData:)
 													 name:kCSNewSensorDataNotification
 												   object:nil];
+		NSTimer* timer = [NSTimer timerWithTimeInterval:1.0f
+											 target:self
+										   selector:@selector(checkIfAnyContextTimedOut)
+										   userInfo:nil
+											repeats:YES];
+		[[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 	}
-	self.timer = [NSTimer timerWithTimeInterval:1.0f
-										 target:self
-									   selector:@selector(checkIfAnyContextTimedOut)
-									   userInfo:nil
-										repeats:YES];
-	[[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 
 	return self;
 }
 
 -(void)checkIfAnyContextTimedOut
 {
-	double walkingTimeOut = 5;
 	NSDate* t0 = [self.contextTimeStamps valueForKey:@"walking"];
 	if(t0) {
 		NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
-		if(secondsBetween > walkingTimeOut) {
+		if(secondsBetween > [self walkingTimeOut]) {
 			[self.codeViewController contextBecameInActive:@"walking"];
 		}
 	}
@@ -107,5 +105,6 @@
 #pragma mark constants
 
 -(double)minWalkingStepsPerMinute {return 40.0;}
+-(double)walkingTimeOut {return 7;}	// seconds
 
 @end
