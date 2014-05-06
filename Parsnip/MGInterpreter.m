@@ -16,8 +16,10 @@
 @interface MGInterpreter()
 
 @property NSMutableArray* observedContexts;
+@property NSDictionary* contextTimeStamps;
 
 @property MGCodeViewController* codeViewController;
+@property NSTimer* timer;
 
 @end
 
@@ -28,10 +30,33 @@
 	self = [super init];
 	if(self) {
 		self.observedContexts = [[NSMutableArray alloc] init];
+		self.contextTimeStamps = [[NSMutableDictionary alloc] init];
 		//subscribe to all sensor data
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNewData:) name:kCSNewSensorDataNotification object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(onNewData:)
+													 name:kCSNewSensorDataNotification
+												   object:nil];
 	}
+	self.timer = [NSTimer timerWithTimeInterval:1.0f
+										 target:self
+									   selector:@selector(checkIfAnyContextTimedOut)
+									   userInfo:nil
+										repeats:YES];
+	[[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+
 	return self;
+}
+
+-(void)checkIfAnyContextTimedOut
+{
+	double walkingTimeOut = 5;
+	NSDate* t0 = [self.contextTimeStamps valueForKey:@"walking"];
+	if(t0) {
+		NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
+		if(secondsBetween > walkingTimeOut) {
+			[self.codeViewController contextBecameInActive:@"walking"];
+		}
+	}
 }
 
 -(void)observeContext:(NSString *)context
@@ -41,10 +66,8 @@
 
 -(void)onNewData:(NSNotification*)notification
 {
-	if([self containsDataForWalking:notification]){
-		if([self observesWalking]) {
-			[self notifyIfWalking:notification];
-		}
+	if([self containsDataAboutObservedContext:notification]){
+		[self notifyIfWalking:notification];
 	}
 }
 
@@ -53,9 +76,16 @@
 	NSDictionary *json = [notification.userInfo valueForKey:@"value"];
 	double stepsPerMinute = [[json valueForKey:@"steps per minute"] doubleValue];
 	if(stepsPerMinute > [self minWalkingStepsPerMinute]){
-		NSLog(@"Walking with: %f steps per minute", stepsPerMinute);
+		NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
+		[self.contextTimeStamps setValue:date forKey:@"walking"];
+		NSLog(@"Walking with: %f steps per minute at date %@", stepsPerMinute, date);
 		[self.codeViewController contextBecameActive:@"walking"];
 	}
+}
+
+-(BOOL)containsDataAboutObservedContext:(NSNotification*)notification
+{
+	return [self observesWalking] && [self containsDataForWalking:notification];
 }
 
 -(BOOL)observesWalking
