@@ -18,6 +18,5 @@
 -(NSString *)tokenText;
 -(NSInteger)tokenCount;
 -(NSString *)tokenAtIndex:(NSInteger) index;
--(NSIndexSet *)indexesOfToken:(NSString*)token;
 
 @end
