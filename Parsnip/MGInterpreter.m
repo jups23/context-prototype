@@ -19,7 +19,6 @@
 @property NSDictionary* contextTimeStamps;
 
 @property MGCodeViewController* codeViewController;
-@property NSTimer* timer;
 
 @end
 
@@ -36,25 +35,31 @@
 												 selector:@selector(onNewData:)
 													 name:kCSNewSensorDataNotification
 												   object:nil];
+		NSTimer* timer = [NSTimer timerWithTimeInterval:1.0f
+											 target:self
+										   selector:@selector(checkIfAnyContextTimedOut)
+										   userInfo:nil
+											repeats:YES];
+		[[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 	}
-	self.timer = [NSTimer timerWithTimeInterval:1.0f
-										 target:self
-									   selector:@selector(checkIfAnyContextTimedOut)
-									   userInfo:nil
-										repeats:YES];
-	[[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 
 	return self;
 }
 
 -(void)checkIfAnyContextTimedOut
 {
-	double walkingTimeOut = 5;
-	NSDate* t0 = [self.contextTimeStamps valueForKey:@"walking"];
-	if(t0) {
-		NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
-		if(secondsBetween > walkingTimeOut) {
-			[self.codeViewController contextBecameInActive:@"walking"];
+	[self checkIfActivityTimedOut];
+}
+
+- (void)checkIfActivityTimedOut
+{
+	for (NSString *context in @[@"walking", @"idle", @"cycling"]) {
+		NSDate* t0 = [self.contextTimeStamps valueForKey:context];
+		if(t0) {
+			NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
+			if(secondsBetween > [self activityTimeOut]) {
+				[self.codeViewController contextBecameInActive:context];
+			}
 		}
 	}
 }
@@ -68,35 +73,43 @@
 {
 	if([self containsDataAboutObservedContext:notification]){
 		[self notifyIfWalking:notification];
+		[self notifyIfIdle:notification];
 	}
 }
 
 -(void)notifyIfWalking:(NSNotification*)notification
 {
-	NSDictionary *json = [notification.userInfo valueForKey:@"value"];
-	double stepsPerMinute = [[json valueForKey:@"steps per minute"] doubleValue];
-	if(stepsPerMinute > [self minWalkingStepsPerMinute]){
+	if([[notification.userInfo valueForKey:@"value"] isEqualToString:@"\"Walking\"" ]) {
 		NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
 		[self.contextTimeStamps setValue:date forKey:@"walking"];
-		NSLog(@"Walking with: %f steps per minute at date %@", stepsPerMinute, date);
 		[self.codeViewController contextBecameActive:@"walking"];
+	}
+}
+
+-(void)notifyIfIdle:(NSNotification*)notification
+{
+	if([[notification.userInfo valueForKey:@"value"] isEqualToString:@"\"Idle\"" ]) {
+		NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
+		[self.contextTimeStamps setValue:date forKey:@"idle"];
+		[self.codeViewController contextBecameActive:@"idle"];
 	}
 }
 
 -(BOOL)containsDataAboutObservedContext:(NSNotification*)notification
 {
-	return [self observesWalking] && [self containsDataForWalking:notification];
+	return [self containsDataForActivity:notification] &&
+	([self observes:@"walking"] || [self observes:@"idle"]);
 }
 
--(BOOL)observesWalking
+-(BOOL)observes:(NSString*)context
 {
-	return [self.observedContexts containsObject:@"walking"];
+	return [self.observedContexts containsObject:context];
 }
 
--(BOOL)containsDataForWalking:(NSNotification*)notification
+-(BOOL)containsDataForActivity:(NSNotification*)notification
 {
 	return [notification.object isEqualToString:
-			[[Factory sharedFactory].stepCounterModule name]];
+			[[Factory sharedFactory].activityModule name]];
 }
 
 -(void)registerCodeViewController:(MGCodeViewController *)codeViewController
@@ -107,5 +120,6 @@
 #pragma mark constants
 
 -(double)minWalkingStepsPerMinute {return 40.0;}
+-(double)activityTimeOut {return 7;}	// seconds
 
 @end
