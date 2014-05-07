@@ -71,45 +71,94 @@
 
 -(void)onNewData:(NSNotification*)notification
 {
-	if([self containsDataAboutObservedContext:notification]){
-		[self notifyIfWalking:notification];
-		[self notifyIfIdle:notification];
+	if([self observesActivity:notification]){
+		[self notifyIfActivity:notification];
+	}
+}
+
+-(void)notifyIfActivity:(NSNotification*)notification
+{
+	if([self containsStepCountData:notification]) {
+		double stepsPerMinute = [[[notification.userInfo valueForKey:@"value"]
+								  valueForKey:@"steps per minute"] doubleValue];
+		[self notifyIfWalkingWithStepsPerMinute:stepsPerMinute fromNotification:notification];
+		[self notifyIfIdleWithStepsPerMinute:stepsPerMinute fromNotification:notification];
+	} else {
+		if([self containsActivityData:notification]) {
+			[self notifyIfWalking:notification];
+			[self notifyIfIdle:notification];
+		}
+	}
+}
+
+-(void)notifyIfWalkingWithStepsPerMinute:(double)stepsPerMinute fromNotification:(NSNotification*)notification
+{
+	if(stepsPerMinute > [self minWalkingStepsPerMinute]){
+		NSLog(@"Walking with %f steps per minute", stepsPerMinute);
+		[self saveWalkingIsActive:notification];
 	}
 }
 
 -(void)notifyIfWalking:(NSNotification*)notification
 {
-	if([[notification.userInfo valueForKey:@"value"] isEqualToString:@"\"Walking\"" ]) {
-		NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
-		[self.contextTimeStamps setValue:date forKey:@"walking"];
-		[self.codeViewController contextBecameActive:@"walking"];
+	if([[notification.userInfo valueForKey:@"value"] isEqualToString:@"\"Walking\""]) {
+		NSLog(@"Walking");
+		[self saveWalkingIsActive:notification];
+	}
+}
+
+-(void)notifyIfIdleWithStepsPerMinute:(double)stepsPerMinute fromNotification:(NSNotification*)notification
+{
+	if(stepsPerMinute < [self minWalkingStepsPerMinute]) {
+		NSLog(@"Idle with %f steps per minute", stepsPerMinute);
+		[self saveIdleIsActive:notification];
 	}
 }
 
 -(void)notifyIfIdle:(NSNotification*)notification
 {
-	if([[notification.userInfo valueForKey:@"value"] isEqualToString:@"\"Idle\"" ]) {
-		NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
-		[self.contextTimeStamps setValue:date forKey:@"idle"];
-		[self.codeViewController contextBecameActive:@"idle"];
+	if([[notification.userInfo valueForKey:@"value"] isEqualToString:@"\"Idle\""]) {
+		NSLog(@"Idle");
+		[self saveIdleIsActive:notification];
 	}
 }
 
--(BOOL)containsDataAboutObservedContext:(NSNotification*)notification
+-(void)saveWalkingIsActive:(NSNotification*)notification
 {
-	return [self containsDataForActivity:notification] &&
-	([self observes:@"walking"] || [self observes:@"idle"]);
+	[self saveContextBecameActive:@"walking" fromNotification:notification];
+}
+
+- (void)saveIdleIsActive:(NSNotification *)notification
+{
+	[self saveContextBecameActive:@"idle" fromNotification:notification];
+}
+
+-(void)saveContextBecameActive:(NSString*)context fromNotification:(NSNotification*)notification
+{
+	NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
+	[self.contextTimeStamps setValue:date forKey:context];
+	[self.codeViewController contextBecameActive:context];
+}
+
+-(BOOL)observesActivity:(NSNotification*)notification
+{
+	// TODO pass array here
+	return [self observes:@"walking"] || [self observes:@"idle"] || [self observes:@"cycling"];
+}
+
+-(BOOL)containsActivityData:(NSNotification*)notification
+{
+	return [notification.object isEqualToString: [[Factory sharedFactory].activityModule name]];
+}
+
+-(BOOL)containsStepCountData:(NSNotification*)notification
+{
+	return [notification.object isEqualToString: [[Factory sharedFactory].stepCounterModule name]];
 }
 
 -(BOOL)observes:(NSString*)context
-{
+{	// TODO _.any()
 	return [self.observedContexts containsObject:context];
-}
-
--(BOOL)containsDataForActivity:(NSNotification*)notification
-{
-	return [notification.object isEqualToString:
-			[[Factory sharedFactory].activityModule name]];
 }
 
 -(void)registerCodeViewController:(MGCodeViewController *)codeViewController
