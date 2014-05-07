@@ -75,11 +75,11 @@
 {
 	if([self hasNotBeenActive:context]) {
 		[self.activeContexts addObject:context];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			// does not work when called synchronously!!!
+			[self.collectionView reloadData];
+		});
 	}
-	dispatch_async(dispatch_get_main_queue(), ^{
-		// does not work when called synchronously!!!
-		[self.collectionView reloadData];
-	});
 }
 
 -(void)contextBecameInActive:(NSString *)context
