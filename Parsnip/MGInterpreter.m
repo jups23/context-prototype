@@ -12,11 +12,14 @@
 #import "Underscore.h"
 #import "MGMainViewController.h"
 
+#define _ Underscore
+
 
 @interface MGInterpreter()
 
 @property NSMutableSet* observedContexts;
 @property NSDictionary* contextTimeStamps;
+@property NSArray* implementedContexts;
 
 @property MGCodeViewController* codeViewController;
 
@@ -30,6 +33,8 @@
 	if(self) {
 		self.observedContexts = [[NSMutableSet alloc] init];
 		self.contextTimeStamps = [[NSMutableDictionary alloc] init];
+		self.implementedContexts = @[@"walking", @"idle", @"running"];
+
 		//subscribe to all sensor data
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(onNewData:)
@@ -53,7 +58,7 @@
 
 - (void)checkIfActivityTimedOut
 {
-	for (NSString *context in @[@"walking", @"idle", @"cycling"]) {
+	for (NSString *context in self.implementedContexts) {
 		NSDate* t0 = [self.contextTimeStamps valueForKey:context];
 		if(t0) {
 			NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
@@ -85,6 +90,7 @@
 		[self notifyIfIdleWithStepsPerMinute:stepsPerMinute fromNotification:notification];
 	} else {
 		if([self containsActivityData:notification]) {
+			[self notifyIfRunning:notification];
 			[self notifyIfWalking:notification];
 			[self notifyIfIdle:notification];
 		}
@@ -123,6 +129,14 @@
 	}
 }
 
+-(void)notifyIfRunning:(NSNotification*)notification
+{
+	if([[notification.userInfo valueForKey:@"value"] isEqualToString:@"\"Running\""]) {
+		NSLog(@"Running");
+		[self saveRunningIsActive:notification];
+	}
+}
+
 -(void)saveWalkingIsActive:(NSNotification*)notification
 {
 	[self saveContextBecameActive:@"walking" fromNotification:notification];
@@ -131,6 +145,11 @@
 - (void)saveIdleIsActive:(NSNotification *)notification
 {
 	[self saveContextBecameActive:@"idle" fromNotification:notification];
+}
+
+-(void)saveRunningIsActive:(NSNotification*)notification
+{
+	[self saveContextBecameActive:@"running" fromNotification:notification];
 }
 
 -(void)saveContextBecameActive:(NSString*)context fromNotification:(NSNotification*)notification
@@ -142,8 +161,9 @@
 
 -(BOOL)observesActivity:(NSNotification*)notification
 {
-	// TODO pass array here
-	return [self observes:@"walking"] || [self observes:@"idle"] || [self observes:@"cycling"];
+	return _.any(self.implementedContexts, ^BOOL (NSString *context) {
+		return [self.observedContexts containsObject:context];
+	});
 }
 
 -(BOOL)containsActivityData:(NSNotification*)notification
@@ -154,11 +174,6 @@
 -(BOOL)containsStepCountData:(NSNotification*)notification
 {
 	return [notification.object isEqualToString: [[Factory sharedFactory].stepCounterModule name]];
-}
-
--(BOOL)observes:(NSString*)context
-{	// TODO _.any()
-	return [self.observedContexts containsObject:context];
 }
 
 -(void)registerCodeViewController:(MGCodeViewController *)codeViewController
