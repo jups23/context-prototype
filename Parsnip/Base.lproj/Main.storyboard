@@ -9,7 +9,7 @@
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="59m-QF-PsY" customClass="MGCodeViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="kf8-1I-BrX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="373"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="282"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="Gqc-DN-lf5">
@@ -48,7 +48,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dms-NU-BSe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="-305"/>
+            <point key="canvasLocation" x="-70" y="-386"/>
         </scene>
         <!--Keyboard View Controller-->
         <scene sceneID="Rw3-6A-zUI">
@@ -96,7 +96,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="duK-QJ-QSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-65" y="143"/>
+            <point key="canvasLocation" x="-70" y="230"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="2oS-Mt-ZE0">
@@ -110,12 +110,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="raf-O6-cLA">
+                                <rect key="frame" x="0.0" y="372" width="325" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSt-jh-lKQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="373"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="282"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="59m-QF-PsY" kind="embed" identifier="codeViewController" id="IkZ-aR-aq6"/>
+                                </connections>
+                            </containerView>
+                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fla-fy-gvi">
+                                <rect key="frame" x="0.0" y="282" width="320" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="cFs-Sq-gJQ" kind="embed" identifier="actionViewController" id="gjD-BK-h2R"/>
                                 </connections>
                             </containerView>
                             <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BK5-04-unp">
@@ -126,15 +139,11 @@
                                     <segue destination="ATN-BE-v8H" kind="embed" identifier="keyboardViewController" id="x8T-yI-t0r"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="raf-O6-cLA">
-                                <rect key="frame" x="0.0" y="372" width="325" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="actionView" destination="fla-fy-gvi" id="549-KN-4D8"/>
                         <outlet property="codeView" destination="aSt-jh-lKQ" id="aFE-uX-53Z"/>
                         <outlet property="keyboardView" destination="BK5-04-unp" id="Poy-zv-rZb"/>
                     </connections>
@@ -142,6 +151,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CxS-Fz-S3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-537" y="-217"/>
+        </scene>
+        <!--Action View Controller-->
+        <scene sceneID="y7y-Ga-KUi">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cFs-Sq-gJQ" customClass="MGActionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1qn-cd-2Tb"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Wu-VZ-h8N"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qoo-J8-PHt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="http://192.168.1.114:5000" translatesAutoresizingMaskIntoConstraints="NO" id="Inm-WP-Eoy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="textView" destination="Inm-WP-Eoy" id="5Gf-7C-E5l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yIo-k1-tAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-70" y="19"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -14,8 +14,10 @@
 
 @property (weak, nonatomic) IBOutlet UIView *codeView;
 @property (weak, nonatomic) IBOutlet UIView *keyboardView;
+@property (weak, nonatomic) IBOutlet UIView *actionView;
 @property MGCodeViewController *codeVC;
 @property MGKeyboardViewController *keyboardVC;
+@property MGActionViewController *actionVC;
 
 @end
 
@@ -24,7 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self.keyboardVC registerCodeViewController: self.codeVC];
+	[self.keyboardVC registerCodeViewController:self.codeVC];
+	[self.codeVC registerActionViewController:self.actionVC];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,11 +42,13 @@
 {
 	if([segue.identifier isEqualToString:@"codeViewController"]) {
 		self.codeVC = [segue destinationViewController];
-	} else {
-	if ([segue.identifier isEqualToString:@"keyboardViewController"])
+	}
+	if ([segue.identifier isEqualToString:@"keyboardViewController"]) {
 		self.keyboardVC = [segue destinationViewController];
 	}
-	// Pass the selected object to the new view controller.
+	if ([segue.identifier isEqualToString:@"actionViewController"]) {
+		self.actionVC = [segue destinationViewController];
+	}
 }
 
 @end

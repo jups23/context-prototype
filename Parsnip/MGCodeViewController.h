@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MGActionViewController.h"
 
 @interface MGCodeViewController : UICollectionViewController
 
@@ -17,5 +18,7 @@
 
 -(void)contextBecameActive:(NSString *)context;
 -(void)contextBecameInActive:(NSString *)context;
+
+-(void)registerActionViewController:(MGActionViewController *)actionView;
 
 @end

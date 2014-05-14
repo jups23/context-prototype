@@ -17,6 +17,7 @@
 		3E575D7719084379003C23C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E575D7619084378003C23C4 /* QuartzCore.framework */; };
 		3E575DCC190B1C2C003C23C4 /* MGTokenStoreTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E575DCB190B1C2C003C23C4 /* MGTokenStoreTestCase.m */; };
 		3E575DD0190B204A003C23C4 /* MGTokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E575DCF190B204A003C23C4 /* MGTokenStore.m */; };
+		3E95093819212CDA0069ABEB /* MGActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95093719212CDA0069ABEB /* MGActionViewController.m */; };
 		3EA2AE3118E894C900C4704D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3018E894C900C4704D /* CoreLocation.framework */; };
 		3EA2AE3318E894D600C4704D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3218E894D600C4704D /* CoreMotion.framework */; };
 		3EA2AE3518E894E300C4704D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3418E894E300C4704D /* AVFoundation.framework */; };
@@ -112,6 +113,8 @@
 		3E575DCB190B1C2C003C23C4 /* MGTokenStoreTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTokenStoreTestCase.m; sourceTree = "<group>"; };
 		3E575DCE190B204A003C23C4 /* MGTokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTokenStore.h; sourceTree = "<group>"; };
 		3E575DCF190B204A003C23C4 /* MGTokenStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTokenStore.m; sourceTree = "<group>"; };
+		3E95093619212CDA0069ABEB /* MGActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGActionViewController.h; sourceTree = "<group>"; };
+		3E95093719212CDA0069ABEB /* MGActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGActionViewController.m; sourceTree = "<group>"; };
 		3EA2AE3018E894C900C4704D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EA2AE3218E894D600C4704D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3EA2AE3418E894E300C4704D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -486,6 +489,8 @@
 				3EA4E28718E61A0C00B3754F /* MGAppDelegate.h */,
 				3EA4E28818E61A0C00B3754F /* MGAppDelegate.m */,
 				3EA4E28A18E61A0C00B3754F /* Main.storyboard */,
+				3E95093619212CDA0069ABEB /* MGActionViewController.h */,
+				3E95093719212CDA0069ABEB /* MGActionViewController.m */,
 				3E0746E218F8BAB000DB7227 /* MGMainViewController.h */,
 				3E0746E318F8BAB000DB7227 /* MGMainViewController.m */,
 				3E187F7E18FA45C3007D778F /* MGCodeViewController.h */,
@@ -1259,6 +1264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E95093819212CDA0069ABEB /* MGActionViewController.m in Sources */,
 				3E575DD0190B204A003C23C4 /* MGTokenStore.m in Sources */,
 				3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */,
 				3E3E04B8190C4B1000995BBF /* MGInterpreter.m in Sources */,

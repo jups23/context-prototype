@@ -16,6 +16,7 @@
 @property MGTokenStore* tokenStore;
 @property MGInterpreter* interpreter;
 @property NSMutableArray* activeContexts;
+@property MGActionViewController* actionVC;
 
 @end
 
@@ -78,6 +79,7 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
 			// does not work when called synchronously!!!
 			[self.collectionView reloadData];
+			[self.actionVC callSpecifiedAPIWithParameters:@{@"context":context, @"active":@YES}];
 		});
 	}
 }
@@ -89,6 +91,7 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
 			// does not work when called synchronously!!!
 			[self.collectionView reloadData];
+			[self.actionVC callSpecifiedAPIWithParameters:@{@"context":context, @"active":@NO}];
 		});
 	}
 }
@@ -96,6 +99,13 @@
 - (BOOL)hasNotBeenActive:(NSString *)context
 {
 	return ![self.activeContexts containsObject:context];
+}
+
+#pragma mark - Communicate contexts to ActionView
+
+- (void)registerActionViewController:(MGActionViewController *)actionView
+{
+	self.actionVC = actionView;
 }
 
 #pragma mark - DataSource
