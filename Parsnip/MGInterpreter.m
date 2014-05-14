@@ -15,7 +15,7 @@
 
 @interface MGInterpreter()
 
-@property NSMutableArray* observedContexts;
+@property NSMutableSet* observedContexts;
 @property NSDictionary* contextTimeStamps;
 
 @property MGCodeViewController* codeViewController;
@@ -28,7 +28,7 @@
 {
 	self = [super init];
 	if(self) {
-		self.observedContexts = [[NSMutableArray alloc] init];
+		self.observedContexts = [[NSMutableSet alloc] init];
 		self.contextTimeStamps = [[NSMutableDictionary alloc] init];
 		//subscribe to all sensor data
 		[[NSNotificationCenter defaultCenter] addObserver:self

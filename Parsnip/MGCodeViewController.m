@@ -15,7 +15,7 @@
 
 @property MGTokenStore* tokenStore;
 @property MGInterpreter* interpreter;
-@property NSMutableArray* activeContexts;
+@property NSMutableSet* activeContexts;
 @property MGActionViewController* actionVC;
 
 @end
@@ -27,7 +27,7 @@
     [super viewDidLoad];
 	self.tokenStore = [[MGTokenStore alloc] init];
 	self.interpreter = [[MGInterpreter alloc] init];
-	self.activeContexts = [[NSMutableArray alloc] init];
+	self.activeContexts = [[NSMutableSet alloc] init];
 	[self.interpreter registerCodeViewController:self];
 }
 
