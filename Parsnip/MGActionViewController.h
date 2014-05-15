@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MGActionViewController : UIViewController <NSURLConnectionDataDelegate>
+@interface MGActionViewController : UIViewController
 
 -(void)callSpecifiedAPIWithParameters:(NSDictionary*)parameterDictionary;
 
