@@ -7,11 +7,16 @@
 //
 
 #import "MGCodeViewController.h"
+#import "MGTokenStore.h"
+#import "MGInterpreter.h"
+
 
 @interface MGCodeViewController ()
 
-@property NSMutableArray* tokens;
-@property NSInteger cursorPosition;
+@property MGTokenStore* tokenStore;
+@property MGInterpreter* interpreter;
+@property NSMutableSet* activeContexts;
+@property MGActionViewController* actionVC;
 
 @end
 
@@ -20,7 +25,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.tokens = [[NSMutableArray alloc] init];
+	self.tokenStore = [[MGTokenStore alloc] init];
+	self.interpreter = [[MGInterpreter alloc] init];
+	self.activeContexts = [[NSMutableSet alloc] init];
+	[self.interpreter registerCodeViewController:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -29,11 +37,12 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)insertCode:(NSString *)token
+#pragma mark keyboard
+-(void)insertToken:(NSString *)token
 {
-	[self.tokens insertObject:token atIndex:self.cursorPosition];
+	[self.tokenStore insertToken:token];
+	[self.interpreter observeContext:token];
 	[self reloadCodeWithoutAnimation];
-	self.cursorPosition++;
 }
 
 -(void)reloadCodeWithoutAnimation
@@ -46,59 +55,80 @@
 
 -(void)moveCursorLeft
 {
-	if((self.cursorPosition == self.tokens.count) && [self.tokens.lastObject isEqualToString:@""])
-		// make shure there only exist placeholders tokens and between cursor and last token position
-		// prevents memory leaking when placeholders are piling up at the end of self.tokens
-		[self.tokens removeLastObject];
-	if (self.cursorPosition > 0)
-		self.cursorPosition--;
+	[self.tokenStore moveCursorLeft];
+	[self reloadCodeWithoutAnimation];
 }
 
 -(void)moveCursorRight
 {
-	if(self.cursorPosition < self.tokens.count) {
-		self.cursorPosition++;
-	} else {
-		if (self.cursorPosition == self.tokens.count) {
-			[self.tokens addObject:@""];
-			self.cursorPosition++;
-		}
-	}
+	[self.tokenStore moveCursorRight];
+	[self reloadCodeWithoutAnimation];
 }
 
 -(void)deleteToken
 {
-	if ([self hasTokenAtCursorPosition]) {
-		if (self.cursorPosition > 0) {
-			self.cursorPosition--;
-		}
-			[self.tokens removeObjectAtIndex:(self.cursorPosition)];
-			[self reloadCodeWithoutAnimation];
+	[self.tokenStore deleteToken];
+	[self reloadCodeWithoutAnimation];
+}
+
+#pragma mark context notification
+-(void)contextBecameActive:(NSString *)context
+{
+	if([self hasNotBeenActive:context]) {
+		[self.activeContexts addObject:context];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			// does not work when called synchronously!!!
+			[self.collectionView reloadData];
+			[self.actionVC callSpecifiedAPIWithParameters:@{@"context":context, @"active":@YES}];
+		});
 	}
 }
 
-
--(BOOL)hasTokenAtCursorPosition
+-(void)contextBecameInActive:(NSString *)context
 {
-	return [self.tokens count] > 0 && self.cursorPosition > 0;
+	if ([self.activeContexts containsObject:context]) {
+		[self.activeContexts removeObject:context];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			// does not work when called synchronously!!!
+			[self.collectionView reloadData];
+			[self.actionVC callSpecifiedAPIWithParameters:@{@"context":context, @"active":@NO}];
+		});
+	}
+}
+
+- (BOOL)hasNotBeenActive:(NSString *)context
+{
+	return ![self.activeContexts containsObject:context];
+}
+
+#pragma mark - Communicate contexts to ActionView
+
+- (void)registerActionViewController:(MGActionViewController *)actionView
+{
+	self.actionVC = actionView;
 }
 
 #pragma mark - DataSource
-
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return [self.tokens count];
+	return [self.tokenStore tokenCount];
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	// set in Storyboard
-	static NSString *identifier = @"Cell";
-	static NSInteger buttonViewTag = 100;
+	NSString *identifier = @"Cell";
+	NSInteger buttonViewTag = 100;
+	NSString *title = [self.tokenStore tokenAtIndex:indexPath.item];
 	
 	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 	UIButton *button = (UIButton *) [cell viewWithTag:buttonViewTag];
-	[button setTitle: [self.tokens objectAtIndex:indexPath.item] forState:UIControlStateNormal];
+	[button setTitle: title forState:UIControlStateNormal];
+	[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	
+	if([self.activeContexts containsObject:title]) {
+		[button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+	}
 	return cell;
 }
 

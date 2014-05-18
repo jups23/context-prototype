@@ -35,11 +35,11 @@ static Factory* sharedFactoryInstance = nil;
 - (Factory*) init {
     self = [super init];
     if (self) {
-       // _fallDetectorModule = [[FallDetectorModule alloc] init];
+        _fallDetectorModule = [[FallDetectorModule alloc] init];
         _stepCounterModule = [[StepCounterModule alloc] init];
-//        _timeActiveModule = [[TimeActiveModule alloc] init];
-//        _activityModule = [[ActivityModule alloc] init];
-//        _carryDeviceModule = [[CarryDeviceModule alloc] init];
+        _timeActiveModule = [[TimeActiveModule alloc] init];
+        _activityModule = [[ActivityModule alloc] init];
+        _carryDeviceModule = [[CarryDeviceModule alloc] init];
     }
     return self;
 }

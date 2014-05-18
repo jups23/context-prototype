@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MGActionViewController.h"
 
 @interface MGCodeViewController : UICollectionViewController
 
--(void)insertCode:(NSString *) token;
+-(void)insertToken:(NSString *) token;
 -(void)moveCursorLeft;
 -(void)moveCursorRight;
 -(void)deleteToken;
+
+-(void)contextBecameActive:(NSString *)context;
+-(void)contextBecameInActive:(NSString *)context;
+
+-(void)registerActionViewController:(MGActionViewController *)actionView;
 
 @end
