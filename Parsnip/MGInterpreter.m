@@ -89,7 +89,7 @@
 										 @"acceleration.y": [NSNumber numberWithDouble:motionData.userAcceleration.y],
 										 @"acceleration.z": [NSNumber numberWithDouble:motionData.userAcceleration.z],
 										 @"attitude.roll":  [NSNumber numberWithDouble:motionData.attitude.roll],
-										 @"attutude.pitch": [NSNumber numberWithDouble:motionData.attitude.pitch],
+										 @"attitude.pitch": [NSNumber numberWithDouble:motionData.attitude.pitch],
 										 @"attitude.yaw":	[NSNumber numberWithDouble:motionData.attitude.yaw],
 										 @"rotationRate.x": [NSNumber numberWithDouble:motionData.rotationRate.x],
 										 @"rotationRate.y": [NSNumber numberWithDouble:motionData.rotationRate.y],
