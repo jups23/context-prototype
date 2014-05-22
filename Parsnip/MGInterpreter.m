@@ -24,8 +24,8 @@
 @property NSMutableSet* observedSensors;
 @property NSDictionary* contextTimeStamps;
 @property NSArray* implementedContexts;
-@property BOOL inObserveSensorLoop;
 @property NSOperationQueue* queue;
+@property BOOL observingDeviceMotion;
 
 @property MGCodeViewController* codeViewController;
 @property CMMotionManager *motionManager;
@@ -68,10 +68,8 @@
 -(void)observeSensor:(NSString*)sensor
 {
 	[self.observedSensors addObject:sensor];
-	if(!self.inObserveSensorLoop) {
-		//dispatch_async(dispatch_get_main_queue(), ^{
-			[self enterObserveSensorLoop];
-		//});
+	if(!self.observingDeviceMotion) {
+		[self observeDeviceMotion];
 	}
 }
 
@@ -79,12 +77,13 @@
 {
 	if ([sensor isEqualToString:@"motion"]) {
 		[self.motionManager stopDeviceMotionUpdates];
+		self.observingDeviceMotion = NO;
 	}
 }
 
--(void)enterObserveSensorLoop
+-(void)observeDeviceMotion
 {
-	self.inObserveSensorLoop = YES;
+	self.observingDeviceMotion = YES;
 	[self.motionManager startDeviceMotionUpdatesToQueue:self.queue withHandler:^ (CMDeviceMotion *motionData, NSError *error) {
 		NSDictionary *motionDataDict = @{@"acceleration.x": [NSNumber numberWithDouble:motionData.userAcceleration.x],
 										 @"acceleration.y": [NSNumber numberWithDouble:motionData.userAcceleration.y],
