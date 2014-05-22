@@ -87,6 +87,15 @@
 	return [self.tokens objectAtIndex:index];
 }
 
+-(NSString*)tokenAtCursor
+{
+	if (![self cursorAtFront]) {
+		return [self.tokens objectAtIndex:self.cursorPosition-1];
+	} else {
+		return nil;
+	}
+}
+
 -(BOOL)cursorAtFront
 {
 	return [_.first(self.tokens) isEqualToString:self.cursorString];

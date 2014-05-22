@@ -23,9 +23,9 @@
     [super viewDidLoad];
 	//TODO move to model
 	self.keyConfig = @[
-		@{@"text": @"walking", @"isToken": @YES},    @{@"text": @"in hand", @"isToken": @YES}, @{@"text": @"enter", @"isToken": @YES},    @{@"text": @"delete", @"isToken": @NO},
-		@{@"text": @"cycling", @"isToken": @YES},    @{@"text": @"on body", @"isToken": @YES}, @{@"text": @"leave", @"isToken": @YES},    @{@"text": @"undo", @"isToken": @NO},
-		@{@"text": @"running", @"isToken": @YES},    @{@"text": @"falling", @"isToken": @YES}, @{@"text": @"top", @"isToken": @YES},      @{@"text": @"redo", @"isToken": @NO},
+		@{@"text": @"walking", @"isToken": @YES},    @{@"text": @"in hand", @"isToken": @YES}, @{@"text": @"motion", @"isToken": @YES},    @{@"text": @"delete", @"isToken": @NO},
+		@{@"text": @"cycling", @"isToken": @YES},    @{@"text": @"on body", @"isToken": @YES}, @{@"text": @"mic", @"isToken": @YES},    @{@"text": @"undo", @"isToken": @NO},
+		@{@"text": @"running", @"isToken": @YES},    @{@"text": @"falling", @"isToken": @YES}, @{@"text": @"proximity", @"isToken": @YES},      @{@"text": @"redo", @"isToken": @NO},
 		@{@"text": @"idle", @"isToken": @YES}, @{@"text": @"--", @"isToken": @NO},       @{@"text": @"backwards", @"isToken": @NO}, @{@"text": @"forwards", @"isToken": @NO}
 		];
 }
