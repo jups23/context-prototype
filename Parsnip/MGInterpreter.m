@@ -6,22 +6,29 @@
 //  Copyright (c) 2014 UFMG. All rights reserved.
 //
 
+#import "MGMainViewController.h"
 #import "MGInterpreter.h"
+
 #import "Factory.h"
 #import <SensePlatform/CSSensePlatform.h>
-#import "Underscore.h"
-#import "MGMainViewController.h"
+#import <CoreMotion/CMMotionManager.h>
 
+#import "AFHTTPRequestOperationManager.h"
+#import "Underscore.h"
 #define _ Underscore
 
 
 @interface MGInterpreter()
 
 @property NSMutableSet* observedContexts;
+@property NSMutableSet* observedSensors;
 @property NSDictionary* contextTimeStamps;
 @property NSArray* implementedContexts;
+@property BOOL inObserveSensorLoop;
+@property NSOperationQueue* queue;
 
 @property MGCodeViewController* codeViewController;
+@property CMMotionManager *motionManager;
 
 @end
 
@@ -46,10 +53,54 @@
 										   userInfo:nil
 											repeats:YES];
 		[[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-	}
 
+
+		self.motionManager = [[CMMotionManager alloc] init];
+		self.motionManager.deviceMotionUpdateInterval = 1.0f/60;
+		self.queue = [NSOperationQueue currentQueue];
+	}
 	return self;
 }
+
+
+#pragma mark - Sensors
+
+-(void)observeSensor:(NSString*)sensor
+{
+	[self.observedSensors addObject:sensor];
+
+	if(!self.inObserveSensorLoop) {
+		//dispatch_async(dispatch_get_main_queue(), ^{
+			[self enterObserveSensorLoop];
+		//});
+	}
+}
+
+-(void)enterObserveSensorLoop
+{
+	self.inObserveSensorLoop = YES;
+	[self.motionManager startDeviceMotionUpdatesToQueue:self.queue withHandler:^ (CMDeviceMotion *motionData, NSError *error) {
+		NSDictionary *motionDataDict = @{@"acceleration.x": [NSNumber numberWithDouble:motionData.userAcceleration.x],
+										 @"acceleration.y": [NSNumber numberWithDouble:motionData.userAcceleration.y],
+										 @"acceleration.z": [NSNumber numberWithDouble:motionData.userAcceleration.z],
+										 @"attitude.roll":  [NSNumber numberWithDouble:motionData.attitude.roll],
+										 @"attutude.pitch": [NSNumber numberWithDouble:motionData.attitude.pitch],
+										 @"attitude.yaw":	[NSNumber numberWithDouble:motionData.attitude.yaw],
+										 @"rotationRate.x": [NSNumber numberWithDouble:motionData.rotationRate.x],
+										 @"rotationRate.y": [NSNumber numberWithDouble:motionData.rotationRate.y],
+										 @"rotationRate.z": [NSNumber numberWithDouble:motionData.rotationRate.z],};
+
+		NSString *url = @"http://169.254.170.172:5000";
+		AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+		[manager POST:url parameters:motionDataDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+			NSLog(@"Response: %@", responseObject);
+		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+			NSLog(@"Error: %@", error);
+		}];
+	}];
+}
+
+#pragma mark - Contexts
 
 -(void)checkIfAnyContextTimedOut
 {
@@ -181,7 +232,7 @@
 	self.codeViewController = codeViewController;
 }
 
-#pragma mark constants
+#pragma mark - constants
 
 -(double)minWalkingStepsPerMinute {return 40.0;}
 -(double)activityTimeOut {return 7;}	// seconds

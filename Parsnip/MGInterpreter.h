@@ -12,6 +12,8 @@
 @interface MGInterpreter : NSObject
 
 -(void)observeContext:(NSString*)context;
+-(void)observeSensor:(NSString*)context;
+
 -(void)registerCodeViewController:(MGCodeViewController *)codeViewController;
 
 @end

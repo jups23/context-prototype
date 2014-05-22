@@ -37,11 +37,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark keyboard
+#pragma mark - Keyboard
 -(void)insertToken:(NSString *)token
 {
 	[self.tokenStore insertToken:token];
-	[self.interpreter observeContext:token];
+	if([token isEqualToString:@"motion"]) {
+		[self.interpreter observeSensor: token];
+	} else {
+		[self.interpreter observeContext:token];
+	}
 	[self reloadCodeWithoutAnimation];
 }
 
@@ -71,7 +75,7 @@
 	[self reloadCodeWithoutAnimation];
 }
 
-#pragma mark context notification
+#pragma mark - Context Notification
 -(void)contextBecameActive:(NSString *)context
 {
 	if([self hasNotBeenActive:context]) {
