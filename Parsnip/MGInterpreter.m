@@ -68,11 +68,17 @@
 -(void)observeSensor:(NSString*)sensor
 {
 	[self.observedSensors addObject:sensor];
-
 	if(!self.inObserveSensorLoop) {
 		//dispatch_async(dispatch_get_main_queue(), ^{
 			[self enterObserveSensorLoop];
 		//});
+	}
+}
+
+-(void)unObserveSensor:(NSString *)sensor
+{
+	if ([sensor isEqualToString:@"motion"]) {
+		[self.motionManager stopDeviceMotionUpdates];
 	}
 }
 

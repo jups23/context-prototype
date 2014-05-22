@@ -71,8 +71,17 @@
 
 -(void)deleteToken
 {
+	NSString* token = [self.tokenStore tokenAtCursor];
+	if ([self isSensorToken:token]) {
+		[self.interpreter unObserveSensor:token];
+	}
 	[self.tokenStore deleteToken];
 	[self reloadCodeWithoutAnimation];
+}
+
+-(BOOL)isSensorToken:(NSString*)token
+{
+	return [@[@"motion", @"mic", @"proximity"] containsObject:token];
 }
 
 #pragma mark - Context Notification
