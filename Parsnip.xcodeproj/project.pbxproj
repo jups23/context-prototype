@@ -115,6 +115,7 @@
 		3E575DCF190B204A003C23C4 /* MGTokenStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTokenStore.m; sourceTree = "<group>"; };
 		3E95093619212CDA0069ABEB /* MGActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGActionViewController.h; sourceTree = "<group>"; };
 		3E95093719212CDA0069ABEB /* MGActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGActionViewController.m; sourceTree = "<group>"; };
+		3E9C194F192E9A1F00856A3E /* MGContextsAndSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGContextsAndSensors.h; sourceTree = "<group>"; };
 		3EA2AE3018E894C900C4704D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EA2AE3218E894D600C4704D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3EA2AE3418E894E300C4704D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -486,6 +487,7 @@
 				3E575DCD190B2024003C23C4 /* Models */,
 				3E2B2FBF18F2F0D2009785C3 /* Factory.h */,
 				3E2B2FC018F2F0D2009785C3 /* Factory.m */,
+				3E9C194F192E9A1F00856A3E /* MGContextsAndSensors.h */,
 				3EA4E28718E61A0C00B3754F /* MGAppDelegate.h */,
 				3EA4E28818E61A0C00B3754F /* MGAppDelegate.m */,
 				3EA4E28A18E61A0C00B3754F /* Main.storyboard */,

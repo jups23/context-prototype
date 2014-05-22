@@ -8,6 +8,7 @@
 
 #import "MGMainViewController.h"
 #import "MGInterpreter.h"
+#import "MGContextsAndSensors.h"
 
 #import "Factory.h"
 #import <SensePlatform/CSSensePlatform.h>
@@ -75,7 +76,7 @@
 
 -(void)unObserveSensor:(NSString *)sensor
 {
-	if ([sensor isEqualToString:@"motion"]) {
+	if ([sensor isEqualToString:MGSensorMotion]) {
 		[self.motionManager stopDeviceMotionUpdates];
 		self.observingDeviceMotion = NO;
 	}
