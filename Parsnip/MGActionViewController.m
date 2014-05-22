@@ -40,7 +40,7 @@
 	NSString *url = self.textView.text;
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 	[manager POST:url parameters:parameterDictionary success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		NSLog(@"%@", responseObject);
+		//NSLog(@"%@", responseObject);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			NSLog(@"%@", error);
 	}];

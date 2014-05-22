@@ -98,7 +98,7 @@
 		NSString *url = @"http://169.254.170.172:5000";
 		AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 		[manager POST:url parameters:motionDataDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-			NSLog(@"Response: %@", responseObject);
+			// NSLog(@"Response: %@", responseObject);
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			NSLog(@"Error: %@", error);
 		}];
