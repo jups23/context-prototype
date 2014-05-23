@@ -23,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	[self callSpecifiedAPIWithParameters:@{@"started": @YES}];
+	self.textField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,6 +45,12 @@
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			NSLog(@"%@", error);
 	}];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+	[textField resignFirstResponder];
+	return YES;
 }
 
 /*
