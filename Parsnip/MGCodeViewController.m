@@ -10,6 +10,7 @@
 
 #import "MGTokenStore.h"
 #import "MGInterpreter.h"
+#import "MGContextsAndSensors.h"
 
 
 @interface MGCodeViewController ()
@@ -42,7 +43,7 @@
 -(void)insertToken:(NSString *)token
 {
 	[self.tokenStore insertToken:token];
-	if([token isEqualToString:@"motion"]) {
+	if([token isEqualToString:MGSensorMotion]) {
 		[self.interpreter observeSensor: token];
 	} else {
 		[self.interpreter observeContext:token];
@@ -82,7 +83,7 @@
 
 -(BOOL)isSensorToken:(NSString*)token
 {
-	return [@[@"motion", @"mic", @"proximity"] containsObject:token];
+	return [@[MGSensorMicrophone, MGSensorMotion, MGSensorProximity] containsObject:token];
 }
 
 #pragma mark - Context Notification
