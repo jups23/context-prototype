@@ -69,7 +69,7 @@
 -(void)observeSensor:(NSString*)sensor
 {
 	[self.observedSensors addObject:sensor];
-	if(!self.observingDeviceMotion) {
+	if([self.observedSensors containsObject:MGSensorMotion] && !self.observingDeviceMotion) {
 		[self observeDeviceMotion];
 	}
 }
