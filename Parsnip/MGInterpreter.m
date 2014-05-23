@@ -57,7 +57,7 @@
 
 
 		self.motionManager = [[CMMotionManager alloc] init];
-		self.motionManager.deviceMotionUpdateInterval = 1.0f/60;
+		self.motionManager.deviceMotionUpdateInterval = 1.0f/60; // Hz
 		self.queue = [NSOperationQueue currentQueue];
 	}
 	return self;

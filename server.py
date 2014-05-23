@@ -13,9 +13,10 @@ sock = socket.socket(socket.AF_INET, # Internet
 
 @app.route('/', methods=["GET", "POST"])
 def hello_world():
-    x = request.form.get('acceleration.x')
-    print x
-    sock.sendto(str(x), (UDP_IP, UDP_PORT))
+    data = float(request.form.get('attitude.pitch'))
+    if abs(data):
+        print data
+        sock.sendto(str(data), (UDP_IP, UDP_PORT))
 
 
 if __name__ == '__main__':
