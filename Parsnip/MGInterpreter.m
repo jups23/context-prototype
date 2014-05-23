@@ -57,7 +57,7 @@
 
 
 		self.motionManager = [[CMMotionManager alloc] init];
-		self.motionManager.deviceMotionUpdateInterval = 1.0f/60;
+		self.motionManager.deviceMotionUpdateInterval = 1.0f/60; // Hz
 		self.queue = [NSOperationQueue currentQueue];
 	}
 	return self;
@@ -69,7 +69,7 @@
 -(void)observeSensor:(NSString*)sensor
 {
 	[self.observedSensors addObject:sensor];
-	if(!self.observingDeviceMotion) {
+	if([self.observedSensors containsObject:MGSensorMotion] && !self.observingDeviceMotion) {
 		[self observeDeviceMotion];
 	}
 }
