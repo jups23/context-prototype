@@ -11,7 +11,7 @@
 
 @interface MGActionViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
 
@@ -23,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	[self callSpecifiedAPIWithParameters:@{@"started": @YES}];
+	self.textField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,13 +38,19 @@
 // TODO with sensor data as PARAMETERS
 - (void)callSpecifiedAPIWithParameters:(NSDictionary *)parameterDictionary
 {
-	NSString *url = self.textView.text;
+	NSString *url = self.textField.text;
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 	[manager POST:url parameters:parameterDictionary success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		//NSLog(@"%@", responseObject);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			NSLog(@"%@", error);
 	}];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+	[textField resignFirstResponder];
+	return YES;
 }
 
 /*

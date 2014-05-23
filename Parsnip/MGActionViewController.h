@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MGActionViewController : UIViewController
+@interface MGActionViewController : UIViewController<UITextFieldDelegate>
 
 -(void)callSpecifiedAPIWithParameters:(NSDictionary*)parameterDictionary;
 
