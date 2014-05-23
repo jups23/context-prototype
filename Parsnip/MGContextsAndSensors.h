@@ -1,6 +1,6 @@
 //
 //  MGContextsAndSensors.h
-//  
+//
 //
 //  Created by Willi Müller on 22.05.14.
 //
@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-NSString* const MGSensorMotion = @"motion";
-NSString* const MGSensorMicrophone = @"mic";
-NSString* const MGSensorProximity = @"proximity";
+extern NSString* const MGSensorMotion;
+extern NSString* const MGSensorMicrophone;
+extern NSString* const MGSensorProximity;
 
 
-NSString* const MGContextWalking = @"walking";
-NSString* const MGContextIdle = @"idle";
-NSString* const MGContextRunning = @"running";
+extern NSString* const MGContextWalking;
+extern NSString* const MGContextIdle;
+extern NSString* const MGContextRunning;
