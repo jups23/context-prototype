@@ -25,6 +25,8 @@
 @property NSMutableSet* observedSensors;
 @property NSDictionary* contextTimeStamps;
 @property NSArray* implementedContexts;
+@property NSMutableArray* sensorValues;
+
 @property NSOperationQueue* queue;
 @property BOOL observingDeviceMotion;
 
@@ -41,6 +43,9 @@
 	if(self) {
 		self.observedContexts = [[NSMutableSet alloc] init];
 		self.contextTimeStamps = [[NSMutableDictionary alloc] init];
+		self.observedSensors = [[NSMutableSet alloc] init];
+		self.sensorValues = [[NSMutableArray alloc] init];
+		
 		self.implementedContexts = @[@"walking", @"idle", @"running"];
 
 		//subscribe to all sensor data
@@ -86,23 +91,30 @@
 {
 	self.observingDeviceMotion = YES;
 	[self.motionManager startDeviceMotionUpdatesToQueue:self.queue withHandler:^ (CMDeviceMotion *motionData, NSError *error) {
-		NSDictionary *motionDataDict = @{@"acceleration.x": [NSNumber numberWithDouble:motionData.userAcceleration.x],
-										 @"acceleration.y": [NSNumber numberWithDouble:motionData.userAcceleration.y],
-										 @"acceleration.z": [NSNumber numberWithDouble:motionData.userAcceleration.z],
-										 @"attitude.roll":  [NSNumber numberWithDouble:motionData.attitude.roll],
-										 @"attitude.pitch": [NSNumber numberWithDouble:motionData.attitude.pitch],
-										 @"attitude.yaw":	[NSNumber numberWithDouble:motionData.attitude.yaw],
-										 @"rotationRate.x": [NSNumber numberWithDouble:motionData.rotationRate.x],
-										 @"rotationRate.y": [NSNumber numberWithDouble:motionData.rotationRate.y],
-										 @"rotationRate.z": [NSNumber numberWithDouble:motionData.rotationRate.z],};
+//		NSDictionary *motionDataDict = @{@"acceleration.x": [NSNumber numberWithDouble:motionData.userAcceleration.x],
+//										 @"acceleration.y": [NSNumber numberWithDouble:motionData.userAcceleration.y],
+//										 @"acceleration.z": [NSNumber numberWithDouble:motionData.userAcceleration.z],
+//										 @"attitude.roll":  [NSNumber numberWithDouble:motionData.attitude.roll],
+//										 @"attitude.pitch": [NSNumber numberWithDouble:motionData.attitude.pitch],
+//										 @"attitude.yaw":	[NSNumber numberWithDouble:motionData.attitude.yaw],
+//										 @"rotationRate.x": [NSNumber numberWithDouble:motionData.rotationRate.x],
+//										 @"rotationRate.y": [NSNumber numberWithDouble:motionData.rotationRate.y],
+//										 @"rotationRate.z": [NSNumber numberWithDouble:motionData.rotationRate.z],};
+//
+		if([self.sensorValues count] < 10) {
+			[self.sensorValues addObject:[NSNumber numberWithDouble:motionData.attitude.pitch]];
+		} else {
+			NSNumber *pitch = [self.sensorValues valueForKeyPath:@"@avg.self"];
+			self.sensorValues = [[NSMutableArray alloc] init];
+			NSString *url = @"http://169.254.154.130:5000";
+			AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+			[manager POST:url parameters:@{@"attitude.pitch": pitch} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+				// NSLog(@"Response: %@", responseObject);
+			} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+				NSLog(@"Error: %@", error);
+			}];
+		}
 
-		NSString *url = @"http://169.254.170.172:5000";
-		AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-		[manager POST:url parameters:motionDataDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-			// NSLog(@"Response: %@", responseObject);
-		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			NSLog(@"Error: %@", error);
-		}];
 	}];
 }
 

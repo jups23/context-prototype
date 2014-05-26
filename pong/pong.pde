@@ -174,7 +174,7 @@ void aimove(int pad) {
 // UDP handler
 void receive( byte[] data ) {
    String s = new String(data);
-   int targetLocation = int(160 - float(s) * 160);
+   int targetLocation = (int) (-55 * float(s) + 80);
    println(targetLocation);
    mouseyt = targetLocation; // 0-160
 }
