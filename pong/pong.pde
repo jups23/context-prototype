@@ -2,6 +2,8 @@
 /* !do not delete the line above, required for linking your tweak if you upload again */
 
 import hypermedia.net.*;
+import org.json.*;
+
 UDP udp;
 
 paddle [] p;
@@ -60,7 +62,10 @@ void setup() {
   noStroke();
   background(0);
   frameRate(30);
-  
+  setupUDP();
+}
+
+void setupUDP() {
   udp = new UDP(this, 6000);  // create datagram connection on port 6000
   udp.log( true );            // <-- print out the connection activity
   udp.listen( true );           // and wait for incoming message
@@ -173,12 +178,28 @@ void aimove(int pad) {
 
 // UDP handler
 void receive( byte[] data ) {
-   String s = new String(data);
-   int targetLocation = int(160 - float(s) * 160);
-   println(targetLocation);
-   mouseyt = targetLocation; // 0-160
+   String requestString = new String(data);
+   JSON requestJSON = JSON.parse(requestString);
+   float xAcceleration = requestJSON.getFloat("accelerationX");
+   int targetLocation = paddlePosition(requestJSON.getFloat("attitudePitch"));
+ 
+   mouseyt = targetLocation; // required side effect
+   
+   if(xAcceleration > SHAKE_THRESHOLD) {
+     simulateClick();
+   }
 }
 
+int paddlePosition(float x) {
+  // values: [0; 160]
+  // domain: [-1.5; +1.5]
+  return (int) (-55 * x + 80);
+}
+
+void simulateClick() {
+  mousePressed();
+  mouseReleased();
+}
 void playermove(int pad) {
   
   // insert accelerometer data here

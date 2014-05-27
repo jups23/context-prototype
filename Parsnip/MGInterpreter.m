@@ -25,6 +25,8 @@
 @property NSMutableSet* observedSensors;
 @property NSDictionary* contextTimeStamps;
 @property NSArray* implementedContexts;
+@property NSMutableArray* sensorValues;
+
 @property NSOperationQueue* queue;
 @property BOOL observingDeviceMotion;
 
@@ -41,6 +43,9 @@
 	if(self) {
 		self.observedContexts = [[NSMutableSet alloc] init];
 		self.contextTimeStamps = [[NSMutableDictionary alloc] init];
+		self.observedSensors = [[NSMutableSet alloc] init];
+		self.sensorValues = [[NSMutableArray alloc] init];
+		
 		self.implementedContexts = @[@"walking", @"idle", @"running"];
 
 		//subscribe to all sensor data
@@ -82,30 +87,53 @@
 	}
 }
 
+- (void)notifyServer:(NSDictionary *)avgs
+{
+	[self.codeViewController sendMotionData:avgs];
+}
+
 -(void)observeDeviceMotion
 {
 	self.observingDeviceMotion = YES;
+	int WINDOW_SIZE = 10;
 	[self.motionManager startDeviceMotionUpdatesToQueue:self.queue withHandler:^ (CMDeviceMotion *motionData, NSError *error) {
-		NSDictionary *motionDataDict = @{@"acceleration.x": [NSNumber numberWithDouble:motionData.userAcceleration.x],
-										 @"acceleration.y": [NSNumber numberWithDouble:motionData.userAcceleration.y],
-										 @"acceleration.z": [NSNumber numberWithDouble:motionData.userAcceleration.z],
-										 @"attitude.roll":  [NSNumber numberWithDouble:motionData.attitude.roll],
-										 @"attitude.pitch": [NSNumber numberWithDouble:motionData.attitude.pitch],
-										 @"attitude.yaw":	[NSNumber numberWithDouble:motionData.attitude.yaw],
-										 @"rotationRate.x": [NSNumber numberWithDouble:motionData.rotationRate.x],
-										 @"rotationRate.y": [NSNumber numberWithDouble:motionData.rotationRate.y],
-										 @"rotationRate.z": [NSNumber numberWithDouble:motionData.rotationRate.z],};
-
-		NSString *url = @"http://169.254.170.172:5000";
-		AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-		[manager POST:url parameters:motionDataDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-			// NSLog(@"Response: %@", responseObject);
-		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			NSLog(@"Error: %@", error);
-		}];
+		if([self.sensorValues count] < WINDOW_SIZE) {
+			[self.sensorValues addObject:@{
+										   @"accelerationX": [NSNumber numberWithDouble:motionData.userAcceleration.y],
+										   @"accelerationY": [NSNumber numberWithDouble:motionData.userAcceleration.y],
+										   @"accelerationZ": [NSNumber numberWithDouble:motionData.userAcceleration.z],
+										   @"attitudeRoll":  [NSNumber numberWithDouble:motionData.attitude.roll],
+										   @"attitudePitch": [NSNumber numberWithDouble:motionData.attitude.pitch],
+										   @"attitudeYaw":   [NSNumber numberWithDouble:motionData.attitude.yaw],
+										   @"rotationRateX": [NSNumber numberWithDouble:motionData.rotationRate.x],
+										   @"rotationRateY": [NSNumber numberWithDouble:motionData.rotationRate.y],
+										   @"rotationRateZ": [NSNumber numberWithDouble:motionData.rotationRate.z]
+										   }];
+		} else {
+			NSDictionary *avgs = [self filterMovement];
+			self.sensorValues = [[NSMutableArray alloc] init]; // @[]
+			[self notifyServer:avgs];
+		}
 	}];
 }
+- (NSDictionary *)filterMovement
+{
+	NSDictionary *avgs = @{@"accelerationX": [[self.sensorValues valueForKeyPath:@"accelerationX"] valueForKeyPath:@"@avg.self"],
+						   @"accelerationY": [[self.sensorValues valueForKeyPath:@"accelerationY"] valueForKeyPath:@"@avg.self"],
+						   @"accelerationZ": [[self.sensorValues valueForKeyPath:@"accelerationZ"] valueForKeyPath:@"@avg.self"],
+						   
+						   @"attitudeRoll":  [[self.sensorValues valueForKeyPath:@"attitudeRoll"] valueForKeyPath:@"@avg.self"],
+						   @"attitudePitch": [[self.sensorValues valueForKeyPath:@"attitudePitch"] valueForKeyPath:@"@avg.self"],
+						   @"attitudeYaw":   [[self.sensorValues valueForKeyPath:@"attitudeYaw"] valueForKeyPath:@"@avg.self"],
+						   
+						   @"rotationRateX": [[self.sensorValues valueForKeyPath:@"rotationRateX"] valueForKeyPath:@"@avg.self"],
+						   @"rotationRateY": [[self.sensorValues valueForKeyPath:@"rotationRateY"] valueForKeyPath:@"@avg.self"],
+						   @"rotationRateZ": [[self.sensorValues valueForKeyPath:@"rotationRateZ"] valueForKeyPath:@"@avg.self"],
+						};
+	return avgs;
+}
 
+		
 #pragma mark - Contexts
 
 -(void)checkIfAnyContextTimedOut

@@ -40,8 +40,8 @@
 {
 	NSString *url = self.textField.text;
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-	[manager POST:url parameters:parameterDictionary success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		//NSLog(@"%@", responseObject);
+	[manager POST:[@"http://" stringByAppendingString:url] parameters:parameterDictionary success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		NSLog(@"%@", responseObject);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			NSLog(@"%@", error);
 	}];
@@ -52,6 +52,7 @@
 	[textField resignFirstResponder];
 	return YES;
 }
+
 
 /*
 #pragma mark - Navigation
