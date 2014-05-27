@@ -17,4 +17,4 @@ def hello_world():
     sock.sendto(json.dumps(request.form), (UDP_IP, UDP_PORT))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=False)
+    app.run(host='0.0.0.0', debug=True)
