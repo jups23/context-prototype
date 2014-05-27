@@ -1,3 +1,4 @@
+import pdb
 import socket
 
 from flask import Flask
@@ -13,7 +14,8 @@ sock = socket.socket(socket.AF_INET, # Internet
 
 @app.route('/', methods=["GET", "POST"])
 def hello_world():
-    data = float(request.form.get('attitude.pitch'))
+    data = float(request.form.get('attitudePitch'))
+    # pdb.set_trace()
     if abs(data):
         print data
         sock.sendto(str(data), (UDP_IP, UDP_PORT))

@@ -116,12 +116,18 @@
 	return ![self.activeContexts containsObject:context];
 }
 
-#pragma mark - Communicate contexts to ActionView
+#pragma mark - Communicate with ActionView
 
 - (void)registerActionViewController:(MGActionViewController *)actionView
 {
 	self.actionVC = actionView;
 }
+
+-(void)sendMotionData:(NSDictionary *)sensorData
+{
+	[self.actionVC callSpecifiedAPIWithParameters:sensorData];
+}
+
 
 #pragma mark - DataSource
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

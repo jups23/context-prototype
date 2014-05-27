@@ -18,7 +18,9 @@
 
 -(void)contextBecameActive:(NSString *)context;
 -(void)contextBecameInActive:(NSString *)context;
+-(void)sendMotionData:(NSDictionary*) sensorData;
 
 -(void)registerActionViewController:(MGActionViewController *)actionView;
+
 
 @end
