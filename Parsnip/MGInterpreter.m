@@ -6,22 +6,32 @@
 //  Copyright (c) 2014 UFMG. All rights reserved.
 //
 
+#import "MGMainViewController.h"
 #import "MGInterpreter.h"
+#import "MGContextsAndSensors.h"
+
 #import "Factory.h"
 #import <SensePlatform/CSSensePlatform.h>
-#import "Underscore.h"
-#import "MGMainViewController.h"
+#import <CoreMotion/CMMotionManager.h>
 
+#import "AFHTTPRequestOperationManager.h"
+#import "Underscore.h"
 #define _ Underscore
 
 
 @interface MGInterpreter()
 
 @property NSMutableSet* observedContexts;
+@property NSMutableSet* observedSensors;
 @property NSDictionary* contextTimeStamps;
 @property NSArray* implementedContexts;
+@property NSMutableArray* sensorValues;
+
+@property NSOperationQueue* queue;
+@property BOOL observingDeviceMotion;
 
 @property MGCodeViewController* codeViewController;
+@property CMMotionManager *motionManager;
 
 @end
 
@@ -33,6 +43,9 @@
 	if(self) {
 		self.observedContexts = [[NSMutableSet alloc] init];
 		self.contextTimeStamps = [[NSMutableDictionary alloc] init];
+		self.observedSensors = [[NSMutableSet alloc] init];
+		self.sensorValues = [[NSMutableArray alloc] init];
+		
 		self.implementedContexts = @[@"walking", @"idle", @"running"];
 
 		//subscribe to all sensor data
@@ -46,10 +59,82 @@
 										   userInfo:nil
 											repeats:YES];
 		[[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-	}
 
+
+		self.motionManager = [[CMMotionManager alloc] init];
+		self.motionManager.deviceMotionUpdateInterval = 1.0f/60; // Hz
+		self.queue = [NSOperationQueue currentQueue];
+	}
 	return self;
 }
+
+
+#pragma mark - Sensors
+
+-(void)observeSensor:(NSString*)sensor
+{
+	[self.observedSensors addObject:sensor];
+	if([self.observedSensors containsObject:MGSensorMotion] && !self.observingDeviceMotion) {
+		[self observeDeviceMotion];
+	}
+}
+
+-(void)unObserveSensor:(NSString *)sensor
+{
+	if ([sensor isEqualToString:MGSensorMotion]) {
+		[self.motionManager stopDeviceMotionUpdates];
+		self.observingDeviceMotion = NO;
+	}
+}
+
+- (void)notifyServer:(NSDictionary *)avgs
+{
+	[self.codeViewController sendMotionData:avgs];
+}
+
+-(void)observeDeviceMotion
+{
+	self.observingDeviceMotion = YES;
+	int WINDOW_SIZE = 10;
+	[self.motionManager startDeviceMotionUpdatesToQueue:self.queue withHandler:^ (CMDeviceMotion *motionData, NSError *error) {
+		if([self.sensorValues count] < WINDOW_SIZE) {
+			[self.sensorValues addObject:@{
+										   @"accelerationX": [NSNumber numberWithDouble:motionData.userAcceleration.y],
+										   @"accelerationY": [NSNumber numberWithDouble:motionData.userAcceleration.y],
+										   @"accelerationZ": [NSNumber numberWithDouble:motionData.userAcceleration.z],
+										   @"attitudeRoll":  [NSNumber numberWithDouble:motionData.attitude.roll],
+										   @"attitudePitch": [NSNumber numberWithDouble:motionData.attitude.pitch],
+										   @"attitudeYaw":   [NSNumber numberWithDouble:motionData.attitude.yaw],
+										   @"rotationRateX": [NSNumber numberWithDouble:motionData.rotationRate.x],
+										   @"rotationRateY": [NSNumber numberWithDouble:motionData.rotationRate.y],
+										   @"rotationRateZ": [NSNumber numberWithDouble:motionData.rotationRate.z]
+										   }];
+		} else {
+			NSDictionary *avgs = [self filterMovement];
+			self.sensorValues = [[NSMutableArray alloc] init]; // @[]
+			[self notifyServer:avgs];
+		}
+	}];
+}
+- (NSDictionary *)filterMovement
+{
+	NSDictionary *avgs = @{@"accelerationX": [[self.sensorValues valueForKeyPath:@"accelerationX"] valueForKeyPath:@"@avg.self"],
+						   @"accelerationY": [[self.sensorValues valueForKeyPath:@"accelerationY"] valueForKeyPath:@"@avg.self"],
+						   @"accelerationZ": [[self.sensorValues valueForKeyPath:@"accelerationZ"] valueForKeyPath:@"@avg.self"],
+						   
+						   @"attitudeRoll":  [[self.sensorValues valueForKeyPath:@"attitudeRoll"] valueForKeyPath:@"@avg.self"],
+						   @"attitudePitch": [[self.sensorValues valueForKeyPath:@"attitudePitch"] valueForKeyPath:@"@avg.self"],
+						   @"attitudeYaw":   [[self.sensorValues valueForKeyPath:@"attitudeYaw"] valueForKeyPath:@"@avg.self"],
+						   
+						   @"rotationRateX": [[self.sensorValues valueForKeyPath:@"rotationRateX"] valueForKeyPath:@"@avg.self"],
+						   @"rotationRateY": [[self.sensorValues valueForKeyPath:@"rotationRateY"] valueForKeyPath:@"@avg.self"],
+						   @"rotationRateZ": [[self.sensorValues valueForKeyPath:@"rotationRateZ"] valueForKeyPath:@"@avg.self"],
+						};
+	return avgs;
+}
+
+		
+#pragma mark - Contexts
 
 -(void)checkIfAnyContextTimedOut
 {
@@ -181,7 +266,7 @@
 	self.codeViewController = codeViewController;
 }
 
-#pragma mark constants
+#pragma mark - constants
 
 -(double)minWalkingStepsPerMinute {return 40.0;}
 -(double)activityTimeOut {return 7;}	// seconds
