@@ -98,10 +98,10 @@
             </objects>
             <point key="canvasLocation" x="-70" y="230"/>
         </scene>
-        <!--View Controller-->
+        <!--Input Detail View Controller-->
         <scene sceneID="hTw-S0-hr9">
             <objects>
-                <viewController id="xNp-vn-VKg" sceneMemberID="viewController">
+                <viewController id="xNp-vn-VKg" customClass="MGInputDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ley-Ly-Pls"/>
                         <viewControllerLayoutGuide type="bottom" id="Uf8-9P-PAZ"/>
@@ -110,46 +110,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iav-vx-Kvx">
-                                <rect key="frame" x="0.0" y="84" width="320" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="URL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rie-Rk-SHN">
-                                <rect key="frame" x="20" y="55" width="34" height="21"/>
+                                <rect key="frame" x="20" y="108" width="34" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iav-vx-Kvx">
+                                <rect key="frame" x="0.0" y="137" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xNp-vn-VKg" id="4oO-Br-uZw"/>
+                                </connections>
+                            </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Condition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnw-hf-3KB">
                                 <rect key="frame" x="20" y="335" width="75" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KFI-kT-Xqc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Target and Condition" id="oDq-Ds-2D0">
-                                        <barButtonItem key="backBarButtonItem" title="Back" id="jsD-jC-jPq"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6p0-Cf-9Dc">
                                 <rect key="frame" x="0.0" y="349" width="320" height="162"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="xNp-vn-VKg" id="z8D-ar-wT1"/>
+                                    <outlet property="delegate" destination="xNp-vn-VKg" id="yq3-8X-bVO"/>
+                                </connections>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="suR-4D-Qhk"/>
+                    <connections>
+                        <outlet property="conditionPicker" destination="6p0-Cf-9Dc" id="HtG-uw-Qh7"/>
+                        <outlet property="urlTextField" destination="Iav-vx-Kvx" id="2OJ-E8-c9K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxp-ZM-mjy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="621"/>
+            <point key="canvasLocation" x="-456" y="713"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="2oS-Mt-ZE0">
@@ -217,7 +219,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="PRN-PO-vVe" kind="push" identifier="showDetail" id="Mos-ln-DSj"/>
+                                    <segue destination="xNp-vn-VKg" kind="push" identifier="showDetails" id="QZB-Uc-dDh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -245,17 +247,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LUY-W2-cTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1383" y="713"/>
-        </scene>
-        <!--Input Table View Controller - Condition-->
-        <scene sceneID="mZb-n6-tQ0">
-            <objects>
-                <tableViewController id="PRN-PO-vVe" customClass="MGInputTableViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Condition" id="EkG-cl-jOV"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qAb-M8-S45" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-468" y="681"/>
+            <point key="canvasLocation" x="-1687" y="713"/>
         </scene>
         <!--Action View Controller-->
         <scene sceneID="y7y-Ga-KUi">
