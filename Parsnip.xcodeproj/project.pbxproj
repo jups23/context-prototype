@@ -37,6 +37,7 @@
 		3EA4E29918E61A0C00B3754F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E27818E61A0C00B3754F /* Foundation.framework */; };
 		3EA4E29A18E61A0C00B3754F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA4E27C18E61A0C00B3754F /* UIKit.framework */; };
 		3EA4E2A218E61A0C00B3754F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4E2A018E61A0C00B3754F /* InfoPlist.strings */; };
+		3EE302A419365329006F09BC /* MGInputTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE302A319365329006F09BC /* MGInputTableViewController.m */; };
 		FC483595D58B4A65B2144B58 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB69EAA89564B20B39727B2 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -377,6 +378,8 @@
 		3EA4E40E18E8938800B3754F /* UIDevice+Hardware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
 		3EA4E40F18E8938800B3754F /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		3EA4E41018E8938800B3754F /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		3EE302A219365329006F09BC /* MGInputTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGInputTableViewController.h; sourceTree = "<group>"; };
+		3EE302A319365329006F09BC /* MGInputTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGInputTableViewController.m; sourceTree = "<group>"; };
 		3EEA210A18E8A971007FA6CF /* Parsnip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Parsnip.xcodeproj; sourceTree = "<group>"; };
 		9259822916BD497D9B049451 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		DBB69EAA89564B20B39727B2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -494,6 +497,8 @@
 				3EA4E28718E61A0C00B3754F /* MGAppDelegate.h */,
 				3EA4E28818E61A0C00B3754F /* MGAppDelegate.m */,
 				3EA4E28A18E61A0C00B3754F /* Main.storyboard */,
+				3EE302A219365329006F09BC /* MGInputTableViewController.h */,
+				3EE302A319365329006F09BC /* MGInputTableViewController.m */,
 				3E95093619212CDA0069ABEB /* MGActionViewController.h */,
 				3E95093719212CDA0069ABEB /* MGActionViewController.m */,
 				3E0746E218F8BAB000DB7227 /* MGMainViewController.h */,
@@ -1273,6 +1278,7 @@
 				3E575DD0190B204A003C23C4 /* MGTokenStore.m in Sources */,
 				3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */,
 				3E7026E3192FE81B002647E6 /* MGContextsAndSensors.m in Sources */,
+				3EE302A419365329006F09BC /* MGInputTableViewController.m in Sources */,
 				3E3E04B8190C4B1000995BBF /* MGInterpreter.m in Sources */,
 				3EA4E28918E61A0C00B3754F /* MGAppDelegate.m in Sources */,
 				3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */,
