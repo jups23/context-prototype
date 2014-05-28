@@ -46,20 +46,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self.activitySourcesList count];
-//	if(section == 0) {
-//		return [self.activitySourcesList count];
-//	}
-//	if(section == 1) {
-//		return [self.deviceSourcesList count];
-//	} else{
-//		return [self.sensorList count];
-//	}
+	if(section == 0) {
+		return [self.activitySourcesList count];
+	}
+	if(section == 1) {
+		return [self.deviceSourcesList count];
+	}
+	if(section == 2){
+		return [self.sensorList count];
+	} else {
+		NSAssert(YES, @"specify number of entries for section");
+		return 0;
+	}
 }
 
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -77,14 +80,16 @@
     }
     
 	NSString *text;
-//	if (indexPath.section == 0) {
+
+	if (indexPath.section == 0) {
 		text = [self.activitySourcesList objectAtIndex:indexPath.row];
-//	}
-//	if(indexPath.section == 1) {
-//		text = [self.deviceSourcesList objectAtIndex:indexPath.row];
-//	} else {
-//		text = [self.sensorList objectAtIndex:indexPath.row];
-//	}
+	}
+	if(indexPath.section == 1) {
+		text = [self.deviceSourcesList objectAtIndex:indexPath.row];
+	}
+	if(indexPath.section == 2){
+		text = [self.sensorList objectAtIndex:indexPath.row];
+	}
 	
 	NSLog(@"%@", text);
 	cell.textLabel.text = text;
