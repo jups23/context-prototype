@@ -12,9 +12,8 @@
 @interface MGInputTableViewController ()
 
 @property NSArray *activitySourcesList;
-@property NSArray *deviceSourcesList;
-@property NSArray *sensorList;
-@property NSArray *sections;
+@property NSDictionary *sensorsAndContexts;
+@property NSArray *sectionTitles;
 
 @end
 
@@ -27,13 +26,11 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-	self.activitySourcesList = @[MGContextIdle, MGContextRunning, MGContextWalking, MGSensorMotion];
-	self.deviceSourcesList = @[MGContextDeviceInHand, MGContextDeviceOnBody];
-	self.sensorList = @[MGSensorProximity, MGSensorMicrophone];
-	self.sections = @[@"Activity", @"Device", @"Other Sensors"];
+	self.sensorsAndContexts = @{@"Activity": @[MGContextIdle, MGContextRunning, MGContextWalking, MGSensorMotion],
+								@"Device": @[MGContextDeviceInHand, MGContextDeviceOnBody],
+								@"Other Sensors": @[MGSensorProximity, MGSensorMicrophone]
+								};
+	self.sectionTitles = @[@"Activity", @"Device", @"Other Sensors"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,28 +43,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return [self.sectionTitles count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if(section == 0) {
-		return [self.activitySourcesList count];
-	}
-	if(section == 1) {
-		return [self.deviceSourcesList count];
-	}
-	if(section == 2){
-		return [self.sensorList count];
-	} else {
-		NSAssert(YES, @"specify number of entries for section");
-		return 0;
-	}
+	return [[self.sensorsAndContexts objectForKey:[self.sectionTitles objectAtIndex:section]] count];
 }
 
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return [self.sections objectAtIndex:section];
+	return [self.sectionTitles objectAtIndex:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,21 +65,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-	NSString *text;
-
-	if (indexPath.section == 0) {
-		text = [self.activitySourcesList objectAtIndex:indexPath.row];
-	}
-	if(indexPath.section == 1) {
-		text = [self.deviceSourcesList objectAtIndex:indexPath.row];
-	}
-	if(indexPath.section == 2){
-		text = [self.sensorList objectAtIndex:indexPath.row];
-	}
-	
-	NSLog(@"%@", text);
-	cell.textLabel.text = text;
-    return cell;
+	NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
+	cell.textLabel.text = [[self.sensorsAndContexts objectForKey:sectionTitle] objectAtIndex:indexPath.row];
+	return cell;
 }
 
 /*
