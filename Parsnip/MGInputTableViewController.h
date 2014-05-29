@@ -10,4 +10,8 @@
 
 @interface MGInputTableViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
 
+-(void)updateInputItem:(NSDictionary*)inputItem;
+
+- (IBAction)unwindToList:(UIStoryboardSegue *)segue;
+
 @end

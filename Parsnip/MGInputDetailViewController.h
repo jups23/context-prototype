@@ -10,4 +10,6 @@
 
 @interface MGInputDetailViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 
+@property (strong, nonatomic) NSMutableDictionary* inputItem;
+
 @end

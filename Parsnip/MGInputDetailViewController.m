@@ -7,6 +7,7 @@
 //
 
 #import "MGInputDetailViewController.h"
+#import "MGInputTableViewController.h"
 
 @interface MGInputDetailViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
@@ -20,6 +21,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+	self.urlTextField.text = [self.inputItem valueForKey:@"url"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -28,11 +30,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setDetailItem:(NSDictionary *)detail
+{
+	self.inputItem = [NSMutableDictionary dictionaryWithDictionary: detail];
+	self.urlTextField.text = [self.inputItem valueForKey:@"url"];
+}
+
 
 #pragma mark Text Field
 -(BOOL)textFieldShouldReturn:(UITextField*)textField
 {
 	[textField resignFirstResponder];
+	[self.inputItem setValue:self.urlTextField.text forKey:@"url"];
 	return YES;
 }
 
@@ -47,15 +56,6 @@
 {
 	return 0;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

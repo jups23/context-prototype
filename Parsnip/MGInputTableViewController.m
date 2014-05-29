@@ -6,13 +6,19 @@
 //  Copyright (c) 2014 UFMG. All rights reserved.
 //
 
+#import "AFHTTPRequestOperationManager.h"
+#import "Underscore.h"
+#define _ Underscore
+
 #import "MGInputTableViewController.h"
 #import "MGContextsAndSensors.h"
+#import "MGInputDetailViewController.h"
 
 @interface MGInputTableViewController ()
 
-@property NSDictionary *sensorsAndContexts;
+@property NSMutableArray *sensorsAndContexts;
 @property NSArray *sectionTitles;
+@property NSString* defaultUrl;
 
 @property NSMutableSet* activeContexts;
 
@@ -23,17 +29,82 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.sensorsAndContexts = @{@"Activity": @[MGContextIdle, MGContextRunning, MGContextWalking, MGSensorMotion],
-								@"Device": @[MGContextDeviceInHand, MGContextDeviceOnBody],
-								@"Other Sensors": @[MGSensorProximity, MGSensorMicrophone]
-								};
+	self.defaultUrl = @"http://174.23.23.23:5000";
 	self.sectionTitles = @[@"Activity", @"Device", @"Other Sensors"];
+	self.sensorsAndContexts = [NSMutableArray arrayWithArray:@[
+							   @{@"name": MGContextIdle,
+								 @"section": self.sectionTitles[0],
+								 @"url": self.defaultUrl},
+							   @{@"name": MGContextRunning,
+								 @"section": self.sectionTitles[0],
+								 @"url": self.defaultUrl},
+							   @{@"name": MGContextWalking,
+								 @"section":self.sectionTitles[0],
+								 @"url": self.defaultUrl},
+							   @{@"name": MGSensorMotion,
+								 @"section": self.sectionTitles[0],
+								 @"url": self.defaultUrl},
+							   @{@"name": MGContextIdle,
+								 @"section": self.sectionTitles[1],
+								 @"url": self.defaultUrl},
+							   @{@"name": MGContextIdle,
+								 @"section": self.sectionTitles[1],
+								 @"url": self.defaultUrl},
+							   @{@"name": MGContextIdle,
+								 @"section": self.sectionTitles[2],
+								 @"url": self.defaultUrl},
+							   @{@"name": MGContextIdle,
+								 @"section": self.sectionTitles[2],
+								 @"url": self.defaultUrl},
+							   ]];
+//							   @{@"Activity": @[MGContextIdle, MGContextRunning, MGContextWalking, MGSensorMotion],
+//								@"Device": @[MGContextDeviceInHand, MGContextDeviceOnBody],
+//								@"Other Sensors": @[MGSensorProximity, MGSensorMicrophone]
+//								}];
+
+	[self subscribeToSensorInfo];
+	[self subscribeToContextInfo];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Sensor Data
+
+-(void)subscribeToSensorInfo
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processSensorData:) name:@"newSensorData" object:nil];
+}
+
+-(void)subscribeToContextInfo
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contextBecameActive:) name:@"contextActive" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contextBecameInActive:) name:@"contextInActive" object:nil];
+}
+
+-(void)contextBecameActive:(NSNotification*)notification
+{
+	[self.activeContexts addObject:[notification.userInfo valueForKey:@"context"]];
+}
+
+-(void)contextBecameInActive:(NSNotification*)notification
+{
+	[self.activeContexts removeObject:[notification.userInfo valueForKey:@"context"]];
+}
+
+-(void)processSensorData:(NSNotification*)notification
+{
+	NSDictionary* sensorData = notification.userInfo;
+	NSString *url = @"http://"; // TODO THIS IS MOTION DATA, get MOTION URL
+	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+	[manager POST:[@"http://" stringByAppendingString:url] parameters:sensorData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		NSLog(@"%@", responseObject);
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		NSLog(@"%@", error);
+	}];
 }
 
 #pragma mark - Table view data source
@@ -43,9 +114,9 @@
     return [self.sectionTitles count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-	return [[self.sensorsAndContexts objectForKey:[self.sectionTitles objectAtIndex:section]] count];
+	return [[self allOfSection:[self.sectionTitles objectAtIndex:sectionIndex]] count];
 }
 
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -61,30 +132,41 @@
 	if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-	cell.textLabel.text = [self inputForIndexPath:indexPath];
+	cell.textLabel.text = [[self inputForIndexPath:indexPath] valueForKey:@"name"];
 	return cell;
 }
 
--(NSString*)inputForIndexPath:(NSIndexPath*)indexPath
+-(NSDictionary*)inputForIndexPath:(NSIndexPath*)indexPath
 {
 	NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
-	return [[self.sensorsAndContexts objectForKey:sectionTitle] objectAtIndex:indexPath.row];
+	return [[self allOfSection:sectionTitle] objectAtIndex:indexPath.row];
+}
+
+-(NSArray*)allOfSection:(NSString*)sectionTitle
+{
+	return _.filter(self.sensorsAndContexts, ^BOOL(NSDictionary* input){
+		return [[input valueForKey:@"section"] isEqualToString: sectionTitle];
+	});
 }
 
 #pragma mark - Navigation
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//
-//    // Get the new view controller using [segue destinationViewController].
-//    // Pass the selected object to the new view controller.
-//
-//	if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//		NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//		NSString *input = [self inputForIndexPath:indexPath];
-//		[[segue destinationViewController] setDetailItem:input];
-//	}
-//}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+	NSMutableDictionary *input = [NSMutableDictionary dictionaryWithDictionary:[self inputForIndexPath:indexPath]];
+	[[segue destinationViewController] setInputItem:input];
+}
+
+-(void)updateInputItem:(NSDictionary *)inputItem
+{
+	[self.sensorsAndContexts setValue:inputItem forKey:[inputItem valueForKey:@"name"]];
+}
+
+- (IBAction)unwindToList:(UIStoryboardSegue *)segue
+{
+	
+}
 
 
 @end
