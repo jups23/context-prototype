@@ -22,6 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	self.urlTextField.text = [self.inputItem valueForKey:@"url"];
+	self.title = [self.inputItem valueForKey:@"name"];
 }
 
 - (void)didReceiveMemoryWarning
