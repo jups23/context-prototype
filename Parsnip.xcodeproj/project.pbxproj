@@ -39,7 +39,6 @@
 		3EA4E2A218E61A0C00B3754F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EA4E2A018E61A0C00B3754F /* InfoPlist.strings */; };
 		3EE302A419365329006F09BC /* MGInputTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE302A319365329006F09BC /* MGInputTableViewController.m */; };
 		3EE302F61936827C006F09BC /* MGInputDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE302F51936827C006F09BC /* MGInputDetailViewController.m */; };
-		3EE302F919368848006F09BC /* MGMainNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE302F819368848006F09BC /* MGMainNavigationControllerViewController.m */; };
 		FC483595D58B4A65B2144B58 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB69EAA89564B20B39727B2 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -384,8 +383,6 @@
 		3EE302A319365329006F09BC /* MGInputTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGInputTableViewController.m; sourceTree = "<group>"; };
 		3EE302F41936827C006F09BC /* MGInputDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGInputDetailViewController.h; sourceTree = "<group>"; };
 		3EE302F51936827C006F09BC /* MGInputDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGInputDetailViewController.m; sourceTree = "<group>"; };
-		3EE302F719368848006F09BC /* MGMainNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGMainNavigationControllerViewController.h; sourceTree = "<group>"; };
-		3EE302F819368848006F09BC /* MGMainNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGMainNavigationControllerViewController.m; sourceTree = "<group>"; };
 		3EEA210A18E8A971007FA6CF /* Parsnip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Parsnip.xcodeproj; sourceTree = "<group>"; };
 		9259822916BD497D9B049451 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		DBB69EAA89564B20B39727B2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1081,8 +1078,6 @@
 		3EE302FA19376803006F09BC /* Master-Detail */ = {
 			isa = PBXGroup;
 			children = (
-				3EE302F719368848006F09BC /* MGMainNavigationControllerViewController.h */,
-				3EE302F819368848006F09BC /* MGMainNavigationControllerViewController.m */,
 				3EE302A219365329006F09BC /* MGInputTableViewController.h */,
 				3EE302A319365329006F09BC /* MGInputTableViewController.m */,
 				3EE302F41936827C006F09BC /* MGInputDetailViewController.h */,
@@ -1301,7 +1296,6 @@
 				3EA4E28918E61A0C00B3754F /* MGAppDelegate.m in Sources */,
 				3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */,
 				3E187F8018FA45C3007D778F /* MGCodeViewController.m in Sources */,
-				3EE302F919368848006F09BC /* MGMainNavigationControllerViewController.m in Sources */,
 				3E0746E418F8BAB000DB7227 /* MGMainViewController.m in Sources */,
 				3EE302F61936827C006F09BC /* MGInputDetailViewController.m in Sources */,
 				3EA4E28518E61A0C00B3754F /* main.m in Sources */,

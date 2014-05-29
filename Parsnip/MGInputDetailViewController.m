@@ -12,6 +12,7 @@
 @interface MGInputDetailViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UIPickerView *conditionPicker;
+@property (weak, nonatomic) IBOutlet UINavigationItem *backButton;
 
 @end
 
