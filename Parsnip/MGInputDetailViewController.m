@@ -10,8 +10,9 @@
 #import "MGInputTableViewController.h"
 
 @interface MGInputDetailViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
-@property (weak, nonatomic) IBOutlet UISwitch *observeToggle;
+@property (weak, nonatomic) IBOutlet UISwitch *isObservedToggle;
 @property (weak, nonatomic) IBOutlet UIPickerView *conditionPicker;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
@@ -23,9 +24,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-	self.urlTextField.text = self.inputItem.url;
+	// catch keyboard events
+	self.urlTextField.delegate = self;
+	
 	self.title = self.inputItem.name;
+	self.urlTextField.text = self.inputItem.url;
+	[self.isObservedToggle setOn:self.inputItem.isObserved];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,16 +38,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)isObservedSwitchChanged:(id)sender
+{
+	// even if Cancel will be pressed, this state will be changed
+	self.inputItem.isObserved = [sender isOn];
+}
 
 #pragma mark Navigation
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if(sender != self.doneButton) return;
-	if(self.urlTextField.text.length > 0) {
-		self.inputItem.url = self.urlTextField.text;
-	}
-	self.inputItem.isObserved = self.observeToggle.isEnabled;
+	// user pressed Done without closing the keyboard
+	self.inputItem.url = self.urlTextField.text;
 }
 
 
@@ -51,7 +58,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField*)textField
 {
 	[textField resignFirstResponder];
-	[self.inputItem setValue:self.urlTextField.text forKey:@"url"];
+	self.inputItem.url = self.urlTextField.text;
 	return YES;
 }
 

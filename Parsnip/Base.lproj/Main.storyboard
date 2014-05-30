@@ -143,6 +143,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5D9-sv-8f4">
                                 <rect key="frame" x="93" y="178" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="isObservedSwitchChanged:" destination="AWF-kS-la3" eventType="valueChanged" id="TiW-bO-m6y"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Observe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MA-Kz-sb4">
                                 <rect key="frame" x="20" y="183" width="65" height="21"/>
@@ -169,7 +172,7 @@
                         <outlet property="cancelButton" destination="KWA-kx-vs0" id="Wca-jj-FYk"/>
                         <outlet property="conditionPicker" destination="6p0-Cf-9Dc" id="vQM-PL-VM4"/>
                         <outlet property="doneButton" destination="4Aj-Mf-aNh" id="Yml-Io-pG5"/>
-                        <outlet property="observeToggle" destination="5D9-sv-8f4" id="UJG-ev-XyV"/>
+                        <outlet property="isObservedToggle" destination="5D9-sv-8f4" id="hZ8-N8-vf2"/>
                         <outlet property="urlTextField" destination="lD8-D4-RHi" id="CFA-qg-gMO"/>
                     </connections>
                 </viewController>
