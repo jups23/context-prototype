@@ -140,15 +140,41 @@
                                     <outlet property="delegate" destination="xNp-vn-VKg" id="yq3-8X-bVO"/>
                                 </connections>
                             </pickerView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5D9-sv-8f4">
+                                <rect key="frame" x="93" y="178" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Observe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MA-Kz-sb4">
+                                <rect key="frame" x="20" y="183" width="65" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="MAq-H0-nKe">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="KWA-kx-vs0"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="4Aj-Mf-aNh"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="KWA-kx-vs0">
+                            <connections>
+                                <segue destination="AMc-cu-orI" kind="unwind" unwindAction="unwindToList:" id="TO8-iw-76I"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="4Aj-Mf-aNh">
+                            <connections>
+                                <segue destination="AMc-cu-orI" kind="unwind" unwindAction="unwindToList:" id="wSF-QH-rc3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="KWA-kx-vs0" id="Wca-jj-FYk"/>
+                        <outlet property="conditionPicker" destination="6p0-Cf-9Dc" id="vQM-PL-VM4"/>
+                        <outlet property="doneButton" destination="4Aj-Mf-aNh" id="Yml-Io-pG5"/>
+                        <outlet property="observeToggle" destination="5D9-sv-8f4" id="UJG-ev-XyV"/>
+                        <outlet property="urlTextField" destination="lD8-D4-RHi" id="CFA-qg-gMO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xP-EY-hbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="AMc-cu-orI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="547" y="708"/>
         </scene>
@@ -189,7 +215,7 @@
                     <connections>
                         <outlet property="backButton" destination="suR-4D-Qhk" id="tfv-1h-v1r"/>
                         <outlet property="conditionPicker" destination="6p0-Cf-9Dc" id="HtG-uw-Qh7"/>
-                        <outlet property="urlTextField" destination="Iav-vx-Kvx" id="2OJ-E8-c9K"/>
+                        <outlet property="urlTextField" destination="Iav-vx-Kvx" id="VaV-NF-UC7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxp-ZM-mjy" userLabel="First Responder" sceneMemberID="firstResponder"/>

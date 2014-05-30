@@ -155,8 +155,8 @@
 {
 	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 	NSMutableDictionary *input = [NSMutableDictionary dictionaryWithDictionary:[self inputForIndexPath:indexPath]];
-	// TODO
-	//	[[segue destinationViewController] setInputItem:input];
+	MGInputDetailViewController* detailVc = (MGInputDetailViewController*)[[segue destinationViewController] topViewController];
+	[detailVc setInputItem:input];
 }
 
 -(void)updateInputItem:(NSDictionary *)inputItem
@@ -167,7 +167,10 @@
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
 	NSDictionary *updatedItem = [[segue sourceViewController] inputItem];
-	[self updateInputItem:updatedItem];
+	if(updatedItem != nil) {
+		[self updateInputItem:updatedItem];
+		[self.tableView reloadData];
+	}
 }
 
 

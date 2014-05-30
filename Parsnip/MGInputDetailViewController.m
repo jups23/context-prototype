@@ -11,8 +11,12 @@
 
 @interface MGInputDetailViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
+@property (weak, nonatomic) IBOutlet UISwitch *observeToggle;
 @property (weak, nonatomic) IBOutlet UIPickerView *conditionPicker;
-@property (weak, nonatomic) IBOutlet UINavigationItem *backButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
+
+
 
 @end
 
@@ -36,6 +40,18 @@
 {
 	self.inputItem = [NSMutableDictionary dictionaryWithDictionary: detail];
 	self.urlTextField.text = [self.inputItem valueForKey:@"url"];
+}
+
+#pragma mark Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if(sender != self.doneButton) return;
+	if(self.urlTextField.text.length > 0) {
+		// TODO object's url property
+		[self.inputItem setObject:self.urlTextField.text forKey:@"url"];
+	}
+	[self.inputItem setObject:self.observeToggle forKey:@"active"];
 }
 
 
