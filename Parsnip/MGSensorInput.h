@@ -15,4 +15,6 @@
 @property NSString* url;
 @property NSString* section;
 
+-(id)initWithName: (NSString*)name url:(NSString*)url isObserved:(BOOL) isObserved section:(NSString*)section;
+
 @end

@@ -10,6 +10,7 @@
 #import "Underscore.h"
 #define _ Underscore
 
+#import "MGSensorInput.h"
 #import "MGInputTableViewController.h"
 #import "MGContextsAndSensors.h"
 #import "MGInputDetailViewController.h"
@@ -32,36 +33,17 @@
 	self.defaultUrl = @"http://174.23.23.23:5000";
 	self.sectionTitles = @[@"Activity", @"Device", @"Other Sensors"];
 	self.sensorsAndContexts = [NSMutableArray arrayWithArray:@[
-							   @{@"name": MGContextIdle,
-								 @"section": self.sectionTitles[0],
-								 @"url": self.defaultUrl},
-							   @{@"name": MGContextRunning,
-								 @"section": self.sectionTitles[0],
-								 @"url": self.defaultUrl},
-							   @{@"name": MGContextWalking,
-								 @"section":self.sectionTitles[0],
-								 @"url": self.defaultUrl},
-							   @{@"name": MGSensorMotion,
-								 @"section": self.sectionTitles[0],
-								 @"url": self.defaultUrl},
-							   @{@"name": MGContextDeviceInHand,
-								 @"section": self.sectionTitles[1],
-								 @"url": self.defaultUrl},
-							   @{@"name": MGContextDeviceOnBody,
-								 @"section": self.sectionTitles[1],
-								 @"url": self.defaultUrl},
-							   @{@"name": MGSensorProximity,
-								 @"section": self.sectionTitles[2],
-								 @"url": self.defaultUrl},
-							   @{@"name": MGSensorMicrophone,
-								 @"section": self.sectionTitles[2],
-								 @"url": self.defaultUrl},
+								[[MGSensorInput alloc] initWithName: MGContextIdle url:self.defaultUrl isObserved:NO section:self.sectionTitles[0]],
+								[[MGSensorInput alloc] initWithName: MGContextRunning url:self.defaultUrl isObserved:NO section:self.sectionTitles[0]],
+								[[MGSensorInput alloc] initWithName: MGContextWalking url:self.defaultUrl isObserved:NO section:self.sectionTitles[0]],
+								[[MGSensorInput alloc] initWithName: MGSensorMotion url:self.defaultUrl isObserved:NO section:self.sectionTitles[0]],
+								
+								[[MGSensorInput alloc] initWithName: MGContextDeviceInHand url:self.defaultUrl isObserved:NO section:self.sectionTitles[1]],
+								[[MGSensorInput alloc] initWithName: MGContextDeviceOnBody url:self.defaultUrl isObserved:NO section:self.sectionTitles[1]],
+								
+								[[MGSensorInput alloc] initWithName: MGSensorProximity url:self.defaultUrl isObserved:NO section:self.sectionTitles[2]],
+								[[MGSensorInput alloc] initWithName: MGSensorMicrophone url:self.defaultUrl isObserved:NO section:self.sectionTitles[2]],
 							   ]];
-//							   @{@"Activity": @[MGContextIdle, MGContextRunning, MGContextWalking, MGSensorMotion],
-//								@"Device": @[MGContextDeviceInHand, MGContextDeviceOnBody],
-//								@"Other Sensors": @[MGSensorProximity, MGSensorMicrophone]
-//								}];
-
 	[self subscribeToSensorInfo];
 	[self subscribeToContextInfo];
 }
@@ -136,16 +118,23 @@
 	return cell;
 }
 
--(NSDictionary*)inputForIndexPath:(NSIndexPath*)indexPath
+-(NSArray*)allOfSection:(NSString*)sectionTitle
+{
+	return _.filter(self.sensorsAndContexts, ^BOOL(MGSensorInput* sensor){
+		return [sensor.section isEqualToString: sectionTitle];
+	});
+}
+
+-(MGSensorInput*)inputForIndexPath:(NSIndexPath*)indexPath
 {
 	NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
 	return [[self allOfSection:sectionTitle] objectAtIndex:indexPath.row];
 }
 
--(NSArray*)allOfSection:(NSString*)sectionTitle
+-(MGSensorInput*)inputForName:(NSString*)name
 {
-	return _.filter(self.sensorsAndContexts, ^BOOL(NSDictionary* input){
-		return [[input valueForKey:@"section"] isEqualToString: sectionTitle];
+	return _.find(self.sensorsAndContexts, ^BOOL (MGSensorInput* sensor) {
+		return [sensor.name isEqualToString:name];
 	});
 }
 
@@ -154,23 +143,25 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-	NSMutableDictionary *input = [NSMutableDictionary dictionaryWithDictionary:[self inputForIndexPath:indexPath]];
+	MGSensorInput *input = [self inputForIndexPath:indexPath];
 	MGInputDetailViewController* detailVc = (MGInputDetailViewController*)[[segue destinationViewController] topViewController];
 	[detailVc setInputItem:input];
 }
 
--(void)updateInputItem:(NSDictionary *)inputItem
-{
-	[self.sensorsAndContexts setValue:inputItem forKey:[inputItem valueForKey:@"name"]];
-}
-
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-	NSDictionary *updatedItem = [[segue sourceViewController] inputItem];
+	MGSensorInput *updatedItem = [[segue sourceViewController] inputItem];
 	if(updatedItem != nil) {
 		[self updateInputItem:updatedItem];
 		[self.tableView reloadData];
 	}
+}
+
+-(void)updateInputItem:(MGSensorInput *)inputItem
+{
+	MGSensorInput* outdated = [self inputForName:@"name"];
+	outdated.isObserved = inputItem.isObserved;
+	outdated.url = inputItem.url;
 }
 
 

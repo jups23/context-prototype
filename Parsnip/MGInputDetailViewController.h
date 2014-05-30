@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MGSensorInput.h"
+
+
 @interface MGInputDetailViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 
-@property (strong, nonatomic) NSMutableDictionary* inputItem;
+@property (strong, nonatomic) MGSensorInput* inputItem;
 
 @end

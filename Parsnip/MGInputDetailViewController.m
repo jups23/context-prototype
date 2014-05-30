@@ -16,8 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
-
-
 @end
 
 @implementation MGInputDetailViewController
@@ -25,9 +23,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-	self.urlTextField.text = [self.inputItem valueForKey:@"url"];
-	self.title = [self.inputItem valueForKey:@"name"];
+    
+	self.urlTextField.text = self.inputItem.url;
+	self.title = self.inputItem.name;
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,11 +34,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)setDetailItem:(NSDictionary *)detail
-{
-	self.inputItem = [NSMutableDictionary dictionaryWithDictionary: detail];
-	self.urlTextField.text = [self.inputItem valueForKey:@"url"];
-}
 
 #pragma mark Navigation
 
@@ -48,10 +41,9 @@
 {
 	if(sender != self.doneButton) return;
 	if(self.urlTextField.text.length > 0) {
-		// TODO object's url property
-		[self.inputItem setObject:self.urlTextField.text forKey:@"url"];
+		self.inputItem.url = self.urlTextField.text;
 	}
-	[self.inputItem setObject:self.observeToggle forKey:@"active"];
+	self.inputItem.isObserved = self.observeToggle.isEnabled;
 }
 
 
