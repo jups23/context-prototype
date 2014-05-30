@@ -31,6 +31,7 @@
 @property BOOL observingDeviceMotion;
 
 @property MGCodeViewController* codeViewController;
+@property NSObject* sensorObserver;
 @property CMMotionManager *motionManager;
 
 @end
@@ -89,7 +90,8 @@
 
 - (void)notifyServer:(NSDictionary *)avgs
 {
-	[self.codeViewController sendMotionData:avgs];
+	//[self.codeViewController sendMotionData:avgs];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"newSensorData" object:self userInfo:avgs];
 }
 
 -(void)observeDeviceMotion
@@ -148,7 +150,8 @@
 		if(t0) {
 			NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
 			if(secondsBetween > [self activityTimeOut]) {
-				[self.codeViewController contextBecameInActive:context];
+//				[self.codeViewController contextBecameInActive:context];
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"contextInactive" object:self userInfo:@{@"context":context}];
 			}
 		}
 	}
@@ -241,7 +244,8 @@
 {
 	NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
 	[self.contextTimeStamps setValue:date forKey:context];
-	[self.codeViewController contextBecameActive:context];
+	//[self.codeViewController contextBecameActive:context];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive" object:self userInfo:@{@"context": context}];
 }
 
 -(BOOL)observesActivity:(NSNotification*)notification
@@ -265,6 +269,7 @@
 {
 	self.codeViewController = codeViewController;
 }
+
 
 #pragma mark - constants
 

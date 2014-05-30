@@ -12,8 +12,10 @@ UDP_PORT = 6000
 sock = socket.socket(socket.AF_INET, # Internet
              socket.SOCK_DGRAM) # UDP
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/', methods=["POST"])
 def hello_world():
+    # TODO: use get_json() and
+    #[[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:URLString parameters:parameters];
     sock.sendto(json.dumps(request.form), (UDP_IP, UDP_PORT))
 
 if __name__ == '__main__':
