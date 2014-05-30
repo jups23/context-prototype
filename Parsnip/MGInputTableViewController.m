@@ -15,11 +15,14 @@
 #import "MGContextsAndSensors.h"
 #import "MGInputDetailViewController.h"
 
+#import "MGInterpreter.h"
+
 @interface MGInputTableViewController ()
 
 @property NSMutableArray *sensorsAndContexts;
 @property NSArray *sectionTitles;
 @property NSString* defaultUrl;
+@property MGInterpreter* sensorObserver;
 
 @property NSMutableSet* activeContexts;
 
@@ -44,6 +47,7 @@
 								[[MGSensorInput alloc] initWithName: MGSensorProximity url:self.defaultUrl isObserved:NO section:self.sectionTitles[2]],
 								[[MGSensorInput alloc] initWithName: MGSensorMicrophone url:self.defaultUrl isObserved:NO section:self.sectionTitles[2]],
 							   ]];
+	self.sensorObserver = [[MGInterpreter alloc] init];
 	[self subscribeToSensorInfo];
 	[self subscribeToContextInfo];
 }
@@ -80,9 +84,9 @@
 -(void)processSensorData:(NSNotification*)notification
 {
 	NSDictionary* sensorData = notification.userInfo;
-	NSString *url = @"http://"; // TODO THIS IS MOTION DATA, get MOTION URL
+	NSString *url = [self inputForName:@"motion"].url; // TODO THIS IS UP TO NOW ALWAYS MOTION DATA, get MOTION URL
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-	[manager POST:[@"http://" stringByAppendingString:url] parameters:sensorData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+	[manager POST:url parameters:sensorData success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		NSLog(@"%@", responseObject);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"%@", error);
@@ -159,9 +163,12 @@
 
 -(void)updateInputItem:(MGSensorInput *)inputItem
 {
-	MGSensorInput* outdated = [self inputForName:@"name"];
-	outdated.isObserved = inputItem.isObserved;
-	outdated.url = inputItem.url;
+	MGSensorInput* sensor = [self inputForName:inputItem.name];
+	sensor.isObserved = inputItem.isObserved;
+	sensor.url = inputItem.url;
+	if(sensor.isObserved){
+		[self.sensorObserver observeSensor:sensor.name];
+	}
 }
 
 
