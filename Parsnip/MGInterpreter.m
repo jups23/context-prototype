@@ -14,7 +14,6 @@
 #import <SensePlatform/CSSensePlatform.h>
 #import <CoreMotion/CMMotionManager.h>
 
-#import "AFHTTPRequestOperationManager.h"
 #import "Underscore.h"
 #define _ Underscore
 
@@ -73,7 +72,11 @@
 
 -(void)observeSensor:(MGSensorInput*)sensor
 {
-	[self.observedSensors addObject:sensor];
+	if(sensor.isContext) {
+		[self.observedContexts addObject:sensor];
+	}else {
+		[self.observedSensors addObject:sensor];
+	}
 	if([sensor.name isEqualToString:MGSensorMotion] && !self.observingDeviceMotion) {
 		[self observeDeviceMotion];
 	}
@@ -148,7 +151,7 @@
 
 -(void)checkIfAnyContextTimedOut
 {
-	[self checkIfActivityTimedOut];
+	//[self checkIfActivityTimedOut];
 }
 
 - (void)checkIfActivityTimedOut
@@ -158,7 +161,7 @@
 		if(t0) {
 			NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
 			if(secondsBetween > [self activityTimeOut]) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:@"contextInactive" object:self userInfo:@{@"context":context}];
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"contextInactive" object:nil userInfo:@{@"context":[self contextForName:context]}];
 			}
 		}
 	}
@@ -247,17 +250,18 @@
 	[self saveContextBecameActive:@"running" fromNotification:notification];
 }
 
--(void)saveContextBecameActive:(NSString*)context fromNotification:(NSNotification*)notification
+-(void)saveContextBecameActive:(NSString*)contextName fromNotification:(NSNotification*)notification
 {
 	NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
-	[self.contextTimeStamps setValue:date forKey:context];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive" object:self userInfo:@{@"context": context}];
+	[self.contextTimeStamps setValue:date forKey:contextName];
+	MGSensorInput* context = [self contextForName:contextName];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive" object:nil userInfo:@{@"context": context}];
 }
 
 -(BOOL)observesActivity:(NSNotification*)notification
 {
 	return _.any(self.implementedContexts, ^BOOL (NSString *context) {
-		return [self.observedContexts containsObject:context];
+		return nil != [self contextForName:context];
 	});
 }
 
@@ -269,6 +273,13 @@
 -(BOOL)containsStepCountData:(NSNotification*)notification
 {
 	return [notification.object isEqualToString: [[Factory sharedFactory].stepCounterModule name]];
+}
+
+-(MGSensorInput*)contextForName:(NSString*)name
+{
+	return _.find([self.observedContexts allObjects], ^BOOL(MGSensorInput* context) {
+		return [context.name isEqualToString:name];
+	});
 }
 
 
