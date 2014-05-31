@@ -7,18 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E0746E418F8BAB000DB7227 /* MGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0746E318F8BAB000DB7227 /* MGMainViewController.m */; };
-		3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */; };
-		3E187F8018FA45C3007D778F /* MGCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E187F7F18FA45C3007D778F /* MGCodeViewController.m */; };
 		3E2B2FB818F2EFA9009785C3 /* Cortex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2FB718F2EFA8009785C3 /* Cortex.framework */; };
 		3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B2FC018F2F0D2009785C3 /* Factory.m */; };
 		3E3E04B8190C4B1000995BBF /* MGInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E04B7190C4B1000995BBF /* MGInterpreter.m */; };
 		3E575D6719083694003C23C4 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3E575D6619083694003C23C4 /* Podfile */; };
 		3E575D7719084379003C23C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E575D7619084378003C23C4 /* QuartzCore.framework */; };
 		3E575DCC190B1C2C003C23C4 /* MGTokenStoreTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E575DCB190B1C2C003C23C4 /* MGTokenStoreTestCase.m */; };
-		3E575DD0190B204A003C23C4 /* MGTokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E575DCF190B204A003C23C4 /* MGTokenStore.m */; };
 		3E7026E3192FE81B002647E6 /* MGContextsAndSensors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7026E2192FE81B002647E6 /* MGContextsAndSensors.m */; };
-		3E95093819212CDA0069ABEB /* MGActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95093719212CDA0069ABEB /* MGActionViewController.m */; };
 		3EA2AE3118E894C900C4704D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3018E894C900C4704D /* CoreLocation.framework */; };
 		3EA2AE3318E894D600C4704D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3218E894D600C4704D /* CoreMotion.framework */; };
 		3EA2AE3518E894E300C4704D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA2AE3418E894E300C4704D /* AVFoundation.framework */; };
@@ -506,14 +501,7 @@
 				3EA4E28818E61A0C00B3754F /* MGAppDelegate.m */,
 				3EA4E28A18E61A0C00B3754F /* Main.storyboard */,
 				3EE302FA19376803006F09BC /* Master-Detail */,
-				3E95093619212CDA0069ABEB /* MGActionViewController.h */,
-				3E95093719212CDA0069ABEB /* MGActionViewController.m */,
-				3E0746E218F8BAB000DB7227 /* MGMainViewController.h */,
-				3E0746E318F8BAB000DB7227 /* MGMainViewController.m */,
-				3E187F7E18FA45C3007D778F /* MGCodeViewController.h */,
-				3E187F7F18FA45C3007D778F /* MGCodeViewController.m */,
-				3E0746E518F8BC3C00DB7227 /* MGKeyboardViewController.h */,
-				3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */,
+				3EDC63E3193A7D1600A326D3 /* Old Editor */,
 				3EA4E29018E61A0C00B3754F /* Images.xcassets */,
 				3EA4E27F18E61A0C00B3754F /* Supporting Files */,
 			);
@@ -1080,6 +1068,21 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		3EDC63E3193A7D1600A326D3 /* Old Editor */ = {
+			isa = PBXGroup;
+			children = (
+				3E95093619212CDA0069ABEB /* MGActionViewController.h */,
+				3E95093719212CDA0069ABEB /* MGActionViewController.m */,
+				3E0746E218F8BAB000DB7227 /* MGMainViewController.h */,
+				3E0746E318F8BAB000DB7227 /* MGMainViewController.m */,
+				3E187F7E18FA45C3007D778F /* MGCodeViewController.h */,
+				3E187F7F18FA45C3007D778F /* MGCodeViewController.m */,
+				3E0746E518F8BC3C00DB7227 /* MGKeyboardViewController.h */,
+				3E0746E618F8BC3C00DB7227 /* MGKeyboardViewController.m */,
+			);
+			name = "Old Editor";
+			sourceTree = "<group>";
+		};
 		3EE302FA19376803006F09BC /* Master-Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1292,16 +1295,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E95093819212CDA0069ABEB /* MGActionViewController.m in Sources */,
-				3E575DD0190B204A003C23C4 /* MGTokenStore.m in Sources */,
 				3E2B2FC118F2F0D2009785C3 /* Factory.m in Sources */,
 				3E7026E3192FE81B002647E6 /* MGContextsAndSensors.m in Sources */,
 				3EE302A419365329006F09BC /* MGInputTableViewController.m in Sources */,
 				3E3E04B8190C4B1000995BBF /* MGInterpreter.m in Sources */,
 				3EA4E28918E61A0C00B3754F /* MGAppDelegate.m in Sources */,
-				3E0746E718F8BC3C00DB7227 /* MGKeyboardViewController.m in Sources */,
-				3E187F8018FA45C3007D778F /* MGCodeViewController.m in Sources */,
-				3E0746E418F8BAB000DB7227 /* MGMainViewController.m in Sources */,
 				3EE302F61936827C006F09BC /* MGInputDetailViewController.m in Sources */,
 				3EA4E28518E61A0C00B3754F /* main.m in Sources */,
 				3EE302FD19380390006F09BC /* MGSensorInput.m in Sources */,

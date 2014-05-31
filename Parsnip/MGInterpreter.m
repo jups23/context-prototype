@@ -30,7 +30,6 @@
 @property NSOperationQueue* queue;
 @property BOOL observingDeviceMotion;
 
-@property MGCodeViewController* codeViewController;
 @property NSObject* sensorObserver;
 @property CMMotionManager *motionManager;
 
@@ -72,26 +71,26 @@
 
 #pragma mark - Sensors
 
--(void)observeSensor:(NSString*)sensor
+-(void)observeSensor:(MGSensorInput*)sensor
 {
 	[self.observedSensors addObject:sensor];
-	if([self.observedSensors containsObject:MGSensorMotion] && !self.observingDeviceMotion) {
+	if([sensor.name isEqualToString:MGSensorMotion] && !self.observingDeviceMotion) {
 		[self observeDeviceMotion];
 	}
 }
 
--(void)unObserveSensor:(NSString *)sensor
+-(void)unObserveSensor:(MGSensorInput *)sensor
 {
-	if ([sensor isEqualToString:MGSensorMotion]) {
+	[self.observedSensors removeObject:sensor];
+	if ([sensor.name isEqualToString:MGSensorMotion]) {
 		[self.motionManager stopDeviceMotionUpdates];
 		self.observingDeviceMotion = NO;
 	}
 }
 
-- (void)notifyServer:(NSDictionary *)avgs
+- (void)notifyServer:(NSDictionary *)data
 {
-	//[self.codeViewController sendMotionData:avgs];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"newSensorData" object:self userInfo:avgs];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"newSensorData" object:self userInfo:data];
 }
 
 -(void)observeDeviceMotion
@@ -113,8 +112,10 @@
 										   }];
 		} else {
 			NSDictionary *avgs = [self filterMovement];
-			self.sensorValues = [[NSMutableArray alloc] init]; // @[]
-			[self notifyServer:avgs];
+			self.sensorValues = [[NSMutableArray alloc] init]; // reset filter queue
+			[self notifyServer:@{@"values": avgs,
+								 @"sensor": [self sensorForName:MGSensorMotion]
+								 }];
 		}
 	}];
 }
@@ -135,6 +136,13 @@
 	return avgs;
 }
 
+-(MGSensorInput*)sensorForName:(NSString*)name
+{
+	return _.find([NSArray arrayWithArray:[self.observedSensors allObjects]], ^BOOL(MGSensorInput* sensor) {
+		return [sensor.name isEqualToString:name];
+	});
+}
+
 		
 #pragma mark - Contexts
 
@@ -150,14 +158,13 @@
 		if(t0) {
 			NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
 			if(secondsBetween > [self activityTimeOut]) {
-//				[self.codeViewController contextBecameInActive:context];
 				[[NSNotificationCenter defaultCenter] postNotificationName:@"contextInactive" object:self userInfo:@{@"context":context}];
 			}
 		}
 	}
 }
 
--(void)observeContext:(NSString *)context
+-(void)observeContext:(MGSensorInput *)context
 {
 	[self.observedContexts addObject:context];
 }
@@ -244,7 +251,6 @@
 {
 	NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
 	[self.contextTimeStamps setValue:date forKey:context];
-	//[self.codeViewController contextBecameActive:context];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive" object:self userInfo:@{@"context": context}];
 }
 
@@ -263,11 +269,6 @@
 -(BOOL)containsStepCountData:(NSNotification*)notification
 {
 	return [notification.object isEqualToString: [[Factory sharedFactory].stepCounterModule name]];
-}
-
--(void)registerCodeViewController:(MGCodeViewController *)codeViewController
-{
-	self.codeViewController = codeViewController;
 }
 
 

@@ -15,11 +15,14 @@
 #import "MGContextsAndSensors.h"
 #import "MGInputDetailViewController.h"
 
+#import "MGInterpreter.h"
+
 @interface MGInputTableViewController ()
 
 @property NSMutableArray *sensorsAndContexts;
 @property NSArray *sectionTitles;
 @property NSString* defaultUrl;
+@property MGInterpreter* sensorObserver;
 
 @property NSMutableSet* activeContexts;
 
@@ -30,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.defaultUrl = @"http://174.23.23.23:5000";
+	self.defaultUrl = @"http://192.168.1.114:5000";
 	self.sectionTitles = @[@"Activity", @"Device", @"Other Sensors"];
 	self.sensorsAndContexts = [NSMutableArray arrayWithArray:@[
 								[[MGSensorInput alloc] initWithName: MGContextIdle url:self.defaultUrl isObserved:NO section:self.sectionTitles[0]],
@@ -44,6 +47,7 @@
 								[[MGSensorInput alloc] initWithName: MGSensorProximity url:self.defaultUrl isObserved:NO section:self.sectionTitles[2]],
 								[[MGSensorInput alloc] initWithName: MGSensorMicrophone url:self.defaultUrl isObserved:NO section:self.sectionTitles[2]],
 							   ]];
+	self.sensorObserver = [[MGInterpreter alloc] init];
 	[self subscribeToSensorInfo];
 	[self subscribeToContextInfo];
 }
@@ -79,11 +83,15 @@
 
 -(void)processSensorData:(NSNotification*)notification
 {
-	NSDictionary* sensorData = notification.userInfo;
-	NSString *url = @"http://"; // TODO THIS IS MOTION DATA, get MOTION URL
+	NSDictionary* sensorData = [notification.userInfo objectForKey:@"values"];
+
+	MGSensorInput* sensor = [notification.userInfo objectForKey:@"sensor"];
+	NSString* url = sensor.url;
+
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-	[manager POST:[@"http://" stringByAppendingString:url] parameters:sensorData success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		NSLog(@"%@", responseObject);
+	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+	[manager POST:url parameters:sensorData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+		NSLog(@"Response Code: %ld", (long)[operation.response statusCode]);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"%@", error);
 	}];
@@ -159,9 +167,12 @@
 
 -(void)updateInputItem:(MGSensorInput *)inputItem
 {
-	MGSensorInput* outdated = [self inputForName:@"name"];
-	outdated.isObserved = inputItem.isObserved;
-	outdated.url = inputItem.url;
+	MGSensorInput* sensor = [self inputForName:inputItem.name];
+	sensor.isObserved = inputItem.isObserved;
+	sensor.url = inputItem.url;
+	if(sensor.isObserved){
+		[self.sensorObserver observeSensor:sensor];
+	}
 }
 
 
