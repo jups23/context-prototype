@@ -157,16 +157,14 @@
 - (void)checkIfActivityTimedOut
 {
 	for (NSString *contextName in self.implementedContexts) {
-		NSDate* t0 = [self.contextTimeStamps valueForKey:contextName];
-		if(t0) {
-			NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
-			if(secondsBetween > [self activityTimeOut]) {
-				MGSensorInput* context = [self observedContextForName:contextName];
-				// check if observed
-				if(context != nil) {
+		if([self observesContextWithName:contextName]) {
+			NSDate* t0 = [self.contextTimeStamps valueForKey:contextName];
+			if(t0) {
+				NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
+				if(secondsBetween > [self activityTimeOut]) {
+					MGSensorInput* context = [self observedContextForName:contextName];
 					[[NSNotificationCenter defaultCenter] postNotificationName:@"contextInActive"
 																		object:nil userInfo:@{@"context":context}];
-			
 				}
 			}
 		}
@@ -260,12 +258,11 @@
 
 -(void)saveContextBecameActive:(NSString*)contextName fromNotification:(NSNotification*)notification
 {
-	NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
-	[self.contextTimeStamps setValue:date forKey:contextName];
-	MGSensorInput* context = [self observedContextForName:contextName];
-	// only if context is observed
-	if (context != nil) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive"
+	if([self observesContextWithName:contextName]) {
+		NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
+		[self.contextTimeStamps setValue:date forKey:contextName];
+		MGSensorInput* context = [self observedContextForName:contextName];
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive"
 															object:nil userInfo:@{@"context": context}];
 	}
 }
@@ -294,6 +291,10 @@
 	});
 }
 
+-(BOOL)observesContextWithName:(NSString*)name
+{
+	return nil != [self observedContextForName:name];
+}
 
 #pragma mark - constants
 
