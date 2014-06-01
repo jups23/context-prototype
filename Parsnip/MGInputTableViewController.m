@@ -33,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.defaultUrl = @"http://192.168.1.114:5000";
+	self.defaultUrl = @"http://169.254.154.130:5000";
 	NSString* defaultContextUrl = [self.defaultUrl stringByAppendingString:@"/context"];
 	self.sectionTitles = @[@"Activity", @"Device", @"Other Sensors"];
 	self.sensorsAndContexts = [NSMutableArray arrayWithArray:@[
@@ -49,6 +49,7 @@
 								[[MGSensorInput alloc] initWithName: MGSensorMicrophone url:self.defaultUrl isObserved:NO isContext:FALSE section:self.sectionTitles[2]],
 							   ]];
 	self.sensorObserver = [[MGInterpreter alloc] init];
+	self.activeContexts = [[NSMutableSet alloc] init];
 	[self subscribeToSensorInfo];
 	[self subscribeToContextInfo];
 }
@@ -77,6 +78,9 @@
 	MGSensorInput* context = [notification.userInfo valueForKey:@"context"];
 	[self.activeContexts addObject:context];
 	[self notifyServerAtUrl:context.url aboutData:@{@"context": context.name, @"active":@YES}];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self.tableView reloadData];
+	});
 }
 
 -(void)contextBecameInActive:(NSNotification*)notification
@@ -84,6 +88,9 @@
 	MGSensorInput* context = [notification.userInfo valueForKey:@"context"];
 	[self.activeContexts removeObject:context];
 	[self notifyServerAtUrl:context.url aboutData:@{@"context": context.name, @"active":@NO}];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self.tableView reloadData];
+	});
 }
 
 -(void)processSensorData:(NSNotification*)notification
@@ -133,7 +140,12 @@
 	if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-	cell.textLabel.text = [[self inputForIndexPath:indexPath] valueForKey:@"name"];
+	MGSensorInput* sensorInput = [self inputForIndexPath:indexPath];
+	cell.textLabel.text = sensorInput.name;
+	[cell.textLabel setTextColor:[UIColor blackColor]];
+	if ([self.activeContexts containsObject:sensorInput]) {
+		[cell.textLabel setTextColor:[UIColor greenColor]];
+	}
 	return cell;
 }
 
