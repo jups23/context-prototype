@@ -34,18 +34,19 @@
 {
     [super viewDidLoad];
 	self.defaultUrl = @"http://192.168.1.114:5000";
+	NSString* defaultContextUrl = [self.defaultUrl stringByAppendingString:@"/context"];
 	self.sectionTitles = @[@"Activity", @"Device", @"Other Sensors"];
 	self.sensorsAndContexts = [NSMutableArray arrayWithArray:@[
-								[[MGSensorInput alloc] initWithName: MGContextIdle url:self.defaultUrl isObserved:NO section:self.sectionTitles[0]],
-								[[MGSensorInput alloc] initWithName: MGContextRunning url:self.defaultUrl isObserved:NO section:self.sectionTitles[0]],
-								[[MGSensorInput alloc] initWithName: MGContextWalking url:self.defaultUrl isObserved:NO section:self.sectionTitles[0]],
-								[[MGSensorInput alloc] initWithName: MGSensorMotion url:self.defaultUrl isObserved:NO section:self.sectionTitles[0]],
-								
-								[[MGSensorInput alloc] initWithName: MGContextDeviceInHand url:self.defaultUrl isObserved:NO section:self.sectionTitles[1]],
-								[[MGSensorInput alloc] initWithName: MGContextDeviceOnBody url:self.defaultUrl isObserved:NO section:self.sectionTitles[1]],
-								
-								[[MGSensorInput alloc] initWithName: MGSensorProximity url:self.defaultUrl isObserved:NO section:self.sectionTitles[2]],
-								[[MGSensorInput alloc] initWithName: MGSensorMicrophone url:self.defaultUrl isObserved:NO section:self.sectionTitles[2]],
+								[[MGSensorInput alloc] initWithName: MGContextIdle url:defaultContextUrl isObserved:NO isContext:TRUE section:self.sectionTitles[0]],
+								[[MGSensorInput alloc] initWithName: MGContextRunning url:defaultContextUrl isObserved:NO isContext:TRUE section:self.sectionTitles[0]],
+								[[MGSensorInput alloc] initWithName: MGContextWalking url:defaultContextUrl isObserved:NO isContext:TRUE section:self.sectionTitles[0]],
+								[[MGSensorInput alloc] initWithName: MGSensorMotion url:self.defaultUrl isObserved:NO isContext:FALSE section:self.sectionTitles[0]],
+
+								[[MGSensorInput alloc] initWithName: MGContextDeviceInHand url:defaultContextUrl isObserved:NO  isContext:TRUE section:self.sectionTitles[1]],
+								[[MGSensorInput alloc] initWithName: MGContextDeviceOnBody url:defaultContextUrl isObserved:NO isContext:TRUE section:self.sectionTitles[1]],
+
+								[[MGSensorInput alloc] initWithName: MGSensorProximity url:self.defaultUrl isObserved:NO isContext:FALSE section:self.sectionTitles[2]],
+								[[MGSensorInput alloc] initWithName: MGSensorMicrophone url:self.defaultUrl isObserved:NO isContext:FALSE section:self.sectionTitles[2]],
 							   ]];
 	self.sensorObserver = [[MGInterpreter alloc] init];
 	[self subscribeToSensorInfo];
@@ -73,12 +74,16 @@
 
 -(void)contextBecameActive:(NSNotification*)notification
 {
-	[self.activeContexts addObject:[notification.userInfo valueForKey:@"context"]];
+	MGSensorInput* context = [notification.userInfo valueForKey:@"context"];
+	[self.activeContexts addObject:context];
+	[self notifyServerAtUrl:context.url aboutData:@{@"context": context.name, @"active":@YES}];
 }
 
 -(void)contextBecameInActive:(NSNotification*)notification
 {
-	[self.activeContexts removeObject:[notification.userInfo valueForKey:@"context"]];
+	MGSensorInput* context = [notification.userInfo valueForKey:@"context"];
+	[self.activeContexts removeObject:context];
+	[self notifyServerAtUrl:context.url aboutData:@{@"context": context.name, @"active":@NO}];
 }
 
 -(void)processSensorData:(NSNotification*)notification
@@ -87,10 +92,16 @@
 
 	MGSensorInput* sensor = [notification.userInfo objectForKey:@"sensor"];
 	NSString* url = sensor.url;
+	[self notifyServerAtUrl:url aboutData:sensorData];
+}
 
+#pragma mark - Server Communication
+
+-(void)notifyServerAtUrl:(NSString*)url aboutData:(NSDictionary*)data
+{
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-	[manager POST:url parameters:sensorData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+	[manager POST:url parameters:data success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		NSLog(@"Response Code: %ld", (long)[operation.response statusCode]);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"%@", error);

@@ -14,7 +14,6 @@
 #import <SensePlatform/CSSensePlatform.h>
 #import <CoreMotion/CMMotionManager.h>
 
-#import "AFHTTPRequestOperationManager.h"
 #import "Underscore.h"
 #define _ Underscore
 
@@ -73,7 +72,11 @@
 
 -(void)observeSensor:(MGSensorInput*)sensor
 {
-	[self.observedSensors addObject:sensor];
+	if(sensor.isContext) {
+		[self.observedContexts addObject:sensor];
+	}else {
+		[self.observedSensors addObject:sensor];
+	}
 	if([sensor.name isEqualToString:MGSensorMotion] && !self.observingDeviceMotion) {
 		[self observeDeviceMotion];
 	}
@@ -90,7 +93,7 @@
 
 - (void)notifyServer:(NSDictionary *)data
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"newSensorData" object:self userInfo:data];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"newSensorData" object:nil userInfo:data];
 }
 
 -(void)observeDeviceMotion
@@ -153,12 +156,16 @@
 
 - (void)checkIfActivityTimedOut
 {
-	for (NSString *context in self.implementedContexts) {
-		NSDate* t0 = [self.contextTimeStamps valueForKey:context];
-		if(t0) {
-			NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
-			if(secondsBetween > [self activityTimeOut]) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:@"contextInactive" object:self userInfo:@{@"context":context}];
+	for (NSString *contextName in self.implementedContexts) {
+		if([self observesContextWithName:contextName]) {
+			NSDate* t0 = [self.contextTimeStamps valueForKey:contextName];
+			if(t0) {
+				NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
+				if(secondsBetween > [self activityTimeOut]) {
+					MGSensorInput* context = [self observedContextForName:contextName];
+					[[NSNotificationCenter defaultCenter] postNotificationName:@"contextInActive"
+																		object:nil userInfo:@{@"context":context}];
+				}
 			}
 		}
 	}
@@ -194,6 +201,7 @@
 
 -(void)notifyIfWalkingWithStepsPerMinute:(double)stepsPerMinute fromNotification:(NSNotification*)notification
 {
+	// uses steps per minute from motion data, less delay
 	if(stepsPerMinute > [self minWalkingStepsPerMinute]){
 		NSLog(@"Walking with %f steps per minute", stepsPerMinute);
 		[self saveWalkingIsActive:notification];
@@ -202,6 +210,7 @@
 
 -(void)notifyIfWalking:(NSNotification*)notification
 {
+	// uses notification from Cortex, more delay
 	if([[notification.userInfo valueForKey:@"value"] isEqualToString:@"\"Walking\""]) {
 		NSLog(@"Walking");
 		[self saveWalkingIsActive:notification];
@@ -247,17 +256,21 @@
 	[self saveContextBecameActive:@"running" fromNotification:notification];
 }
 
--(void)saveContextBecameActive:(NSString*)context fromNotification:(NSNotification*)notification
+-(void)saveContextBecameActive:(NSString*)contextName fromNotification:(NSNotification*)notification
 {
-	NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
-	[self.contextTimeStamps setValue:date forKey:context];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive" object:self userInfo:@{@"context": context}];
+	if([self observesContextWithName:contextName]) {
+		NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
+		[self.contextTimeStamps setValue:date forKey:contextName];
+		MGSensorInput* context = [self observedContextForName:contextName];
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive"
+															object:nil userInfo:@{@"context": context}];
+	}
 }
 
 -(BOOL)observesActivity:(NSNotification*)notification
 {
-	return _.any(self.implementedContexts, ^BOOL (NSString *context) {
-		return [self.observedContexts containsObject:context];
+	return _.any(self.implementedContexts, ^BOOL (NSString *contextName) {
+		return nil != [self observedContextForName:contextName];
 	});
 }
 
@@ -271,6 +284,17 @@
 	return [notification.object isEqualToString: [[Factory sharedFactory].stepCounterModule name]];
 }
 
+-(MGSensorInput*)observedContextForName:(NSString*)name
+{
+	return _.find([self.observedContexts allObjects], ^BOOL(MGSensorInput* context) {
+		return [context.name isEqualToString:name];
+	});
+}
+
+-(BOOL)observesContextWithName:(NSString*)name
+{
+	return nil != [self observedContextForName:name];
+}
 
 #pragma mark - constants
 

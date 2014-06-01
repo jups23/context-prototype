@@ -14,7 +14,8 @@
 @property NSString* name;
 @property NSString* url;
 @property NSString* section;
+@property BOOL isContext;
 
--(id)initWithName: (NSString*)name url:(NSString*)url isObserved:(BOOL) isObserved section:(NSString*)section;
+-(id)initWithName: (NSString*)name url:(NSString*)url isObserved:(BOOL)isObserved isContext:(BOOL)isContext section:(NSString*)section;
 
 @end
