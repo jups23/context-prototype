@@ -19,7 +19,7 @@ vector borderup,borderup2,borderdown,borderdown2;
 PFont font;
 int scoreleft=0,scoreright=0;
 
-float SHAKE_THRESHOLD = 1.2;
+float SHAKE_THRESHOLD = 0.5;
 
 void setup() {
   size(320,200);
