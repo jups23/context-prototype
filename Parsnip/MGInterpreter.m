@@ -93,7 +93,7 @@
 
 - (void)notifyServer:(NSDictionary *)data
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"newSensorData" object:self userInfo:data];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"newSensorData" object:nil userInfo:data];
 }
 
 -(void)observeDeviceMotion
@@ -151,17 +151,23 @@
 
 -(void)checkIfAnyContextTimedOut
 {
-	//[self checkIfActivityTimedOut];
+	[self checkIfActivityTimedOut];
 }
 
 - (void)checkIfActivityTimedOut
 {
-	for (NSString *context in self.implementedContexts) {
-		NSDate* t0 = [self.contextTimeStamps valueForKey:context];
+	for (NSString *contextName in self.implementedContexts) {
+		NSDate* t0 = [self.contextTimeStamps valueForKey:contextName];
 		if(t0) {
 			NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
 			if(secondsBetween > [self activityTimeOut]) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:@"contextInactive" object:nil userInfo:@{@"context":[self contextForName:context]}];
+				MGSensorInput* context = [self observedContextForName:contextName];
+				// check if observed
+				if(context != nil) {
+					[[NSNotificationCenter defaultCenter] postNotificationName:@"contextInActive"
+																		object:nil userInfo:@{@"context":context}];
+			
+				}
 			}
 		}
 	}
@@ -197,6 +203,7 @@
 
 -(void)notifyIfWalkingWithStepsPerMinute:(double)stepsPerMinute fromNotification:(NSNotification*)notification
 {
+	// uses steps per minute from motion data, less delay
 	if(stepsPerMinute > [self minWalkingStepsPerMinute]){
 		NSLog(@"Walking with %f steps per minute", stepsPerMinute);
 		[self saveWalkingIsActive:notification];
@@ -205,6 +212,7 @@
 
 -(void)notifyIfWalking:(NSNotification*)notification
 {
+	// uses notification from Cortex, more delay
 	if([[notification.userInfo valueForKey:@"value"] isEqualToString:@"\"Walking\""]) {
 		NSLog(@"Walking");
 		[self saveWalkingIsActive:notification];
@@ -254,14 +262,18 @@
 {
 	NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
 	[self.contextTimeStamps setValue:date forKey:contextName];
-	MGSensorInput* context = [self contextForName:contextName];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive" object:nil userInfo:@{@"context": context}];
+	MGSensorInput* context = [self observedContextForName:contextName];
+	// only if context is observed
+	if (context != nil) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive"
+															object:nil userInfo:@{@"context": context}];
+	}
 }
 
 -(BOOL)observesActivity:(NSNotification*)notification
 {
-	return _.any(self.implementedContexts, ^BOOL (NSString *context) {
-		return nil != [self contextForName:context];
+	return _.any(self.implementedContexts, ^BOOL (NSString *contextName) {
+		return nil != [self observedContextForName:contextName];
 	});
 }
 
@@ -275,7 +287,7 @@
 	return [notification.object isEqualToString: [[Factory sharedFactory].stepCounterModule name]];
 }
 
--(MGSensorInput*)contextForName:(NSString*)name
+-(MGSensorInput*)observedContextForName:(NSString*)name
 {
 	return _.find([self.observedContexts allObjects], ^BOOL(MGSensorInput* context) {
 		return [context.name isEqualToString:name];

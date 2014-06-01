@@ -81,7 +81,9 @@
 
 -(void)contextBecameInActive:(NSNotification*)notification
 {
-	[self.activeContexts removeObject:[notification.userInfo valueForKey:@"context"]];
+	MGSensorInput* context = [notification.userInfo valueForKey:@"context"];
+	[self.activeContexts removeObject:context];
+	[self notifyServerAtUrl:context.url aboutData:@{@"context": context.name, @"active":@NO}];
 }
 
 -(void)processSensorData:(NSNotification*)notification
