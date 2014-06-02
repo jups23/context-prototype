@@ -14,7 +14,6 @@
 #import <SensePlatform/CSSensePlatform.h>
 #import <CoreMotion/CMMotionManager.h>
 
-#import "AFHTTPRequestOperationManager.h"
 #import "Underscore.h"
 #define _ Underscore
 
@@ -30,7 +29,7 @@
 @property NSOperationQueue* queue;
 @property BOOL observingDeviceMotion;
 
-@property MGCodeViewController* codeViewController;
+@property NSObject* sensorObserver;
 @property CMMotionManager *motionManager;
 
 @end
@@ -71,25 +70,30 @@
 
 #pragma mark - Sensors
 
--(void)observeSensor:(NSString*)sensor
+-(void)observeSensor:(MGSensorInput*)sensor
 {
-	[self.observedSensors addObject:sensor];
-	if([self.observedSensors containsObject:MGSensorMotion] && !self.observingDeviceMotion) {
+	if(sensor.isContext) {
+		[self.observedContexts addObject:sensor];
+	}else {
+		[self.observedSensors addObject:sensor];
+	}
+	if([sensor.name isEqualToString:MGSensorMotion] && !self.observingDeviceMotion) {
 		[self observeDeviceMotion];
 	}
 }
 
--(void)unObserveSensor:(NSString *)sensor
+-(void)unObserveSensor:(MGSensorInput *)sensor
 {
-	if ([sensor isEqualToString:MGSensorMotion]) {
+	[self.observedSensors removeObject:sensor];
+	if ([sensor.name isEqualToString:MGSensorMotion]) {
 		[self.motionManager stopDeviceMotionUpdates];
 		self.observingDeviceMotion = NO;
 	}
 }
 
-- (void)notifyServer:(NSDictionary *)avgs
+- (void)notifyServer:(NSDictionary *)data
 {
-	[self.codeViewController sendMotionData:avgs];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"newSensorData" object:nil userInfo:data];
 }
 
 -(void)observeDeviceMotion
@@ -111,8 +115,10 @@
 										   }];
 		} else {
 			NSDictionary *avgs = [self filterMovement];
-			self.sensorValues = [[NSMutableArray alloc] init]; // @[]
-			[self notifyServer:avgs];
+			self.sensorValues = [[NSMutableArray alloc] init]; // reset filter queue
+			[self notifyServer:@{@"values": avgs,
+								 @"sensor": [self sensorForName:MGSensorMotion]
+								 }];
 		}
 	}];
 }
@@ -133,6 +139,13 @@
 	return avgs;
 }
 
+-(MGSensorInput*)sensorForName:(NSString*)name
+{
+	return _.find([NSArray arrayWithArray:[self.observedSensors allObjects]], ^BOOL(MGSensorInput* sensor) {
+		return [sensor.name isEqualToString:name];
+	});
+}
+
 		
 #pragma mark - Contexts
 
@@ -143,18 +156,22 @@
 
 - (void)checkIfActivityTimedOut
 {
-	for (NSString *context in self.implementedContexts) {
-		NSDate* t0 = [self.contextTimeStamps valueForKey:context];
-		if(t0) {
-			NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
-			if(secondsBetween > [self activityTimeOut]) {
-				[self.codeViewController contextBecameInActive:context];
+	for (NSString *contextName in self.implementedContexts) {
+		if([self observesContextWithName:contextName]) {
+			NSDate* t0 = [self.contextTimeStamps valueForKey:contextName];
+			if(t0) {
+				NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:t0];
+				if(secondsBetween > [self activityTimeOut]) {
+					MGSensorInput* context = [self observedContextForName:contextName];
+					[[NSNotificationCenter defaultCenter] postNotificationName:@"contextInActive"
+																		object:nil userInfo:@{@"context":context}];
+				}
 			}
 		}
 	}
 }
 
--(void)observeContext:(NSString *)context
+-(void)observeContext:(MGSensorInput *)context
 {
 	[self.observedContexts addObject:context];
 }
@@ -184,6 +201,7 @@
 
 -(void)notifyIfWalkingWithStepsPerMinute:(double)stepsPerMinute fromNotification:(NSNotification*)notification
 {
+	// uses steps per minute from motion data, less delay
 	if(stepsPerMinute > [self minWalkingStepsPerMinute]){
 		NSLog(@"Walking with %f steps per minute", stepsPerMinute);
 		[self saveWalkingIsActive:notification];
@@ -192,6 +210,7 @@
 
 -(void)notifyIfWalking:(NSNotification*)notification
 {
+	// uses notification from Cortex, more delay
 	if([[notification.userInfo valueForKey:@"value"] isEqualToString:@"\"Walking\""]) {
 		NSLog(@"Walking");
 		[self saveWalkingIsActive:notification];
@@ -237,17 +256,21 @@
 	[self saveContextBecameActive:@"running" fromNotification:notification];
 }
 
--(void)saveContextBecameActive:(NSString*)context fromNotification:(NSNotification*)notification
+-(void)saveContextBecameActive:(NSString*)contextName fromNotification:(NSNotification*)notification
 {
-	NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
-	[self.contextTimeStamps setValue:date forKey:context];
-	[self.codeViewController contextBecameActive:context];
+	if([self observesContextWithName:contextName]) {
+		NSDate* date = [NSDate dateWithTimeIntervalSince1970:[[notification.userInfo valueForKey:@"date"] doubleValue]];
+		[self.contextTimeStamps setValue:date forKey:contextName];
+		MGSensorInput* context = [self observedContextForName:contextName];
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"contextActive"
+															object:nil userInfo:@{@"context": context}];
+	}
 }
 
 -(BOOL)observesActivity:(NSNotification*)notification
 {
-	return _.any(self.implementedContexts, ^BOOL (NSString *context) {
-		return [self.observedContexts containsObject:context];
+	return _.any(self.implementedContexts, ^BOOL (NSString *contextName) {
+		return nil != [self observedContextForName:contextName];
 	});
 }
 
@@ -261,9 +284,16 @@
 	return [notification.object isEqualToString: [[Factory sharedFactory].stepCounterModule name]];
 }
 
--(void)registerCodeViewController:(MGCodeViewController *)codeViewController
+-(MGSensorInput*)observedContextForName:(NSString*)name
 {
-	self.codeViewController = codeViewController;
+	return _.find([self.observedContexts allObjects], ^BOOL(MGSensorInput* context) {
+		return [context.name isEqualToString:name];
+	});
+}
+
+-(BOOL)observesContextWithName:(NSString*)name
+{
+	return nil != [self observedContextForName:name];
 }
 
 #pragma mark - constants

@@ -19,6 +19,8 @@ vector borderup,borderup2,borderdown,borderdown2;
 PFont font;
 int scoreleft=0,scoreright=0;
 
+float SHAKE_THRESHOLD = 0.5;
+
 void setup() {
   size(320,200);
   font = loadFont("CourierNew36.vlw"); 

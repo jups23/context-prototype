@@ -7,14 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MGCodeViewController.h"
+#import "MGSensorInput.h"
 
 @interface MGInterpreter : NSObject
 
--(void)observeContext:(NSString*)context;
--(void)observeSensor:(NSString*)sensor;
--(void)unObserveSensor:(NSString*)sensor;
-
--(void)registerCodeViewController:(MGCodeViewController *)codeViewController;
+-(void)observeContext:(MGSensorInput*)context;
+-(void)observeSensor:(MGSensorInput*)sensor;
+-(void)unObserveSensor:(MGSensorInput*)sensor;
 
 @end

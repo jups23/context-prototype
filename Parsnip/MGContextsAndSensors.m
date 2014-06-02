@@ -16,3 +16,6 @@ NSString* const MGSensorProximity = @"proximity";
 NSString* const MGContextWalking = @"walking";
 NSString* const MGContextIdle = @"idle";
 NSString* const MGContextRunning = @"running";
+
+NSString* const MGContextDeviceInHand = @"device in hand";
+NSString* const MGContextDeviceOnBody = @"device on body";
