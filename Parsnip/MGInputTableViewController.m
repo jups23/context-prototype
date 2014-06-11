@@ -40,6 +40,7 @@
 								[[MGSensorInput alloc] initWithName: MGContextIdle url:defaultContextUrl isObserved:NO isContext:TRUE section:self.sectionTitles[0]],
 								[[MGSensorInput alloc] initWithName: MGContextRunning url:defaultContextUrl isObserved:NO isContext:TRUE section:self.sectionTitles[0]],
 								[[MGSensorInput alloc] initWithName: MGContextWalking url:defaultContextUrl isObserved:NO isContext:TRUE section:self.sectionTitles[0]],
+								[[MGSensorInput alloc] initWithName: MGContextCycling url:self.defaultUrl isObserved:NO isContext:TRUE section:self.sectionTitles[0]],
 								[[MGSensorInput alloc] initWithName: MGSensorMotion url:self.defaultUrl isObserved:NO isContext:FALSE section:self.sectionTitles[0]],
 
 								[[MGSensorInput alloc] initWithName: MGContextDeviceInHand url:defaultContextUrl isObserved:NO  isContext:TRUE section:self.sectionTitles[1]],

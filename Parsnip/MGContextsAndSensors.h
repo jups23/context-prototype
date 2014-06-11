@@ -16,6 +16,7 @@ extern NSString* const MGSensorProximity;
 extern NSString* const MGContextWalking;
 extern NSString* const MGContextIdle;
 extern NSString* const MGContextRunning;
+extern NSString* const MGContextCycling;
 
 extern NSString* const MGContextDeviceInHand;
 extern NSString* const MGContextDeviceOnBody;
