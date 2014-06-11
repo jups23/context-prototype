@@ -19,7 +19,7 @@
 
 @interface MGInputTableViewController ()
 
-@property NSMutableArray *sensorsAndContexts;
+@property NSArray *sensorsAndContexts;
 @property NSArray *sectionTitles;
 @property NSString* defaultUrl;
 @property MGInterpreter* sensorObserver;
@@ -36,7 +36,7 @@
 	self.defaultUrl = @"http://169.254.154.130:5000";
 	NSString* defaultContextUrl = [self.defaultUrl stringByAppendingString:@"/context"];
 	self.sectionTitles = @[@"Activity", @"Device", @"Other Sensors"];
-	self.sensorsAndContexts = [NSMutableArray arrayWithArray:@[
+	self.sensorsAndContexts = @[
 								[[MGSensorInput alloc] initWithName: MGContextIdle url:defaultContextUrl isObserved:NO isContext:TRUE section:self.sectionTitles[0]],
 								[[MGSensorInput alloc] initWithName: MGContextRunning url:defaultContextUrl isObserved:NO isContext:TRUE section:self.sectionTitles[0]],
 								[[MGSensorInput alloc] initWithName: MGContextWalking url:defaultContextUrl isObserved:NO isContext:TRUE section:self.sectionTitles[0]],
@@ -48,7 +48,7 @@
 
 								[[MGSensorInput alloc] initWithName: MGSensorProximity url:self.defaultUrl isObserved:NO isContext:FALSE section:self.sectionTitles[2]],
 								[[MGSensorInput alloc] initWithName: MGSensorMicrophone url:self.defaultUrl isObserved:NO isContext:FALSE section:self.sectionTitles[2]],
-							   ]];
+							   ];
 	self.sensorObserver = [[MGInterpreter alloc] init];
 	self.activeContexts = [[NSMutableSet alloc] init];
 	[self subscribeToSensorInfo];
