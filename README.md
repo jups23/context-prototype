@@ -4,7 +4,7 @@
 
 If Phone Then Sensor allows using the sensors available in current smartphones for prototyping. Here, a developer researches the possibility of controlling the paddle in the Pong video game with the absolute posi- tion of her wrist. The hand’s pose is tracked by the gyroscope of her smartphone, which is attached to her hand. The smartphone streams the position values over HTTP to the computer, which runs the Pong game.
 
-[Video Screencast](https://youtu.be/mSh8CIye7q0)
+[Watch Video Screencast](https://youtu.be/mSh8CIye7q0)
 
 ## Abstract
 Developing prototypes, which make use of sensor data has been made more accessible for developers with little or no experience in programming and building hardware because of the popularity of hardware development tools, such as Arduino and Raspberry Pi. However, programming applications still requires wiring up hardware sensors and low-level programming. At the same time, smartphones are widely used as continuously worn mobile computing de-vices equipped with sensors. These sensors can be used to infer the context of the users, such as dancing, walking, sleeping, waiting in a line, watching TV, or are having a conversation. Further, sensors are an integral component of natural user interfaces and therefore heavily used during research of new forms of human-computer interaction and prototyping of interactive art installations.
