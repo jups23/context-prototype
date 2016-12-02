@@ -12,7 +12,7 @@ To let creative minds explore the design space of context-aware applications or 
 Because our tool uses the sensors already present in modern smartphones, developers can try out ideas without needing additional hardware. Furthermore, using smartphones allows mobile testing in the field, at the location of imagined use or at the location where developers have ideas and therefore allows realistic testing and encourages wild ideas.
 We implemented our proposed system for iOS 7 on an iPhone 5 using the [CommonSense](http://developer.sense-os.nl/Libraries/iOS/) platform for sensing the user contexts.
 
-Read the full article with more information about this project with a discussion of the field of Natural User Interfaces in the context of ubiquitous computing: [If Phone Then Sensor – Exploring Smartphones as Sensor Platforms for Prototyping](.pdf)
+Read the full article with more information about this project with a discussion of the field of Natural User Interfaces in the context of ubiquitous computing: [If Phone Then Sensor – Exploring Smartphones as Sensor Platforms for Prototyping](WilliMüller-SmartphoneSensorPrototyping.pdf)
 
 ## Authors and Contributors
 The project was implemented by Willi Müller (@jups23) during the seminar on Ubiquitous Computing in April–June 2014 with [Professor Antonio Loureiro](http://www.dcc.ufmg.br/dcc/?q=en/node/154) at the [UFMG Belo Horizonte](http://dcc.ufmg.br/dcc/?q=en), Brazil
